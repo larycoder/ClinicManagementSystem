@@ -8,3 +8,11 @@ the Group Project course in USTH
 - Doan Lien Huong
 - Vu Khanh Huyen
 - Pham Phan Bach
+
+------------------------------------------
+# First Step
+## Required Installation
+- python
+```
+
+```
