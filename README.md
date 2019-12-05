@@ -15,3 +15,7 @@ the Group Project course in USTH
 ### Required Installation
 
 - python3
+
+```shell
+pip install mysql-connector-python
+```
