@@ -5,3 +5,10 @@ mysql = {
   'database': 'Clinic',
   'raise_on_warnings': True
 }
+
+query = {
+  'verify_login': "SELECT COUNT(*) FROM user WHERE username = %s AND password = %s",
+
+
+  
+}
