@@ -7,8 +7,5 @@ mysql = {
 }
 
 query = {
-  'verify_login': "SELECT COUNT(*) FROM user WHERE username = %s AND password = %s",
-
-
-  
+  'verify_login': "SELECT (id) FROM user WHERE username = %s AND password = %s",
 }
