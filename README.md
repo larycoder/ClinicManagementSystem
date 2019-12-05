@@ -1,18 +1,21 @@
 # ClinicManagementSystem
+
 the Group Project course in USTH
 
-------------------------------------------
-# Members
+## Members
+
 - Le Nhu Chu Hiep
 - Pham Thi Ngoc Mai
 - Doan Lien Huong
 - Vu Khanh Huyen
 - Pham Phan Bach
 
-------------------------------------------
-# First Step
-## Required Installation
+## First Step
+
+### Required Installation
+
 - python
-```
+
+```shell
 pip install flask
 ```
