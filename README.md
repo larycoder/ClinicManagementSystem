@@ -14,5 +14,5 @@ the Group Project course in USTH
 ## Required Installation
 - python
 ```
-
+pip install flask
 ```
