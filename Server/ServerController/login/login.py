@@ -39,11 +39,11 @@ class ClinicDbConnection(connection.MySQLConnection):
         else:
           return -1
 
-if __name__ == '__main__':
+def CreateDbConnection():
     try:
         cnx = ClinicDbConnection(user=config.mysql['user'], password=config.mysql['password'],
                                  host=config.mysql['host'], database=config.mysql['database'])
-        cnx.verify_login('hito', 'misa')
+        return cnx
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
@@ -53,3 +53,5 @@ if __name__ == '__main__':
             print(err)
     else:
         cnx.close()
+    
+    return None
