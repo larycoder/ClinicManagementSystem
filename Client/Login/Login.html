@@ -2,7 +2,7 @@
 <html>
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style id="MainCSS"></style>
+            <link rel="stylesheet" type="text/css" href="login.css">
     </head>
 
     <body>
@@ -29,24 +29,7 @@
                 </div>	
         </div>
 
-        <script id="MainScript"></script>
-
-        <script>
-            let xmlRequest = new XMLHttpRequest();
-
-            xmlRequest.onreadystatechange = function(){
-                document.getElementById("MainScript").innerHTML = this.responseText;
-            }
-            xmlRequest.open("GET","login.js");
-            xmlRequest.send();
-            
-            let newxmlRequest = new XMLHttpRequest();
-            newxmlRequest.onreadystatechange = function(){
-                document.getElementById("MainCSS").innerHTML = this.responseText;
-            }
-            newxmlRequest.open("GET","login.css");
-            newxmlRequest.send();
-        </script> 
+        <script src="login.js"></script>
     </body>
 </html>
 

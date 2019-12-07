@@ -8,7 +8,7 @@ from http.server import HTTPServer
 from Parser import RESTHandler as handler
 
 HOST_NAME = ''
-PORT_NUMBER = 5000
+PORT_NUMBER = 5001
 
 server_class = HTTPServer
 httpd = server_class((HOST_NAME, PORT_NUMBER), handler)

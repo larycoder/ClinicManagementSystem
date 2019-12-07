@@ -13,6 +13,5 @@ class RESTHandler(BaseHTTPRequestHandler):
     """Respond to a GET request."""
     APIHandler = GETHandlerAPI.API(API = s.path)
     s.send_response(APIHandler.getResponse())
-    s.send_header("Content-type", "text/html")
     s.end_headers()
     s.wfile.write(APIHandler.getData().encode())
