@@ -3,6 +3,7 @@
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <style id="PagerCSS"></style>
+            <link rel="stylesheet" type="text/css" href="login.css"> 
     </head>
 
     <body>
@@ -30,15 +31,15 @@
                 </div>
         	</form>
         </div>
-        <script >
+        <!-- <script >
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if(this.status = 200) {
                     document.getElementById("PagerCSS").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "http://127.0.0.1:5000/login/css", false);
+            xhttp.open("GET", "/Login/login.css", false);
             xhttp.send();
-        </script>
+        </script> -->
     </body>
 </html>
