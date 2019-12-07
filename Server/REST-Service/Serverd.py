@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.getcwd() + "/APIHandler")
+
 import time
 from http.server import HTTPServer
 from Parser import RESTHandler as handler

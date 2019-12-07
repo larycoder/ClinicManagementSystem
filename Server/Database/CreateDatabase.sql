@@ -40,6 +40,7 @@ id INT(10) NOT NULL AUTO_INCREMENT,
 doctor_id INT(10) NOT NULL,
 patient_id INT(10) NOT NULL,
 date_time DATETIME NOT NULL,
+appointment_id INT(10) NOT NULL,
 report_data text,
 PRIMARY KEY (id),
 FOREIGN KEY (doctor_id) REFERENCES user(id),
@@ -67,16 +68,6 @@ PRIMARY KEY (id),
 FOREIGN KEY (report_id) REFERENCES report(id)
 );
 
-CREATE TABLE service
-(
-id INT(10) NOT NULL AUTO_INCREMENT,
-code VARCHAR(10) NOT NULL,
-name VARCHAR(50) NOT NULL,
-status BOOLEAN NOT NULL,
-price INT(50),
-PRIMARY KEY (id)
-);
-
 CREATE TABLE resource
 (
 id INT(10) NOT NULL AUTO_INCREMENT,
@@ -89,6 +80,15 @@ price INT(50),
 PRIMARY KEY (id)
 );
 
+CREATE TABLE service
+(
+id INT(10) NOT NULL AUTO_INCREMENT,
+code VARCHAR(10) NOT NULL,
+name VARCHAR(50) NOT NULL,
+status BOOLEAN NOT NULL,
+price INT(50),
+PRIMARY KEY (id)
+);
 
 CREATE TABLE instruction
 (
