@@ -20,7 +20,9 @@ class API:
     ResponseBuf = "Sorry"
 
     def __init__(self, API = '/', Connection = None):
-      self.DBConnection = Connection
+      self.DBConnection = Connection # get Database handle
+      for path in API.split("/"):
+          print(path)
       if API == "/":
         self.Status, self.ResponseBuf = readFile(root + "/error4.html")
       else:
