@@ -1,5 +1,6 @@
 from FileHandler import readFile
 from FileHandler import root
+import json
 
 # Predefine API
 Status_pair = {
@@ -21,10 +22,11 @@ class API:
 
     def __init__(self, API = '/', Connection = None):
       self.DBConnection = Connection # get Database handle
-      for path in API.split("/"):
-          print(path)
       if API == "/":
-        self.Status, self.ResponseBuf = readFile(root + "/error4.html")
+        self.Status, self.ResponseBuf = readFile(root + "/error404.html")
+      elif API.split("/")[1] == "api":
+        data = (API.split("/")[2]).split("?")
+        self.Status, self.ResponseBuf = getattr(self, data[0])(data[1])
       else:
         self.Status, self.ResponseBuf = readFile(root + API)
 
@@ -34,4 +36,15 @@ class API:
     def getData(self):
       return self.ResponseBuf
 
-    ### these are methods for handling each specific method ###
+    def String2Json(self, data):
+      JsonFile = {} # dictionary to keep json object
+      values = data.split("&")
+      for value in values:
+        value = value.split("=")
+        JsonFile[value[0]] = value[1]
+      return JsonFile
+
+    ## method for handling API request ##
+    def login(self, data):
+      print(self.String2Json(data))
+      return readFile(root + "/error404.html")

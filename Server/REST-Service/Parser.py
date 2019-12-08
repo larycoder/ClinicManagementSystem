@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-from APIHandler import GETHandlerAPI
+from APIHandler import API
 
 class RESTHandler(BaseHTTPRequestHandler):
   """A class to parse http request and response"""
@@ -11,7 +11,7 @@ class RESTHandler(BaseHTTPRequestHandler):
 
   def do_GET(s):
     """Respond to a GET request."""
-    APIHandler = GETHandlerAPI.API(API = s.path)
+    APIHandler = API(API = s.path)
     s.send_response(APIHandler.getResponse())
     s.end_headers()
     s.wfile.write(APIHandler.getData().encode())
