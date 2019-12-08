@@ -2,12 +2,11 @@
 <html>
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style id="PagerCSS"></style>
+            <link rel="stylesheet" type="text/css" href="login.css">
     </head>
 
     <body>
-        <div class="wrapper">
-        	<form name="loginForm" class="loginForm" action="" method="post">
+        <div class="loginForm" id="loginForm">
 
                 <div class="header">
                     <h1>Clinic System Manager</h1>
@@ -16,29 +15,22 @@
 
                 <div class="content">
                     <label for="uname"><b>Username:</b></label>
-                    <input type="text" class="input uname" placeholder="Enter Username" name="uname" required>
+                    <input type="text" class="input uname" id ="uname"placeholder="Enter Username" name="uname" required>
                     <br>
                     
                     <label for="pass"><b>Password:</b></label>
-                    <input type="password" class="input pass" placeholder="Enter Password" name="pass" required>
+                    <input type="password" class="input pass" id = "pass" placeholder="Enter Password" name="pass" required>
                     <br>
                 </div>
                 
                 <div class="footer">
                     <a href="" class="forgetPass">Forgot password?</a>
-                    <button type="submit" class="login">Login</button>
-                </div>
-        	</form>
+                    <button type="submit" class="login" value="Login" onclick="validate()">Login</button>
+                </div>	
         </div>
-        <script >
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if(this.status = 200) {
-                    document.getElementById("PagerCSS").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "http://127.0.0.1:5000/login/css", false);
-            xhttp.send();
-        </script>
+
+        <script src="login.js"></script>
     </body>
 </html>
+
+
