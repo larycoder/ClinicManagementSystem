@@ -22,7 +22,7 @@ class API:
     def __init__(self, API = '/', Connection = None):
       self.DBConnection = Connection
       if API == "/":
-        self.Status, self.ResponseBuf = readFile(root + "/Login/Login.html")
+        self.Status, self.ResponseBuf = readFile(root + "/error4.html")
       else:
         self.Status, self.ResponseBuf = readFile(root + API)
 
