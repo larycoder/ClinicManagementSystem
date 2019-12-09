@@ -52,6 +52,10 @@ query = {
   
   # export report
   'list_report': "SELECT * FROM report",
+  'list_report_with_attachments': "SELECT * FROM report_with_attachment_view",
+  'list_report_full_info': "SELECT * FROM report_view",
+  'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%d AND patient_name=%s",
+  
   #book schedule
   'display_schedule': "SELECT * FROM scheduled_appointment",
   'check_if_appointment_available': "SELECT status  FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
