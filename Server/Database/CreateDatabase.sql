@@ -104,3 +104,9 @@ FOREIGN KEY (report_id) REFERENCES report(id),
 FOREIGN KEY (service_id) REFERENCES service(id),
 FOREIGN KEY (resource_id) REFERENCES resource(id)
 );
+
+
+-- Add new user to this database
+
+REATE USER server1@localhost IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON Clinic.* TO server1@localhost IDENTIFIED BY 'password';
