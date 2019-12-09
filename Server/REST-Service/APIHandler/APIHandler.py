@@ -50,8 +50,8 @@ class API:
         return readFile(root + "/error404.html")
       else:
         JsonFile = self.String2Json(data)
-        ID = DBConnection.verify_login(JsonFile["username"], JsonFile["password"])
+        ID = self.DBConnection.verify_login(JsonFile["username"], JsonFile["password"])
         if ID == -1:
           return readFile(root + "/error404.html")
         else:
-          return readFile(root + "/Login/login.json")
+          return [1, str(ID)]
