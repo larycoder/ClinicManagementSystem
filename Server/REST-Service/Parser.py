@@ -1,11 +1,14 @@
 from http.server import BaseHTTPRequestHandler
 from APIHandler import API
-from login import CreateDbConnection
+from ClinicDBManager import CreateDbConnection
 
 class RESTHandler(BaseHTTPRequestHandler):
   """A class to parse http request and response"""
-
   DBConnection = CreateDbConnection()
+
+  def __init__(self, request, client_address, server):
+    server.setDBConnection(self.DBConnection)
+    super.__init__(request, client_address, server)
 
   def do_HEAD(s):
     s.send_response(200)
