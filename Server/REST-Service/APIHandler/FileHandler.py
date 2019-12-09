@@ -1,6 +1,8 @@
 # function process file
 # root directory of WEB server
-root = "/linux/Desktop/github/ClinicManagementSystem/Client"
+import os
+
+root = os.path.dirname(os.path.realpath(__file__)) + "../../../Client"
 
 def readFile(String):
       # reference f for reading file

@@ -1,7 +1,9 @@
 import sys
 import os
 
-sys.path.append(os.getcwd() + "/APIHandler")
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/APIHandler")
+sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../ServerController/login")
+print(os.path.dirname(os.path.realpath(__file__)) + "/../ServerController/login")
 
 import time
 from http.server import HTTPServer
