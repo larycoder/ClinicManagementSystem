@@ -20,7 +20,6 @@ query = {
   'list_patient_info': "SELECT * FROM patient_view;",
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info':"SELECT * FROM nurse_view;",
-  'list_patient_record': "SELECT * FROM "
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
@@ -40,7 +39,6 @@ query = {
   'update_res_quantity': "UPDATE resource SET quantity = quantity - (SELECT I.resource_quantity FROM instruction I WHERE I.resource_id = %d);",
   #book schedule
   'display_schedule': "SELECT * FROM scheduled_appointment",
-  'search_appointment': "SELECT * FROM schedule_appintment WHERE from_time = %s AND doctor_id = %s AND"
   'check_if_appointment_available': "SELECT status  FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   #purchase
