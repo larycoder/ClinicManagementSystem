@@ -48,6 +48,7 @@ query = {
   'list_unused_service': "SELECT * FROM service WHERE status = 0",
 
   # maintain schedule
+  'add_new_schedule': "INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (NULL,%(doctor_id)d, NULL, %(from_time)s,0)",
   'delete_appointment': "DELETE FROM schedule_appointment WHERE id = %(id)d",
   'change_appointment_status': "UPDATE TABLE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
   'list_appointment_info': "SELECT * FROM appointment_info_view",
