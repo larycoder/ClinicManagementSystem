@@ -17,18 +17,18 @@ INSERT INTO user(id, username, password, type, first_name, last_name, gender, do
 VALUES (7, 'meomeo', '89348', 'doctor', 'Lan', 'Tran', 'female', '1978-04-25', '34 To Hieu, Cau Giay, Ha Noi', '0972834301', '00029234827', 'trauma', 'Phan Linh', '0938920051', 'hunsband');
 
 -- add to schedule_appointment table
-INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (1, 3, 1, '2019-11-04 08:30:00',1);
+INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (1, 2, 1, '2019-11-04 08:30:00',1);
 INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (2, 5, 4, '2019-11-04 08:45:00',1);
 INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (3, 7, 6, '2019-11-04 09:00:00',1);
 
 -- add to report
-INSERT INTO report (id, doctor_id, patient_id, date_time, report_data, appointment_id) VALUES (1, 3, 1, '2019-11-04 08:30:00', 'do blood test', 1);
+INSERT INTO report (id, doctor_id, patient_id, date_time, report_data, appointment_id) VALUES (1, 2, 1, '2019-11-04 08:30:00', 'do blood test', 1);
 INSERT INTO report (id, doctor_id, patient_id, date_time, report_data, appointment_id) VALUES (2, 5, 4, '2019-11-04 08:45:00', 'take a thrombolysis, do percutaneous coronary intervention (PCI)', 2);
 INSERT INTO report (id, doctor_id, patient_id, date_time, report_data, appointment_id) VALUES (3, 7, 6, '2019-11-04 09:00:00', 'do CT scan', 3);
 
 -- add to attachments
-INSERT INTO attachments (id, name, report_id, file_path, description) VALUES (1, 'CT scan', 2, '.\data\CT_scan\01','stable');
-INSERT INTO attachments (id, name, report_id, file_path, description) VALUES (2, 'Blood test', 3, '.\data\Blood_test\01','stable');
+INSERT INTO attachments (id, name, report_id, file_path, description) VALUES (1, 'CT scan', 3, '.\data\CT_scan\01','stable');
+INSERT INTO attachments (id, name, report_id, file_path, description) VALUES (2, 'Blood test', 1, '.\data\Blood_test\01','stable');
 
 -- add to service
 INSERT INTO service (id, code, name, status, price) VALUES (1, 001, 'CT scan', 1, 150000);

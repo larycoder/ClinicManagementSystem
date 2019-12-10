@@ -25,7 +25,7 @@ class API:
     ## handle GET method request ##
     def handleGET(self, path = '/'):
       if path == "/":
-        self.Status, self.ResponseBuf = readFile(root + "/error404.html")
+        self.Status, self.ResponseBuf = readFile(root + "/menu.html")
       elif path.split("/")[1] == "api":
         API = GETHandler(self.DBConnection)
         data = (path.split("/")[2]).split("?")

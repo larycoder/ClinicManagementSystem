@@ -9,19 +9,22 @@ mysql_user = {
 query = {
   #login
   'verify_login': "SELECT (id) FROM user WHERE username = %(username)s AND password = %(password)s",
+  
   #register
   'create_account': "INSERT INTO user(id,username,password,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient) VALUES (NULL,%(username)s, %(password)s, %(type)s, %(first_name)s, %(last_name)s, %(gender)s, %(dob)s, %(address)s, %(phone_number)s, %(Ssn)s, %(specialization)s, %(emergency_contact_name)s, %(emergency_contact_phone)s, %(emergency_contact_relationship_to_patient)s);",
   'check_if_account_exits': "SELECT COUNT(*) FROM user WHERE username = %(username)s;",
+  
   #maintain employee information
   'doctor_name_list': "SELECT id,CONCAT(first_name,' ',last_name) AS doctor_name FROM user WHERE type='doctor';",
   'nurse_name_list': "SELECT CONCAT(first_name," ",last_name) AS nurse_name FROM user WHERE type='nurse';",
+  
   #maintain patient information
   'patient_name_list': "SELECT CONCAT(first_name," ",last_name) AS patient_name FROM user WHERE type='patient';",
   'list_patient_info': "SELECT * FROM patient_view;",
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
-  'list_patient_record': "SELECT * FROM report_detail_view WHERE first_name = %s AND last_name = %s OR id = %d ",
-  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE first_name = %s AND last_name = %s OR patient_id = %d",
+  'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
+  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
@@ -45,6 +48,7 @@ query = {
   'list_unused_service': "SELECT * FROM service WHERE status = 0",
 
   # maintain schedule
+  'add_new_schedule': "INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (NULL,%(doctor_id)d, NULL, %(from_time)s,0)",
   'delete_appointment': "DELETE FROM schedule_appointment WHERE id = %(id)d",
   'change_appointment_status': "UPDATE TABLE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
   'list_appointment_info': "SELECT * FROM appointment_info_view",
@@ -59,7 +63,15 @@ query = {
   'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
+  
   #purchase
+  'list_patient_today':"SELECT * FROM report_detail.view WHERE data_time = %s",
+  'update_purchase': "INSERT INTO purchase (id, report_id, total_bill, status) VALUES (NULL, (SELECT rp.report_id FROM report_price rp WHERE report_id = %s),(SELECT rp.price FROM report_price rp WHERE report_id = %s) ,'0')",
+  'calulate_bill': "SELECT SUM(price) FROM report_price WHERE patient_id = %s OR patient_name = %s AND status = '0'",
+  'list_bill_not_pay': "SELECT * FROM purchase_detail_view WHERE status = '0' AND patient_id = %s OR patient_name = %s",
+  'purchase': "UPDATE purchase SET status = '1' WHERE report_id = %s",
+  
+  #reister
   "register": "INSERT INTO user(username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient) VALUES(%(username)s, %(password)s, %(type)s, %(first_name)s, %(last_name)s, %(gender)s, %(dob)s, %(address)s, %(phone_number)s, %(Ssn)s, %(specialization)s, %(emergency_contact_name)s, %(emergency_contact_phone)s, %(emergency_contact_relationship_to_patient)s)"
 
 }
