@@ -1,15 +1,37 @@
+function isJson(string) {
+    try {
+        JSON.parse(string);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 function validate(){
     var uname = document.getElementById("uname").value;
     var pass = document.getElementById("pass").value;
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
-        let obj = JSON.parse(this.responseText);
-        var result = obj[uname];
-        if (result == pass){
-            alert('Login successfully');
+        if (this.readyState == 4 && xmlRequest.status == 200) {
+            let Json = this.responseText;
+            if (isJson(Json) == false) {
+                alert('Login fall: can not get json');
+            }
+            else {
+                let obj = JSON.parse(Json);
+                var result = obj['ID'];
+                if (result > 0 ){
+                    alert('Login successfully\n Your ID: ' + result);
+                }
+                else {
+                    alert('Login fall: account is not exit');
+                }
+            }
         }
-            
+        else if (this.readyState == 4 && xmlRequest.status != 200) {
+            alert('Login fall: status 404');
+        }
     }
-    xmlRequest.open("GET","login.json");
+    xmlRequest.open("GET","/api/login?username=" + uname + "&password=" + pass);
     xmlRequest.send();
 }

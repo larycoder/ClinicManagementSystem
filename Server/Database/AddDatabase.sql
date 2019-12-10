@@ -2,19 +2,19 @@ use Clinic;
 
 -- add to user table
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (1, 'motconvit', '123456', 'patient', 'Nguyen', 'Ngoc', 'female', '1992-03-24', '23 Hoang Quoc Viet, Cau Giay, Ha Noi', '0934934349', '00028473827', NULL, 'Nguyen Hung', '0938485935', 'hunsband');
+VALUES (1, 'motconvit', '123456', 'patient', 'Ngoc', 'Nguyen', 'female', '1992-03-24', '23 Hoang Quoc Viet, Cau Giay, Ha Noi', '0934934349', '00028473827', NULL, 'Nguyen Hung', '0938485935', 'hunsband');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (2, 'xoerahaicaicanh', '654321', 'doctor', 'Tran', 'Tung', 'male', '1978-04-25', '34 To Hieu, Cau Giay, Ha Noi', '0972834349', '00029374827', 'general', 'Phan Linh', '0938921351', 'wife');
+VALUES (2, 'xoerahaicaicanh', '654321', 'doctor', 'Tung', 'Tran', 'male', '1978-04-25', '34 To Hieu, Cau Giay, Ha Noi', '0972834349', '00029374827', 'general', 'Phan Linh', '0938921351', 'wife');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (3, 'quacquac', '123321', 'nurse', 'Vu', 'Mai', 'female', '1997-08-09', '89 Hoang Hoa Tham, Cau Giay, Ha Noi', '0934920049', '00021123227', 'nurse', 'Mac Lien', '0938003435', 'hunsband');
+VALUES (3, 'quacquac', '123321', 'nurse', 'Mai', 'Vu', 'female', '1997-08-09', '89 Hoang Hoa Tham, Cau Giay, Ha Noi', '0934920049', '00021123227', 'nurse', 'Mac Lien', '0938003435', 'hunsband');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (4, 'motconmeo', '567890', 'patient', 'Le', 'Hoa', 'female', '1998-12-24', '29 Nguyen Khanh Toan, Cau Giay, Ha Noi', '0930432349', '00028111827', NULL, 'Phan Hiep', '0944485935', 'hunsband');
+VALUES (4, 'motconmeo', '567890', 'patient', 'Hoa', 'Le', 'female', '1998-12-24', '29 Nguyen Khanh Toan, Cau Giay, Ha Noi', '0930432349', '00028111827', NULL, 'Phan Hiep', '0944485935', 'hunsband');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (5, 'namvatveo', '654321', 'doctor', 'Hoang', 'Quan', 'male', '1982-09-25', '89 Thuy Khue, Cau Giay, Ha Noi', '0972800749', '00029370027', 'cardio', 'Luong Nhu', '0938900351', 'wife');
+VALUES (5, 'namvatveo', '654321', 'doctor', 'Quan', 'Hoang', 'male', '1982-09-25', '89 Thuy Khue, Cau Giay, Ha Noi', '0972800749', '00029370027', 'cardio', 'Luong Nhu', '0938900351', 'wife');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (6, 'duidui', '734827', 'patient', 'Nguyen', 'Huong', 'female', '1992-03-24', '23 Hoang Quoc Viet, Cau Giay, Ha Noi', '0934004349', '00028471127', NULL, 'Nguyen Hung', '0938485015', 'hunsband');
+VALUES (6, 'duidui', '734827', 'patient', 'Huong', 'Nguyen', 'female', '1992-03-24', '23 Hoang Quoc Viet, Cau Giay, Ha Noi', '0934004349', '00028471127', NULL, 'Nguyen Hung', '0938485015', 'hunsband');
 INSERT INTO user(id, username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient)
-VALUES (7, 'meomeo', '89348', 'doctor', 'Tran', 'Lan', 'female', '1978-04-25', '34 To Hieu, Cau Giay, Ha Noi', '0972834301', '00029234827', 'trauma', 'Phan Linh', '0938920051', 'hunsband');
+VALUES (7, 'meomeo', '89348', 'doctor', 'Lan', 'Tran', 'female', '1978-04-25', '34 To Hieu, Cau Giay, Ha Noi', '0972834301', '00029234827', 'trauma', 'Phan Linh', '0938920051', 'hunsband');
 
 -- add to schedule_appointment table
 INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (1, 3, 1, '2019-11-04 08:30:00',1);

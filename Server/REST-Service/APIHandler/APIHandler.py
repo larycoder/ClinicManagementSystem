@@ -1,5 +1,4 @@
-from FileHandler import readFile
-from FileHandler import root
+from Tool import *
 import json
 
 # Predefine API
@@ -20,38 +19,68 @@ class API:
     # Buffer keep response message
     ResponseBuf = "Sorry"
 
-    def __init__(self, API = '/', Connection = None):
+    def __init__(self, Connection = None):
       self.DBConnection = Connection # get Database handle
-      if API == "/":
+    
+    ## handle GET method request ##
+    def handleGET(self, path = '/'):
+      if path == "/":
         self.Status, self.ResponseBuf = readFile(root + "/error404.html")
-      elif API.split("/")[1] == "api":
-        data = (API.split("/")[2]).split("?")
-        self.Status, self.ResponseBuf = getattr(self, data[0])(data[1])
+      elif path.split("/")[1] == "api":
+        API = GETHandler(self.DBConnection)
+        data = (path.split("/")[2]).split("?")
+        self.Status, self.ResponseBuf = getattr(API, data[0])(data[1])
       else:
-        self.Status, self.ResponseBuf = readFile(root + API)
+        self.Status, self.ResponseBuf = readFile(root + path)
 
+    ## handle POST method request **
+    def handlePOST(self, path = '/', data = ""):
+      if path.split("/")[1] == "api":
+        API = POSTHandler(self.DBConnection)
+        self.Status, self.ResponseBuf = getattr(API, path.split("/")[2])(data)
+      else:
+        self.Status, self.ResponseBuf = readFile(root + "/error404.html")
+
+    ## response method ##
     def getResponse(self):
       return Status_pair[self.Status]
 
     def getData(self):
       return self.ResponseBuf
 
-    def String2Json(self, data):
-      JsonFile = {} # dictionary to keep json object
-      values = data.split("&")
-      for value in values:
-        value = value.split("=")
-        JsonFile[value[0]] = value[1]
-      return JsonFile
 
-    ## method for handling API request ##
-    def login(self, data):
-      if self.DBConnection == None:
-        return readFile(root + "/error404.html")
+
+class GETHandler():
+  """ class hanler GET method """
+
+  DBConnection = None
+
+  def __init__(self, DBConnection):
+    self.DBConnection = DBConnection
+
+  def login(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    else:
+      JsonFile = String2Json(data)
+      ID = self.DBConnection.verify_login(JsonFile)
+      if ID == -1:
+        return [1, json.dumps({'ID':ID})]
       else:
-        JsonFile = self.String2Json(data)
-        ID = self.DBConnection.verify_login(JsonFile["username"], JsonFile["password"])
-        if ID == -1:
-          return readFile(root + "/error404.html")
-        else:
-          return [1, str(ID)]
+        return [1, json.dumps(ID)]
+
+class POSTHandler():
+  """ class hanler POST method """
+
+  DBConnection = None
+
+  def __init__(self, DBConnection):
+    self.DBConnection = DBConnection
+
+  def register(self, data):
+    if self.DBConnection == None:
+      return readFile(root + "/error404.html")
+    else:
+      JsonFile = String2Json(data)
+      return [1, "register post method test"]

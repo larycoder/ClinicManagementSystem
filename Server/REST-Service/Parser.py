@@ -1,11 +1,9 @@
 from http.server import BaseHTTPRequestHandler
 from APIHandler import API
-from login import CreateDbConnection
 
 class RESTHandler(BaseHTTPRequestHandler):
   """A class to parse http request and response"""
-
-  DBConnection = CreateDbConnection()
+  DBConnection = None
 
   def do_HEAD(s):
     s.send_response(200)
@@ -14,7 +12,16 @@ class RESTHandler(BaseHTTPRequestHandler):
 
   def do_GET(s):
     """Respond to a GET request."""
-    APIHandler = API(API = s.path, Connection = s.DBConnection)
+    APIHandler = API(s.DBConnection)
+    APIHandler.handleGET(s.path)
+    s.send_response(APIHandler.getResponse())
+    s.end_headers()
+    s.wfile.write(APIHandler.getData().encode())
+
+  def do_POST(s):
+    APIHandler = API(s.DBConnection)
+    data = s.rfile.read(int(s.headers['Content-Length'])).decode() # get data from client
+    APIHandler.handlePOST(s.path, data)
     s.send_response(APIHandler.getResponse())
     s.end_headers()
     s.wfile.write(APIHandler.getData().encode())
