@@ -1,5 +1,5 @@
 mysql_user = {
-  'host': '127.0.0.1',
+  'host': 'localhost',
   'user': 'server1',
   'password': 'password',
   'database': 'Clinic',
@@ -23,15 +23,20 @@ query = {
   'list_patient_info': "SELECT * FROM patient_view;",
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
+<<<<<<< HEAD
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
   'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d"
+=======
+  'list_patient_record': "SELECT * FROM report_detail_view WHERE first_name = %s AND last_name = %s OR id = %d ",
+  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE first_name = %s AND last_name = %s OR patient_id = %d",
+>>>>>>> 230ebc214fd92d60ac984e76a849b0df21eb08b5
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
   'service_list':"SELECT * FROM service;",
   'add_resource': "INSERT INTO resource(id, code, name, unit, quantity, status, price) VALUES(NULL,%(code)s,%(name)s,%(unit)s,%(quantity)d,%(status)d,%(price)d);",
   'add_service': "INSERT INTO service(id, code, name, status, price) VALUES (NULL,%(code)s,%(name)s,%(status)d,%(price)d);",
-  'delete_resource': "DELETE FROM resource WHERE id= %(id)d; ",
+  'delete_resource': "DELETE FROM resource WHERE id= %(id)d;",
   'delete_service': "DELETE FROM service WHERE id= %(id)d;",
   'change_resource_status': "UPDATE TABLE resource SET status = %(status)d WHERE id= %(id)d;",
   'change_service_status': "UPDATE TABLE service SET status = %(status)d WHERE id= %(id)d;",
@@ -59,11 +64,16 @@ query = {
   'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%(patient_id)d AND patient_name=%(patient_name)s",
   
   #book schedule
+<<<<<<< HEAD
   'display_schedule': "SELECT * FROM scheduled_appointment",
+=======
+  'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
+>>>>>>> 230ebc214fd92d60ac984e76a849b0df21eb08b5
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   
   #purchase
+<<<<<<< HEAD
   'list_patient_today':"SELECT * FROM report_detail.view WHERE data_time = %s",
   'update_purchase': "INSERT INTO purchase (id, report_id, total_bill, status) VALUES (NULL, (SELECT rp.report_id FROM report_price rp WHERE report_id = %s),(SELECT rp.price FROM report_price rp WHERE report_id = %s) ,'0')",
   'calulate_bill': "SELECT SUM(price) FROM report_price WHERE patient_id = %s OR patient_name = %s AND status = '0'",
@@ -71,10 +81,8 @@ query = {
   'purchase': "UPDATE purchase SET status = '1' WHERE report_id = %s",
   
   #reister
+=======
+>>>>>>> 230ebc214fd92d60ac984e76a849b0df21eb08b5
   "register": "INSERT INTO user(username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient) VALUES(%(username)s, %(password)s, %(type)s, %(first_name)s, %(last_name)s, %(gender)s, %(dob)s, %(address)s, %(phone_number)s, %(Ssn)s, %(specialization)s, %(emergency_contact_name)s, %(emergency_contact_phone)s, %(emergency_contact_relationship_to_patient)s)"
-  
 
-
-
-  
 }

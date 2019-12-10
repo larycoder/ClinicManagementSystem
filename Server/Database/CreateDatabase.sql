@@ -108,5 +108,5 @@ FOREIGN KEY (resource_id) REFERENCES resource(id)
 
 -- Add new user to this database
 
-CREATE USER server1@localhost IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON Clinic.* TO server1@localhost IDENTIFIED BY 'password';
+-- CREATE USER 'server1'@'localhost' IDENTIFIED BY 'password';
+-- GRANT ALL PRIVILEGES ON Clinic.* TO 'server1'@'localhost' IDENTIFIED BY 'password';
