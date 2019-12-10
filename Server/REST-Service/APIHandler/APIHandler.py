@@ -20,15 +20,17 @@ class API:
     # Buffer keep response message
     ResponseBuf = "Sorry"
 
-    def __init__(self, API = '/', Connection = None):
+    def __init__(self, Connection = None):
       self.DBConnection = Connection # get Database handle
-      if API == "/":
+      
+    def handleGET(self, path = '/'):
+      if path == "/":
         self.Status, self.ResponseBuf = readFile(root + "/error404.html")
-      elif API.split("/")[1] == "api":
-        data = (API.split("/")[2]).split("?")
+      elif path.split("/")[1] == "api":
+        data = (path.split("/")[2]).split("?")
         self.Status, self.ResponseBuf = getattr(self, data[0])(data[1])
       else:
-        self.Status, self.ResponseBuf = readFile(root + API)
+        self.Status, self.ResponseBuf = readFile(root + path)
 
     def getResponse(self):
       return Status_pair[self.Status]

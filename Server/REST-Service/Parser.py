@@ -12,7 +12,8 @@ class RESTHandler(BaseHTTPRequestHandler):
 
   def do_GET(s):
     """Respond to a GET request."""
-    APIHandler = API(API = s.path, Connection = s.DBConnection)
+    APIHandler = API(Connection = s.DBConnection)
+    APIHandler.handleGET(path = s.path)
     s.send_response(APIHandler.getResponse())
     s.end_headers()
     s.wfile.write(APIHandler.getData().encode())
