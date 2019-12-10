@@ -23,13 +23,8 @@ query = {
   'list_patient_info': "SELECT * FROM patient_view;",
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
-<<<<<<< HEAD
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
   'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d"
-=======
-  'list_patient_record': "SELECT * FROM report_detail_view WHERE first_name = %s AND last_name = %s OR id = %d ",
-  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE first_name = %s AND last_name = %s OR patient_id = %d",
->>>>>>> 230ebc214fd92d60ac984e76a849b0df21eb08b5
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
