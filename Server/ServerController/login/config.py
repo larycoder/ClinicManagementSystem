@@ -8,7 +8,7 @@ mysql_user = {
 
 query = {
   #login
-  'verify_login': "SELECT COUNT(*) FROM user WHERE username = %s AND password = %s;",
+  'verify_login': "SELECT (id) FROM user WHERE username = %(username)s AND password = %(password)s",
   #register
   'create_account': "INSERT INTO user(id,username,password,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient) VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);",
   'check_if_account_exits': "SELECT COUNT(*) FROM user WHERE username = %s;",
