@@ -52,6 +52,7 @@ class ClinicDBManager:
         for one_tuple in result:
             appointment_list.append(self.tuple_to_dict(one_tuple, labels))
         return appointment_list
+        
 def CreateDbConnection():
     try:
         db_manager = ClinicDBManager()
