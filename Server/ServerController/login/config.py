@@ -24,7 +24,7 @@ query = {
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
-  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d"
+  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
