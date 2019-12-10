@@ -60,15 +60,15 @@ query = {
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   #purchase
+<<<<<<< HEAD
   'list_patient_today':"SELECT * FROM ",
   
 
 
 
+=======
+  # 'list_patient_today':"SELECT * FROM "
+>>>>>>> 05c5cec55d71faaeabc07fd2acc3e2d26ef71202
   "register": "INSERT INTO user(username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient) VALUES(%(username)s, %(password)s, %(type)s, %(first_name)s, %(last_name)s, %(gender)s, %(dob)s, %(address)s, %(phone_number)s, %(Ssn)s, %(specialization)s, %(emergency_contact_name)s, %(emergency_contact_phone)s, %(emergency_contact_relationship_to_patient)s)"
-  
 
-
-
-  
 }

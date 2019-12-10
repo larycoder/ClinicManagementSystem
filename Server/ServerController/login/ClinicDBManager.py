@@ -65,3 +65,34 @@ def CreateDbConnection():
         else:
             print(err)
         return None
+
+if __name__ == '__main__':
+    try:
+        db_manager = ClinicDBManager()
+        user_login: Dict[str, str] = {"username": "meomeo", "password": "89348"}
+        user_register = {"username": "misamisa",
+                         "password": "misakute",
+                         "type": "patient",
+                         "first_name": "misa",
+                         "last_name": "misakute",
+                         "gender": "male",
+                         "dob": date(1999, 8, 3),
+                         "address": "123 Tran Nhan Tong",
+                         "phone_number": "09343921",
+                         "Ssn": "031199001111",
+                         "specialization": None,
+                         "emergency_contact_name": None,
+                         "emergency_contact_phone": None,
+                         "emergency_contact_relationship_to_patient": None}
+        cnx = db_manager.get_connection(mysql_user= config.mysql_user)
+        db_manager.verify_login(user_login)
+        db_manager.add_new_user(user_register)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with your user name or password")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+        else:
+            print(err)
+    else:
+        db_manager.close_connection()
