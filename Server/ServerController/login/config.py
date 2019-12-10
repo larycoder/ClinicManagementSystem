@@ -56,7 +56,7 @@ query = {
   'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%(patient_id)d AND patient_name=%(patient_name)s",
   
   #book schedule
-  'display_schedule': "SELECT * FROM schedule_appointment WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
+  'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   #purchase
