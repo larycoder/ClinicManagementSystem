@@ -8,7 +8,7 @@ mysql_user = {
 
 query = {
   #login
-  'verify_login': "SELECT COUNT(*) FROM user WHERE username = %s AND password = %s;",
+  'verify_login': "SELECT COUNT(*) FROM user WHERE username = %(username)s AND password = %(password)s;",
   #register
   'create_account': "INSERT INTO user(id,username,password,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient) VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);",
   'check_if_account_exits': "SELECT COUNT(*) FROM user WHERE username = %s;",
@@ -38,7 +38,7 @@ query = {
   'add_res_quantity': "UPDATE resource SET quantity = %d + quantity WHERE id = %d;",
   'update_res_quantity': "UPDATE resource SET quantity = quantity - (SELECT I.resource_quantity FROM instruction I WHERE I.resource_id = %d);",
   #book schedule
-  'display_schedule': "SELECT * FROM scheduled_appointment",
+  'display_schedule': "SELECT S.*, first_name, last_name FROM schedule_appointment S, user WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
   'check_if_appointment_available': "SELECT status  FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   #purchase

@@ -40,6 +40,24 @@ class ClinicDBManager:
         cursor.execute(config.query['register'], new_user)
         self.cnx.commit()
 
+    def tuple_to_dict(self, my_tuple: tuple, labels: list) -> Dict:
+        return dict(zip(labels, list(my_tuple)))
+
+    def get_appointment_list(self) -> Dict:
+        labels = ['id', 'doctor_id', 'user']
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['display_schedule'])
+        result = cursor.fetchall()
+        print(result)
+        appointment_list = []
+        for one_tuple in result:
+            appointment_list.append(self.tuple_to_dict(one_tuple, ))
+
+
+
+
+
+
 if __name__ == '__main__':
     try:
         db_manager = ClinicDBManager()
@@ -60,7 +78,8 @@ if __name__ == '__main__':
                          "emergency_contact_relationship_to_patient": None}
         cnx = db_manager.get_connection(mysql_user= config.mysql_user)
         db_manager.verify_login(user_login)
-        db_manager.add_new_user(user_register)
+        # db_manager.add_new_user(user_register)
+        db_manager.get_appointment_list()
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
