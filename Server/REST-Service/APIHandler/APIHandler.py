@@ -59,13 +59,13 @@ class GETHandler():
 
   def login(self, data):
     if self.DBConnection == None:
+      print("DB Connection is not exit")
       return readFile(root + "/error404.html")
     else:
       JsonFile = String2Json(data)
-      ID = None
       ID = self.DBConnection.verify_login(JsonFile)
-      if ID == None:
-        return readFile(root + "/error404.html")
+      if ID == -1:
+        return [1, "{'ID':" + "'" + str(ID) + "'"+ "}"]
       else:
         return [1, str(ID)]
 

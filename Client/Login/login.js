@@ -12,20 +12,24 @@ function validate(){
     var pass = document.getElementById("pass").value;
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
-        if (this.readyState == 4) {
-            if (isJson(this.responseText) == false) {
-                alert('Login fall');
+        if (this.readyState == 4 && xmlRequest.status == 200) {
+            let Json = this.responseText;
+            if (isJson(Json) == false) {
+                alert('Login fall: can not get json');
             }
             else {
-                let obj = JSON.parse(this.responseText);
-                var result = obj[ID];
+                let obj = JSON.parse(Json);
+                var result = obj['ID'];
                 if (result > 0 ){
-                    alert('Login successfully');
+                    alert('Login successfully\n Your ID: ' + result);
                 }
                 else {
-                    alert('Login fall');
+                    alert('Login fall: account is not exit');
                 }
             }
+        }
+        else if (this.readyState == 4 && xmlRequest.status != 200) {
+            alert('Login fall: status 404');
         }
     }
     xmlRequest.open("GET","/api/login?username=" + uname + "&password=" + pass);
