@@ -1,4 +1,3 @@
-from datetime import date
 from typing import Union, Dict, Any
 
 import config
@@ -40,6 +39,19 @@ class ClinicDBManager:
         cursor.execute(config.query['register'], new_user)
         self.cnx.commit()
 
+    def tuple_to_dict(self, my_tuple: tuple, labels: list) -> Dict:
+        return dict(zip(labels, list(my_tuple)))
+
+    def get_appointment_list(self) -> list:
+        labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['display_schedule'])
+        result = cursor.fetchall()
+        print(result)
+        appointment_list = []
+        for one_tuple in result:
+            appointment_list.append(self.tuple_to_dict(one_tuple, labels))
+        return appointment_list
 def CreateDbConnection():
     try:
         db_manager = ClinicDBManager()
