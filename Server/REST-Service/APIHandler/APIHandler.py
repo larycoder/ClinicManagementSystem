@@ -1,4 +1,5 @@
 from Tool import *
+import json
 
 # Predefine API
 Status_pair = {
@@ -65,9 +66,9 @@ class GETHandler():
       JsonFile = String2Json(data)
       ID = self.DBConnection.verify_login(JsonFile)
       if ID == -1:
-        return [1, "{'ID':" + "'" + str(ID) + "'"+ "}"]
+        return [1, json.dumps({'ID':ID})]
       else:
-        return [1, str(ID)]
+        return [1, json.dumps(ID)]
 
 class POSTHandler():
   """ class hanler POST method """
