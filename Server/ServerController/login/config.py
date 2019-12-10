@@ -1,5 +1,5 @@
 mysql_user = {
-  'host': '127.0.0.1',
+  'host': 'localhost',
   'user': 'server1',
   'password': 'password',
   'database': 'Clinic',

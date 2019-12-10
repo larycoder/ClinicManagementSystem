@@ -68,6 +68,7 @@ class GETHandler():
       if ID == -1:
         return [1, json.dumps({'ID':ID})]
       else:
+        print(json.dumps(ID))
         return [1, json.dumps(ID)]
 
 class POSTHandler():

@@ -19,7 +19,7 @@ function validate(){
             }
             else {
                 let obj = JSON.parse(Json);
-                var result = obj['ID'];
+                var result = obj.id
                 if (result > 0 ){
                     alert('Login successfully\n Your ID: ' + result);
                 }
