@@ -51,6 +51,7 @@ class API:
       else:
         JsonFile = self.String2Json(data)
         ID = self.DBConnection.verify_login(JsonFile)
+        print(JsonFile)
         if ID == -1:
           return readFile(root + "/error404.html")
         else:

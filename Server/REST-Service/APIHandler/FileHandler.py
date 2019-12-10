@@ -2,7 +2,7 @@
 # root directory of WEB server
 import os
 
-root = os.path.dirname(os.path.realpath(__file__)) + "../../../Client"
+root = os.path.dirname(os.path.realpath(__file__)) + "/../../../Client"
 
 def readFile(String):
       # reference f for reading file
