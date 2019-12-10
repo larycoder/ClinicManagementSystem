@@ -21,7 +21,7 @@ query = {
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
   'list_patient_record': "SELECT * FROM report_detail_view WHERE first_name = %s AND last_name = %s OR id = %d ",
-  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE first_name = %s AND last_name = %s OR patient_id = %d"
+  'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE first_name = %s AND last_name = %s OR patient_id = %d",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
@@ -62,15 +62,7 @@ query = {
 
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   #purchase
-  'list_patient_today':"SELECT * FROM "
-  
-
-
-
+  # 'list_patient_today':"SELECT * FROM "
   "register": "INSERT INTO user(username, password, type, first_name, last_name, gender, dob, address, phone_number, Ssn, specialization, emergency_contact_name, emergency_contact_phone, emergency_contact_relationship_to_patient) VALUES(%(username)s, %(password)s, %(type)s, %(first_name)s, %(last_name)s, %(gender)s, %(dob)s, %(address)s, %(phone_number)s, %(Ssn)s, %(specialization)s, %(emergency_contact_name)s, %(emergency_contact_phone)s, %(emergency_contact_relationship_to_patient)s)"
-  
 
-
-
-  
 }
