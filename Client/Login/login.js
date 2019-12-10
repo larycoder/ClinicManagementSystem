@@ -12,18 +12,21 @@ function validate(){
     var pass = document.getElementById("pass").value;
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
-        if (isJson(this.responseText) == false) {
-            alert('Login fall');
-            return;
+        if (this.readyState == 4) {
+            if (isJson(this.responseText) == false) {
+                alert('Login fall');
+            }
+            else {
+                let obj = JSON.parse(this.responseText);
+                var result = obj[ID];
+                if (result > 0 ){
+                    alert('Login successfully');
+                }
+                else {
+                    alert('Login fall');
+                }
+            }
         }
-        let obj = JSON.parse(this.responseText);
-        var result = obj[ID];
-        if (result > 0 ){
-            alert('Login successfully');
-        }
-        else {
-            alert('Login fall');
-        }   
     }
     xmlRequest.open("GET","/api/login?username=" + uname + "&password=" + pass);
     xmlRequest.send();
