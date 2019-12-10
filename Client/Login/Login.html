@@ -7,28 +7,25 @@
 
     <body>
         <div class="loginForm" id="loginForm">
-            <form>
-
-                <div class="header">
-                    <h1>Clinic System Manager</h1>
-                    <h2>Login Form</h2>
-                </div>    
+            <div class="header">
+                <h1>Clinic System Manager</h1>
+                <h2>Login Form</h2>
+            </div>    
+            
+            <div class="content">
+                <label for="uname"><b>Username:</b></label>
+                <input type="text" class="input uname" id ="uname"placeholder="Enter Username" name="uname" required>
+                <br>
                 
-                <div class="content">
-                    <label for="uname"><b>Username:</b></label>
-                    <input type="text" class="input uname" id ="uname"placeholder="Enter Username" name="uname" required>
-                    <br>
-                    
-                    <label for="pass"><b>Password:</b></label>
-                    <input type="password" class="input pass" id = "pass" placeholder="Enter Password" name="pass" required>
-                    <br>
-                </div>
-                
-                <div class="footer">
-                    <a href="" class="forgetPass">Forgot password?</a>
-                    <button type="submit" class="login" value="Login" onclick="validate()">Login</button>
-                </div>	
-            </form>
+                <label for="pass"><b>Password:</b></label>
+                <input type="password" class="input pass" id = "pass" placeholder="Enter Password" name="pass" required>
+                <br>
+            </div>
+            
+            <div class="footer">
+                <a href="" class="forgetPass">Forgot password?</a>
+                <button type="submit" class="login" value="Login" onclick="validate()">Login</button>
+            </div>
         </div>
 
         <script src="login.js"></script>
