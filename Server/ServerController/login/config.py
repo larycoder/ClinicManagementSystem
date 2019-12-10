@@ -21,8 +21,6 @@ query = {
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
   
-  
-  'list_nurse_info':"SELECT * FROM nurse_view;",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
