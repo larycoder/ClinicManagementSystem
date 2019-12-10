@@ -26,7 +26,7 @@ class ClinicDBManager:
 
     def verify_login(self, account: Dict) -> Union[Dict[str, Any], int]:
         cursor = self.cnx.cursor()
-        cursor.execute(config.query['verify_login'], account)
+        cursor.execute(config.query['verify_login'], (account['username'], account['password']))
         result = cursor.fetchall()
         if result.__len__() == 1:
             user = {"id": result[0][0]}
