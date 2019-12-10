@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Union, Dict, Any
 
 import config
@@ -35,9 +36,15 @@ class ClinicDBManager:
             return -1
 
     def add_new_user(self, new_user: Dict):
-        cursor = self.cnx.cursor()
-        cursor.execute(config.query['register'], new_user)
-        self.cnx.commit()
+        try:
+            cursor = self.cnx.cursor()
+            cursor.execute(config.query['register'], new_user)
+            self.cnx.commit()
+            return True
+        except mysql.connector.IntegrityError as err:
+            return False
+
+
 
     def tuple_to_dict(self, my_tuple: tuple, labels: list) -> Dict:
         return dict(zip(labels, list(my_tuple)))
@@ -52,6 +59,12 @@ class ClinicDBManager:
         for one_tuple in result:
             appointment_list.append(self.tuple_to_dict(one_tuple, labels))
         return appointment_list
+
+    def add_new_schedule(self, schedule: Dict):
+        cursor = self.cnx.cursor()
+        cursor.execute(())
+
+
         
 def CreateDbConnection():
     try:
@@ -87,7 +100,7 @@ if __name__ == '__main__':
                          "emergency_contact_relationship_to_patient": None}
         cnx = db_manager.get_connection(mysql_user= config.mysql_user)
         db_manager.verify_login(user_login)
-        db_manager.add_new_user(user_register)
+        print(db_manager.add_new_user(user_register))
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
