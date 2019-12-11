@@ -5,7 +5,7 @@ body{
 }
 .loginForm{
     text-align: center;
-    margin: 0px auto;
+    margin:0px auto;
     padding: 20px 20px 20px;
     width: 400px ;
     height: auto;
@@ -23,7 +23,7 @@ body{
     margin: -20px -20px -40px;
     line-height: 34px;
     font-size: 20px;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #555;
     text-align: left;
     border: 1px solid #555;
@@ -31,7 +31,7 @@ body{
 
 }
  .content{
-    padding: 40px 30px 10px 30px;
+    padding: 60px 30px 5px 30px;
     margin: -20px -20px -40px;
     line-height: 34px;
     font-weight: 400;
@@ -42,8 +42,8 @@ body{
 
  .content .input{
     width: 188px;
-    padding: 15px 25px;
-    margin: 20px 10px 10px;
+    padding: 5px 10px;
+    margin: 5px 10px 20px;
     font-size: 14px;
     background: #fff;
 	border: 1px solid #fff;
@@ -66,7 +66,7 @@ body{
 
 .footer {
     margin: 40px 10px 10px;
-    padding: 25px 30px 40px 30px;
+    padding: 25px 30px 0px 30px;
     box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 	-moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
@@ -76,8 +76,9 @@ body{
 }
 
 .login{
-    float: right;
+    float: none;
     padding: 11px 25px;
+    margin-bottom: 20px;
     color: #fff;
 	text-shadow: 0px 1px 0 rgba(0,0,0,0.25); 
     background: #ac47e7;

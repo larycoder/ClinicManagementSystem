@@ -3,31 +3,40 @@
     <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type="text/css" href="login.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            
     </head>
 
     <body>
-        <div class="loginForm" id="loginForm">
-            <div class="header">
-                <h1>Clinic System Manager</h1>
-                <h2>Login Form</h2>
-            </div>    
-            
-            <div class="content">
-                <label for="uname"><b>Username:</b></label>
-                <input type="text" class="input uname" id ="uname"placeholder="Enter Username" name="uname" required>
-                <br>
-                
-                <label for="pass"><b>Password:</b></label>
-                <input type="password" class="input pass" id = "pass" placeholder="Enter Password" name="pass" required>
-                <br>
-            </div>
-            
-            <div class="footer">
-                <a href="/Register/register.html" class="register">New Account</a>
-                <button type="submit" class="login" value="Login" onclick="validate()">Login</button>
+        <div class="container" >
+            <div class="row" >
+                <div class="loginForm" id="loginForm">
+                    <div class="header">
+                        <h1><b>Clinic System Manager</b></h1>
+                        <h2>Login Form</h2>
+                    </div>
+        
+                    <div class="content">
+                        <label for="uname"><b>Username:</b></label>
+                        <input type="text" class="input uname" id="uname" placeholder="Enter Username" name="uname" required>
+                        <br>
+                        <label for="pass"><b>Password:</b></label>
+                        <input type="password" class="input pass" id="pass" placeholder="Enter Password" name="pass" required>
+                        <br>
+        
+                    </div>
+        
+                    <div class="footer">
+                        <button type="submit" class="login" value="Login" onclick="validate()">Login</button>
+                        <br>
+                        <a href="/Register/register.html" class="register">New Account</a>
+                    </div>
+                </div>          
             </div>
         </div>
-
         <script src="login.js"></script>
     </body>
 </html>
