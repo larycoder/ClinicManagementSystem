@@ -1,62 +1,196 @@
 <!DOCTYPE html>
 <head>
     <title>Register</title>
-    <meta name="viewport" content="width-device-width-intial-scale =1">
-    <meta charset="UTF-8">
+    <meta charset="urf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="register.css">
 
 </head>
 
 <body>
-    <h1>Register</h1>
-    <p>Pls fill in this form.</p>
-    <div>
-        <label for="id"><b>ID: </b></label>
-        <input type="text" placeholder="ID" name="id" required>
-        <br>
 
-        <label for="fname"><b>Name: </b></label>
-        <input type="text" placeholder="Enter Full Name" name="fname" required>
-        <br>
+<!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="../menu.html">CLinic Managerment System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarReponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="../menu.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Login/Login.html">Login</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Register/register.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Schedule</a>
+                </li>
+            </ul>    
+        </div>
+    </nav>
 
-        <label for="gender"><b>Gender: </b></label>
-        <input type="text" placeholder="Male/Female" name="gender" required>
-        <br>
-            
-        <label for="dob"><b>Date of birth: </b></label>
-        <input type="date" placeholder="DoB" name="dob" required>
-        <br>
-            
-        <label for="adress"><b>Adress: </b></label>
-        <input type="text" placeholder="Enter Adress" name="adress" required>
-        <br>
-            
-        <label for="phoneNum"><b>Phone Number: </b></label>
-        <input type="tel" placeholder="Enter Phone Number" name="phoneNum" required>
-        <br>
-            
-        <label for="ssn"><b>Social Security Number: </b></label>
-        <input type="text" placeholder="Enter SSN" name="ssn" required>
-        <br>
 
-        <label for="uname"><b>Username: </b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-        <br>
-
-        <label for="psw"><b>Password: </b></label>
-        <input type="password" placeholder="Enter password" name="psw" required>
-        <br>
-            
-        <label for="psw-repeat"><b>Repeat Password: </b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-        <br>
-            
-        <button type="submit">Sign up</button>
-        <br>
+<!-- Register form -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card">
+                <div class="card-header">
                 
-        <button type="button" onclick="window.location.href ='./main.html'">Cancel</button>
-        <br>
+                    <div class="row mt-1 mb-n1">
+                        <p class="lead mx-2 mt-1">Pls fill in this form.</p>
+                        <a href="../Login/Login.html" class="float-right btn btn-link"><label class="lead"> Already have an account?</label></a>
+                    </div>
+                </div>
+                <div class="card-body">
 
-        <p>Already have an account? </p>
-        <button type="button" onclick="window.location.href ='/Login/Login.html'">Sign in</button>
-    </div> 
+                    <form>
+                
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="username"><b>Username: </b></label>
+                                <input type="text" placeholder="username" name="username" required>
+
+                            </div>
+                                
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="psw"><b>Create Password: </b></label>
+                                <input type="password" placeholder="Enter password" name="psw" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="psw-repeat"><b>Repeat Password: </b></label>
+                                <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label class="form-check form-check-inline">
+                                    <input type="radio" name="type" value="Patient" required>Patient
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input type="radio" name="type" value="Doctor">Doctor
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input type="radio" name="type" value="Nurse">Nurse
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="first_name"><b>First Name: </b></label>
+                                <input type="text" placeholder="Enter First Name" name="fname" required>
+                            </div>
+                        </div>                
+                            
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="last_name"><b>Last Name: </b></label>
+                                <input type="text" placeholder="Enter Last Name" name="lname" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label class="form-check form-check-inline">
+                                    <input type="radio" name="gender" value="Male" required>Male
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input type="radio" name="gender" value="Female">Female
+                                </label>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="dob"><b>Date of birth: </b></label>
+                                <input type="date" placeholder="DoB" name="dob" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="adress"><b>Adress: </b></label>
+                                <input type="text" placeholder="Enter Adress" name="adress" required>
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="phoneNum"><b>Phone Number: </b></label>
+                                <input type="tel" placeholder="Enter Phone Number" name="phoneNum" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="ssn"><b>Social Security Number: </b></label>
+                                <input type="text" placeholder="Enter SSN" name="ssn" required>
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="Specialization"><b>Specialization: </b></label>
+                                <input type="text" placeholder="Enter Specialization" name="spec">
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="emerName"><b>Emergency Contact Name: </b></label>
+                                <input type="text" placeholder="Enter Emergency Contact Name" name="emerName">
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="emerPhone"><b>Emergency Contact Phone: </b></label>
+                                <input type="text" placeholder="Enter Emergency Contact Phone" name="emerPhone">
+                                <br>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="emerRela"><b>Emergency Contact Name: </b></label>
+                                <input type="text" placeholder="Enter Emergency Contact Name" name="emerName">
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                            <br>
+                        </div>
+                        
+                    </form>
+                </div>
+            
+            </div>
+        </div> 
+    </div>
 </body>
