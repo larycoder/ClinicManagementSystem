@@ -6,8 +6,7 @@ function SignUp () {
     window.location.reload();
   }
   else {
-    message = makeMessage();
-    alert(message);
+    sendMessage(makeMessage());
   }
 }
 
@@ -25,4 +24,18 @@ function makeMessage() {
     }
   });
   return values.slice(0, -1);
+}
+
+function sendMessage(string) {
+  let xmlRequest = new XMLHttpRequest();
+  xmlRequest.onreadystatechange = function(){
+    if (this.readyState == 4 && xmlRequest.status == 201) {
+      alert('Register successful !\n' + this.responseText);
+    }
+    else if (this.readyState == 4){
+      alert('Register fall\n' + this.responseText);
+    }
+  }
+  xmlRequest.open("POST", "/api/register");
+  xmlRequest.send(string);
 }

@@ -2,10 +2,7 @@ from Tool import *
 import json
 
 # Predefine API
-Status_pair = {
-  1:200,
-  -1:404
-}
+Status_pair = {-2:400, -1:404, 1:200, 2:201}
 
 class API:
     """ A class to get request api and response correct data"""
@@ -84,4 +81,7 @@ class POSTHandler():
       return readFile(root + "/error404.html")
     else:
       JsonFile = String2Json(data)
-      return [1, "register post method test"]
+      check = self.DBConnection.add_new_user(JsonFile)
+      if check == True:
+        return [2, json.dumps("{'new_user':" + str(check) + "}")]
+      return [-2,"this user is already exit"]
