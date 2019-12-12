@@ -6,7 +6,8 @@ function SignUp () {
     window.location.reload();
   }
   else {
-    makeMessage();
+    message = makeMessage();
+    alert(message);
   }
 }
 
@@ -14,9 +15,14 @@ function makeMessage() {
   let values = "";
   $('form').submit(false);
   $('input').each(function () {
-    if (this.type != "radio") {
+    if (this.type != "radio" && $(this).attr("name") != "password-repeat") {
       values = values + $(this).attr("name") + "=" + $(this).val() + "&";
     }
+    else if (this.type == "radio") {
+      if (this.checked == true) {
+        values = values + $(this).attr("name") + "=" + $(this).val() + "&";
+      }
+    }
   });
-  alert("\n" + values.slice(0, -1));
+  return values.slice(0, -1);
 }
