@@ -8,7 +8,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <script src="register.js"></script>
-        <link rel="stylesheet" type="text/css" href="register.css">
 
 </head>
 
@@ -51,7 +50,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return SignUp()">
+                    <form onsubmit="SignUp();return false;">
                         <div class="form-row">
                             <div class="col form-group">
                                 <label for="username"><b>Username: </b></label>
