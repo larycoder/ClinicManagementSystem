@@ -7,7 +7,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script src="register.js"></script>
         <link rel="stylesheet" type="text/css" href="register.css">
 
 </head>
@@ -26,10 +25,10 @@
                     <a class="nav-link" href="../menu.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Login/Login.html">Login</a>
+                    <a class="nav-link" href="../Login/Login.html">Login</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/Register/register.html">Register</a>
+                    <a class="nav-link" href="#">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Schedule</a>
@@ -51,141 +50,143 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form onsubmit="return SignUp()">
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="username"><b>Username: </b></label>
-                                <input type="text" placeholder="username" name="username" required>
 
-                            </div>
                                 
+            
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="username"><b>Username: </b></label>
+                            <input type="text" placeholder="username" name="username" required>
+
                         </div>
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="password"><b>Create Password: </b></label>
-                                <input type="password" placeholder="Enter password" name="password" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="password-repeat"><b>Repeat Password: </b></label>
-                                <input type="password" placeholder="Repeat Password" name="password-repeat" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label class="form-check form-check-inline">
-                                    <input type="radio" name="type" value="patient" required>Patient
-                                </label>
-                                <label class="form-check form-check-inline">
-                                    <input type="radio" name="type" value="doctor">Doctor
-                                </label>
-                                <label class="form-check form-check-inline">
-                                    <input type="radio" name="type" value="nurse">Nurse
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="first_name"><b>First Name: </b></label>
-                                <input type="text" placeholder="Enter First Name" name="first_name" required>
-                            </div>
-                        </div>                
                             
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="last_name"><b>Last Name: </b></label>
-                                <input type="text" placeholder="Enter Last Name" name="last_name" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label class="form-check form-check-inline">
-                                    <input type="radio" name="gender" value="male" required>Male
-                                </label>
-                                <label class="form-check form-check-inline">
-                                    <input type="radio" name="gender" value="female">Female
-                                </label>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="dob"><b>Date of birth: </b></label>
-                                <input type="date" placeholder="DoB" name="dob" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="adress"><b>Adress: </b></label>
-                                <input type="text" placeholder="Enter Adress" name="address" required>
-                                <br>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="phoneNum"><b>Phone Number: </b></label>
-                                <input type="tel" placeholder="Enter Phone Number" name="phone_number" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="ssn"><b>Social Security Number: </b></label>
-                                <input type="text" placeholder="Enter SSN" name="Ssn" required>
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="Specialization"><b>Specialization: </b></label>
-                                <input type="text" placeholder="Enter Specialization" name="specialization">
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="emergency_contact_name"><b>Emergency Contact Name: </b></label>
-                                <input type="text" placeholder="Emergency Contact Name" name="emergency_contact_name">
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="emergency_contact_phone"><b>Emergency Contact Phone: </b></label>
-                                <input type="text" placeholder="Emergency Contact Phone" name="emergency_contact_phone">
-                                <br>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <label for="emergency_contact_relationship_to_patient"><b>Emergency Contact Relationship: </b></label>
-                                <input type="text" placeholder="Emergency Contact Relationship" name="emergency_contact_relationship_to_patient">
-                                <br>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="password"><b>Create Password: </b></label>
+                            <input type="password" placeholder="Enter password" name="password" required>
                             <br>
                         </div>
-                    </form>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="password-repeat"><b>Repeat Password: </b></label>
+                            <input type="password" placeholder="Repeat Password" name="password-repeat" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label class="form-check form-check-inline">
+                                <input type="radio" name="type" value="Patient" required>Patient
+                            </label>
+                            <label class="form-check form-check-inline">
+                                <input type="radio" name="type" value="Doctor">Doctor
+                            </label>
+                            <label class="form-check form-check-inline">
+                                <input type="radio" name="type" value="Nurse">Nurse
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="first_name"><b>First Name: </b></label>
+                            <input type="text" placeholder="Enter First Name" name="first_name" required>
+                        </div>
+                    </div>                
+                        
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="last_name"><b>Last Name: </b></label>
+                            <input type="text" placeholder="Enter Last Name" name="last_name" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label class="form-check form-check-inline">
+                                <input type="radio" name="gender" value="Male" required>Male
+                            </label>
+                            <label class="form-check form-check-inline">
+                                <input type="radio" name="gender" value="Female">Female
+                            </label>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="dob"><b>Date of birth: </b></label>
+                            <input type="date" placeholder="DoB" name="dob" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="adress"><b>Adress: </b></label>
+                            <input type="text" placeholder="Enter Adress" name="adress" required>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="phoneNum"><b>Phone Number: </b></label>
+                            <input type="tel" placeholder="Enter Phone Number" name="phoneNum" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="ssn"><b>Social Security Number: </b></label>
+                            <input type="text" placeholder="Enter SSN" name="ssn" required>
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="Specialization"><b>Specialization: </b></label>
+                            <input type="text" placeholder="Enter Specialization" name="specialization">
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="emergency_contact_name"><b>Emergency Contact Name: </b></label>
+                            <input type="text" placeholder="Emergency Contact Name" name="emergency_contact_name">
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="emergency_contact_phone"><b>Emergency Contact Phone: </b></label>
+                            <input type="text" placeholder="Emergency Contact Phone" name="emergency_contact_phone">
+                            <br>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="emergency_contact_relationship_to_patient"><b>Emergency Contact Relationship: </b></label>
+                            <input type="text" placeholder="Emergency Contact Relationship" name="emergency_contact_relationship_to_patient">
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                        <br>
+                    </div>
+                    
                 </div>
             
             </div>
