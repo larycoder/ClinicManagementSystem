@@ -29,11 +29,14 @@ function makeMessage() {
 function sendMessage(string) {
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
-    if (this.readyState == 4 && xmlRequest.status == 201) {
-      alert('Register successful !\n' + this.responseText);
-    }
-    else if (this.readyState == 4){
-      alert('Register fall\n' + this.responseText);
+    if (this.readyState == 4) {
+      if(xmlRequest.status == 201){
+        alert('Register successful !\n' + this.responseText);
+      }
+      else if (xmlRequest.status == 400) {
+        alert('Register fall\n' + this.responseText);
+      }
+      window.location.reload();
     }
   }
   xmlRequest.open("POST", "/api/register");

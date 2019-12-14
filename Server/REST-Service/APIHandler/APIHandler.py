@@ -83,5 +83,5 @@ class POSTHandler():
       JsonFile = String2Json(data)
       check = self.DBConnection.add_new_user(JsonFile)
       if check == True:
-        return [2, json.dumps("{'new_user':" + str(check) + "}")]
+        return [2, json.dumps("Your Register is succesful"]
       return [-2,"this user is already exit"]
