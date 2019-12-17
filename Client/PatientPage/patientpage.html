@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Account</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/265c532431.js" crossorigin="anonymous"></script>
+    <script src="patientpage.js"></script>
+    <!-- <script src="/js/pdfobject.js"></script> -->
+
+</head>
+
+<body>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="../menu.html">Clinic Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="../menu.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Schedule</a>
+                </li>
+                <li class=" shadow-lg nav-item dropdown">
+                    <a class=" nav-link dropdown-toggle" data-toggle="dropdown" href="patientpage.html"
+                        id="navbarDropdown" href="#">Username</a>
+                    <div class="shadow-lg dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <!-- <a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><i class="fa fa-user" aria-hidden="true"></i>Your profile</a>
+                            <a class="dropdown-item" href="#record" data-toggle="tab" ><i class="fa fa-file-text" aria-hidden="true"></i>Your records</a>
+                            <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 mt-4 text-center">
+                <i class="fa fa-user-circle fa-5x my-4 "></i><br>
+                <label for="id" class="font-weight-bold">ID: </label>
+                <input name="id" type="text" readonly>
+
+                <hr>
+                <ul id="verticaltabs" class="nav nav-pills flex-column text-left">
+                    <li class="nav-item"><a href="#profile" class="nav-link active " data-toggle="tab"><i
+                                class="fas fa-user" aria-hidden="true"></i>Your profile</a></li>
+                    <li class="nav-item"><a href="#record" class="nav-link" data-toggle="tab"><i class="fas fa-file-medical"
+                                aria-hidden="true"></i>Your record history</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-sign-out-alt"
+                                aria-hidden="true"></i>Sign out</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 mt-4  ">
+                <div class="tab-content border shadow-lg rounded p-3 ">
+                    <!-- Profile tab -->
+                    <div id="profile" class="tab-pane fade active show">
+                        <button class="btn btn-primary ml-auto mb-3" data-target="#theModalAll" data-toggle="modal" type="button">Edit</button>
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Full name</th>
+                                        <td id="fullname">Nguyen Van A</td>
+                                        <td class="editcol"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Gender</th>
+                                        <td id="gender">Male</td>
+                                        <td class="editcol"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date of birth</th>
+                                        <td id="dob">01/01/1999</td>
+                                        <td class="editcol"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Address</th>
+                                        <td id="address">18C Hoang Quoc Viet</td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='address' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Phone number</th>
+                                        <td id="phone-num">012356789</td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='phonenum' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Ssn</th>
+                                        <td id="ssn">11111111111111</td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='ssn' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Emergency Contact Name</th>
+                                        <td id="emergency-contact-name"></td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='ecname' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Emergency Contact Phone</th>
+                                        <td id="emergency-contact-phone"></td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='ecphone' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Emergency Contact Relationship</th>
+                                        <td id="emergency-contact-rel"></td>
+                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
+                                                class="tooltip-test li-modal" title="Edit"
+                                                onclick="infotype='ecrel' ;myFunction(infotype)"><i
+                                                    class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Record history -->
+                    <div id="record" class="tab-pane fade">
+                        <div class="search-area">
+                            <div class="input-group mb-3 mt-1">
+                                <input class="form-control border-right-0 border" type="search" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary border-left-0 border" type="button"><i class="fas fa-search"></i></span>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="record-area">
+                            <!-- <div class="embed-responsive embed-responsive-21by9" id="example1 ">
+                                 <iframe class="embed-responsive-item"  id="#example1 "src=""></iframe>
+                                <object  class="embed-responsive-item" data="2-HTML.pdf" type="application/pdf" width='100%' height='100%'>
+                                    <embed src="2-HTML.pdf" type="application/pdf">
+                                    <p>This browser does not support PDFs. Please download the PDF to view it: <a
+                                            href="2-HTML.pdf">Download PDF</a>.</p>
+                                    </embed>
+                                     <p>It appears you don't have a PDF plugin for this browser.
+                                        No biggie... you can <a href="2-HTML.pdf">click here to
+                                            download the PDF file.</a></p> 
+                                </object>
+                            </div>  -->
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem adipisci aut saepe earum
+                                explicabo aliquid corrupti? Ut amet officiis vel nihil necessitatibus! Aliquid quis veniam
+                                reiciendis asperiores! Numquam, unde veniam.</p>
+                        </div>
+                        <!-- <script>PDFObject.embed("2-HTML.pdf", "#example1");</script> -->
+                                
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="theModal" class="modal fade text-center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change your infomation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="modalinput" placeholder="Enter">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for changge all -->
+    <div id="theModalAll" class="modal fade text-left">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change your infomation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="first_name"><b>First Name: </b></label>
+                                    <input type="text" placeholder="Enter First Name" name="first_name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="last_name"><b>Last Name: </b></label>
+                                    <input type="text" placeholder="Enter Last Name" name="last_name" required>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label class="form-check form-check-inline">
+                                        <input type="radio" name="gender" value="male" required>Male
+                                    </label>
+                                    <label class="form-check form-check-inline">
+                                        <input type="radio" name="gender" value="female">Female
+                                    </label>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="dob"><b>Date of birth: </b></label>
+                                    <input type="date" placeholder="DoB" name="dob" required>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="adress"><b>Adress: </b></label>
+                                    <input type="text" placeholder="Enter Adress" name="address" required>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="phoneNum"><b>Phone Number: </b></label>
+                                    <input type="tel" placeholder="Enter Phone Number" name="phone_number" required>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="ssn"><b>Social Security Number: </b></label>
+                                    <input type="text" placeholder="Enter SSN" name="Ssn" required>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="Specialization"><b>Specialization: </b></label>
+                                    <input type="text" placeholder="Enter Specialization" name="specialization">
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="emergency_contact_name"><b>Emergency Contact Name: </b></label>
+                                    <input type="text" placeholder="Emergency Contact Name" name="emergency_contact_name">
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="emergency_contact_phone"><b>Emergency Contact Phone: </b></label>
+                                    <input type="text" placeholder="Emergency Contact Phone" name="emergency_contact_phone">
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="emergency_contact_relationship_to_patient"><b>Emergency Contact Relationship: </b></label>
+                                    <input type="text" placeholder="Emergency Contact Relationship"
+                                        name="emergency_contact_relationship_to_patient">
+                                    <br>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>

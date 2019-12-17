@@ -1,0 +1,40 @@
+.fa-user-circle {
+    color: rgb(109, 103, 103);
+}
+.dropdown-item > i {
+    width: 1rem;
+    height:1rem;
+    margin-right:1rem;
+}
+.nav-link > i {
+    width: 1rem;
+    height:1rem;
+    margin-right:1rem;
+}
+
+.dropdown-menu > a {
+    padding-left:15px;
+    padding-right:15px;
+
+}
+.tab-content {
+    height:85vh;
+    overflow:auto;
+}
+th {
+    width:30%;
+}
+.editcol {
+    width:10%;
+    text-align: right;
+}
+.search-area {
+    width:60%;
+    margin: auto;
+}
+/* hide the blue outline */
+.form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+}
