@@ -41,10 +41,15 @@ function myFunction(infotype) {
     document.getElementById("modalinput").placeholder = placeholderr;
 
 }
+
 function myFunction2(input){
     switch (input) {
         case profile:
             
 
     }
+}
+
+function addID(){
+    document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
 }

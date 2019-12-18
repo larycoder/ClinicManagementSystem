@@ -21,7 +21,8 @@ function validate(){
                 let obj = JSON.parse(Json);
                 var result = obj.id
                 if (result > 0 ){
-                    alert('Login successfully\n Your ID: ' + result);
+                    localStorage.setItem('Clinic-ID', JSON.stringify(result));
+                    location.replace('/');
                 }
                 else {
                     alert('Login fall: account is not exit');
