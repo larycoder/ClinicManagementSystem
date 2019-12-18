@@ -33,8 +33,23 @@ th {
     margin: auto;
 }
 /* hide the blue outline */
-.form-control:focus {
+.search-area .form-control:focus {
     outline: 0 !important;
     border-color: initial;
     box-shadow: none;
+}
+#theModalAll .modal-dialog{
+        height:80%;
+}
+#theModalAll .modal-content{
+  height:100%;
+ }
+#theModalAll .modal-body{
+height:80%;
+overflow-y: auto;}
+
+
+.input-group input {
+    padding-left:10px;
+    /* font-size: larger; */
 }

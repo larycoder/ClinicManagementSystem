@@ -2,9 +2,14 @@
         //     e.preventDefault();
         //     $('#theModal').modal('show');
         // });
-$('#theModal').on('hidden.bs.modal', function () {
-    $(this).find('form').trigger('reset');
-})
+// $('#theModal').on('hidden.bs.modal', function () {
+//     $(this).find('form').trigger('reset');
+// })
+// $('#theModalAll').on('hidden.bs.modal', function () {
+//     $(this).find('form').trigger('reset');
+// })
+// $(document).ready(function () {
+  
 
 var infotype;
 var placeholderr;
@@ -48,3 +53,18 @@ function myFunction2(input){
 
     }
 }
+
+$(document).ready(function () {
+    $("#show_hide_password a").on('click', function (event) {
+        event.preventDefault();
+        if ($('#show_hide_password input').attr("type") == "text") {
+            $('#show_hide_password input').attr('type', 'password');
+            $('#show_hide_password i').addClass("fa-eye-slash");
+            $('#show_hide_password i').removeClass("fa-eye");
+        } else if ($('#show_hide_password input').attr("type") == "password") {
+            $('#show_hide_password input').attr('type', 'text');
+            $('#show_hide_password i').removeClass("fa-eye-slash");
+            $('#show_hide_password i').addClass("fa-eye");
+        }
+    });
+});
