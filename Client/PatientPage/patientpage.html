@@ -77,6 +77,20 @@
                             <table class="table table-hover">
                                 <tbody>
                                     <tr>
+                                        <th scope="row">Username</th>
+                                        <td id="username"></td>
+                                        <td class="editcol"></td>
+                                    </tr>
+                                    <tr id="password-row">
+                                        <th scope="row">Password</th>
+                                        <td id="password"><div class="input-group" id="show_hide_password">
+                                            <input class=" border-right-0 border rounded" type="password">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><a href=""><i class="fas fa-eye-slash" aria-hidden="true"></i></a></span>
+                                            </div>
+                                        </div></td>
+                                        <td class="editcol"></td>
+                                    <tr>
                                         <th scope="row">Full name</th>
                                         <td id="fullname">Nguyen Van A</td>
                                         <td class="editcol"></td>
@@ -149,7 +163,7 @@
                             <div class="input-group mb-3 mt-1">
                                 <input class="form-control border-right-0 border" type="search" placeholder="Search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary border-left-0 border" type="button"><i class="fas fa-search"></i></span>
+                                    <button class="btn btn-outline-secondary border-left-0 border" type="button"><i class="fas fa-search"></i></button>
                                 </div>
                             
                             </div>
@@ -206,7 +220,7 @@
 
     <!-- Modal for changge all -->
     <div id="theModalAll" class="modal fade text-left">
-            <div class="modal-dialog">
+            <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Change your infomation</h5>
@@ -217,29 +231,35 @@
                     <div class="modal-body">
                         <form>
                             
+                            <div class="form-group">
+                                <label for="username"><b>Username: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Username" name="username" required>
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><b>Password: </b></label><br>
+                                <input class="form-control" type="password" placeholder="Enter password" name="password" required>
+                            
+                            </div>
                             
                             <div class="form-row">
                                 <div class="col form-group">
                                     <label for="first_name"><b>First Name: </b></label>
-                                    <input type="text" placeholder="Enter First Name" name="first_name" required>
+                                    <input class="form-control" type="text" placeholder="First Name" name="first_name">
                                 </div>
-                            </div>
-                            
-                            <div class="form-row">
                                 <div class="col form-group">
                                     <label for="last_name"><b>Last Name: </b></label>
-                                    <input type="text" placeholder="Enter Last Name" name="last_name" required>
-                                    <br>
+                                    <input class="form-control" type="text" placeholder="Last Name" name="last_name">
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="col form-group">
-                                    <label class="form-check form-check-inline">
-                                        <input type="radio" name="gender" value="male" required>Male
+                                    <label class="form-check-label form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" value="male" required>Male
                                     </label>
-                                    <label class="form-check form-check-inline">
-                                        <input type="radio" name="gender" value="female">Female
+                                    <label class="form-check-label form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" value="female">Female
                                     </label>
                                     <br>
                                 </div>
@@ -248,66 +268,58 @@
                             <div class="form-row">
                                 <div class="col form-group">
                                     <label for="dob"><b>Date of birth: </b></label>
-                                    <input type="date" placeholder="DoB" name="dob" required>
-                                    <br>
+                                    <input class="form-control" class="form-control" type="date" placeholder="DoB" name="dob" required>
+                                    
                                 </div>
                             </div>
                             
-                            <div class="form-row">
-                                <div class="col form-group">
-                                    <label for="adress"><b>Adress: </b></label>
-                                    <input type="text" placeholder="Enter Adress" name="address" required>
-                                    <br>
+                                <div class="form-group">
+                                    <label for="adress"><b>Address: </b></label>
+                                    <input class="form-control" type="text" placeholder="Address" name="address">
+                                    
                                 </div>
-                            </div>
+                           
                             
                             <div class="form-row">
                                 <div class="col form-group">
                                     <label for="phoneNum"><b>Phone Number: </b></label>
-                                    <input type="tel" placeholder="Enter Phone Number" name="phone_number" required>
-                                    <br>
+                                    <input class="form-control" type="tel" placeholder="Phone Number" name="phone_number" required>
+                                   
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="col form-group">
                                     <label for="ssn"><b>Social Security Number: </b></label>
-                                    <input type="text" placeholder="Enter SSN" name="Ssn" required>
-                                    <br>
+                                    <input class="form-control" type="text" placeholder="SSN" name="Ssn" required>
+                                    
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="col form-group">
-                                    <label for="Specialization"><b>Specialization: </b></label>
-                                    <input type="text" placeholder="Enter Specialization" name="specialization">
-                                    <br>
+                                    <label for="Specialization"><b>Specialization: </b></label><br>
+                                    <input class="form-control" type="text" placeholder="Specialization" name="specialization">
+                                   
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="emergency_contact_name"><b>Emergency Contact Name: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Emergency Contact Name" name="emergency_contact_name">
                             
-                            <div class="form-row">
-                                <div class="col form-group">
-                                    <label for="emergency_contact_name"><b>Emergency Contact Name: </b></label>
-                                    <input type="text" placeholder="Emergency Contact Name" name="emergency_contact_name">
-                                    <br>
-                                </div>
+                            </div>
+                 
+                            <div class="form-group">
+                                <label for="emergency_contact_phone"><b>Emergency Contact Phone: </b></label>
+                                <br>
+                                <input class="form-control" type="text" placeholder="Emergency Contact Phone" name="emergency_contact_phone">
                             </div>
                             
-                            <div class="form-row">
-                                <div class="col form-group">
-                                    <label for="emergency_contact_phone"><b>Emergency Contact Phone: </b></label>
-                                    <input type="text" placeholder="Emergency Contact Phone" name="emergency_contact_phone">
-                                    <br>
-                                </div>
-                            </div>
                             
-                            <div class="form-row">
-                                <div class="col form-group">
-                                    <label for="emergency_contact_relationship_to_patient"><b>Emergency Contact Relationship: </b></label>
-                                    <input type="text" placeholder="Emergency Contact Relationship"
-                                        name="emergency_contact_relationship_to_patient">
-                                    <br>
-                                </div>
+                            <div class="form-group">
+                                <label for="emergency_contact_relationship_to_patient"><b>Emergency Contact Relationship: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Emergency Contact Relationship" name="emergency_contact_relationship_to_patient">
+                            
                             </div>
 
                         </form>
