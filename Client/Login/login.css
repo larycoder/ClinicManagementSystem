@@ -96,7 +96,7 @@ body{
 	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
 }
 
-.forgetPass{
+.register{
     text-align: left;
     margin: 10px 20px -40px;
     color: #000;
@@ -104,7 +104,7 @@ body{
     font-weight: 300;
 }
 
-.forgetPass:hover{
+.register:hover{
     color: #ac47e7;
 }   
 

@@ -2,30 +2,158 @@
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 
     <link href='node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
     <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='node_modules/@fullcalendar/timegrid/main.css' rel='stylesheet' />
+
 
     <script src='node_modules/@fullcalendar/core/main.js'></script>
     <script src='node_modules/@fullcalendar/daygrid/main.js'></script>
+    <script src='node_modules/@fullcalendar/timegrid/main.js'></script>
+    
+    <script src='node_modules/@fullcalendar/interaction/main.js'></script>
+    <script src='node_modules/@fullcalendar/moment/main.js'></script>
+    
 
     <script>
 
       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+      var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid' ]
-        });
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [ 'interaction', 'timeGrid'],
+        header: {
+          left: 'today prev,next',
+          center: 'title',
+          right: 'timeGridWeek,timeGridDay'
+        },
 
-        calendar.render();
+        // Calendar View
+        minTime: "08:00:00",
+        maxTime: "18:00:00",
+        slotDuration: '00:30:00',
+        aspectRatio: 1.8,
+        defaultView: 'timeGridWeek',
+        allDaySlot: false,
+        
+        // Interaction
+        selectable: true,
+        dateClick: function(date, jsEvent, view) {
+       
+
+          $("#verifyBook").modal();
+          $('#yes').click(function () {
+            if (this.id == 'yes') {
+              var date = moment(dateStr);
+
+              if (date.isValid()) {
+                $('#calendar').fullCalendar('renderEvent', {
+                  title: 'Dynamic event from date click',
+                  start: date,
+                  allDay: true
+                });
+              } else {
+                alert('Invalid');
+              }
+            }
+            
+          });
+        },
+
+        
       });
 
+      calendar.render();
+    });
     </script>
+
+   
   </head>
   <body>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="../menu.html">Clinic Managerment System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="../menu.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Login/Login.html">Login</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../Register/register.html">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Schedule</a>
+                </li>
+            </ul>    
+        </div>
+    </nav>
 
-    <div id='calendar'></div>
+  <div class="container p-5 my-5 border">
+    <!-- Calendar setting -->
+    <div class="dropdown mb-4">
+      <button type="button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+          Chose the Doctor you want to book schedule with
+      </button>
+      <div class="dropdown-menu">
+        <div class="dropdown-header">General
+          <a class="dropdown-item" id="dr1" href="#">Dr Nguyen Van A</a>
+        </div>
+        <div class="dropdown-header">Heart Disease
+          <a class="dropdown-item" id="dr2" href="#">Dr Nguyen Van B</a>
+        </div>
+        <div class="dropdown-header">STD
+          <a class="dropdown-item" id="dr3" href="#">Dr Nguyen Van C</a>
+        </div>
+      </div>
+    </div>
+
+   
+    <!-- Calendar -->
+
+    <div id="calendar"></div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verifyBook">
+      test
+    </button>
+
+
+    <div id="verifyBook" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            
+            <p>
+              <p>Book a meet up with</p>
+              <p id="drName"></p>
+              <p id="date"></p>
+              <p id="time"></p>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="yes">Yes</button>
+            <button type="button" class="btn btn-secondary" id="no" data-dismiss="modal">Chose another timeslot</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     
+  </div>
 
   </body>
 </html>
