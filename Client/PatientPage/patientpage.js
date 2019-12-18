@@ -59,6 +59,11 @@ function addID(){
     document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
 }
 
+function SignOut(){
+    localStorage.removeItem('Clinic-ID');
+    location.replace('/');
+}
+
 $(document).ready(function () {
     $("#show_hide_password a").on('click', function (event) {
         event.preventDefault();
