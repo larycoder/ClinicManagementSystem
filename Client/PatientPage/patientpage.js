@@ -55,11 +55,10 @@ function myFunction2(input){
     }
 }
 
-<<<<<<< HEAD
 function addID(){
     document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
 }
-=======
+
 $(document).ready(function () {
     $("#show_hide_password a").on('click', function (event) {
         event.preventDefault();
@@ -74,4 +73,3 @@ $(document).ready(function () {
         }
     });
 });
->>>>>>> 5e9501b5857c2511066d0a3514c97d86ca449cb7
