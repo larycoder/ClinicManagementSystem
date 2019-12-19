@@ -77,81 +77,51 @@
                             <table class="table table-hover">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Username</th>
-                                        <td id="username"></td>
-                                        <td class="editcol"></td>
+                                        <th class="align-middle"scope="row">Username</th>
+                                        <td class="align-middle" id="username"></td>
                                     </tr>
                                     <tr id="password-row">
-                                        <th scope="row">Password</th>
-                                        <td id="password"><div class="input-group" id="show_hide_password">
-                                            <input class=" border-right-0 border rounded" type="password">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><a href=""><i class="fas fa-eye-slash" aria-hidden="true"></i></a></span>
-                                            </div>
-                                        </div></td>
-                                        <td class="editcol"></td>
+                                        <th class="align-middle" scope="row">Password</th>
+                                        <td class="align-middle" id="password">
+                                            <input class="rounded" type="password">        
+                                            <button class="input-group-btn btn-toggle-pass"><i class="fas fa-eye-slash" aria-hidden="true"></i></a></span>
+                                            
+                                        </td>
                                     <tr>
-                                        <th scope="row">Full name</th>
-                                        <td id="fullname">Nguyen Van A</td>
-                                        <td class="editcol"></td>
+                                        <th class="align-middle" scope="row">Full name</th>
+                                        <td class="align-middle" id="fullname">Nguyen Van A</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Gender</th>
-                                        <td id="gender">Male</td>
-                                        <td class="editcol"></td>
+                                        <th class="align-middle" scope="row">Gender</th>
+                                        <td class="align-middle" id="gender">Male</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Date of birth</th>
-                                        <td id="dob">01/01/1999</td>
-                                        <td class="editcol"></td>
+                                        <th class="align-middle" scope="row">Date of birth</th>
+                                        <td class="align-middle" id="dob">01/01/1999</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Address</th>
-                                        <td id="address">18C Hoang Quoc Viet</td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='address' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Address</th>
+                                        <td class="align-middle" id="address">18C Hoang Quoc Viet</td>                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">Phone number</th>
-                                        <td id="phone-num">012356789</td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='phonenum' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Phone number</th>
+                                        <td class="align-middle" id="phone-num">012356789</td>                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">Ssn</th>
-                                        <td id="ssn">11111111111111</td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='ssn' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Ssn</th>
+                                        <td class="align-middle" id="ssn">11111111111111</td>                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">Emergency Contact Name</th>
-                                        <td id="emergency-contact-name"></td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='ecname' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Emergency Contact Name</th>
+                                        <td class="align-middle" id="emergency-contact-name"></td>                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">Emergency Contact Phone</th>
-                                        <td id="emergency-contact-phone"></td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='ecphone' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Emergency Contact Phone</th>
+                                        <td class="align-middle" id="emergency-contact-phone"></td>                                        
                                     </tr>
                                     <tr>
-                                        <th scope="row">Emergency Contact Relationship</th>
-                                        <td id="emergency-contact-rel"></td>
-                                        <td class="editcol"><a href="#" data-target="#theModal" data-toggle="modal"
-                                                class="tooltip-test li-modal" title="Edit"
-                                                onclick="infotype='ecrel' ;myFunction(infotype)"><i
-                                                    class="fas fa-pencil-alt"></i></a></td>
+                                        <th class="align-middle" scope="row">Emergency Contact Relationship</th>
+                                        <td class="align-middle" id="emergency-contact-rel"></td>                                    
                                     </tr>
                                 </tbody>
                             </table>
@@ -194,36 +164,13 @@
         </div>
     </div>
 
-    <div id="theModal" class="modal fade text-center">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change your infomation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="modalinput" placeholder="Enter">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- Modal for changge all -->
     <div id="theModalAll" class="modal fade text-left">
             <div class="modal-dialog ">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Change your infomation</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit your infomation</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

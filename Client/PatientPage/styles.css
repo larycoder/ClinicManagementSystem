@@ -24,10 +24,7 @@
 th {
     width:30%;
 }
-.editcol {
-    width:10%;
-    text-align: right;
-}
+
 .search-area {
     width:60%;
     margin: auto;
@@ -53,3 +50,25 @@ overflow-y: auto;}
     padding-left:10px;
     /* font-size: larger; */
 }
+
+.btn-toggle-pass {
+  border: none;
+  position: relative;
+  top: auto;
+  background: transparent;
+  float:right;
+  padding-top:10px;
+}
+table tr {
+    height:70px;
+}
+table td input {
+  position: relative;
+  border: none;
+  padding: 10px;
+}
+
+/* #ID {
+   position: relative;
+  border: none;
+} */
