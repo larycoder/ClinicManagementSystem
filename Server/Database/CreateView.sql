@@ -28,7 +28,7 @@ DROP VIEW IF EXISTS appointment_info_view;
 CREATE VIEW appointment_info_view
 AS
     SELECT SA.id appointment_id, SA.doctor_id, D.doctor_name, SA.patient_id, P.patient_name, from_time, status
-    FROM schedule_appointment SA INNER JOIN doctor_view D ON SA.doctor_id = D.id INNER JOIN patient_view P ON SA.patient_id= P.id;
+    FROM schedule_appointment SA INNER JOIN doctor_view D ON SA.doctor_id = D.id LEFT OUTER JOIN patient_view P ON SA.patient_id= P.id ORDER BY SA.id;
 
 -- create report detail ( report with patient and doctor name)
 DROP VIEW IF EXISTS report_detail_view;
