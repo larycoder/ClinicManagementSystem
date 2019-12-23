@@ -1,38 +1,127 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<head>
+  <meta charset='utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+  <link href='node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
+  <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
+  <link href='node_modules/@fullcalendar/timegrid/main.css' rel='stylesheet' />
 
 
-    <link href='node_modules/@fullcalendar/core/main.css' rel='stylesheet' />
-    <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
-    <link href='node_modules/@fullcalendar/timegrid/main.css' rel='stylesheet' />
+  <script src='node_modules/@fullcalendar/core/main.js'></script>
+  <script src='node_modules/@fullcalendar/daygrid/main.js'></script>
+  <script src='node_modules/@fullcalendar/timegrid/main.js'></script>
 
 
-    <script src='node_modules/@fullcalendar/core/main.js'></script>
-    <script src='node_modules/@fullcalendar/daygrid/main.js'></script>
-    <script src='node_modules/@fullcalendar/timegrid/main.js'></script>
-    
-    <script src='node_modules/@fullcalendar/interaction/main.js'></script>
-    <script src='node_modules/@fullcalendar/moment/main.js'></script>
-    
 
-    <script>
 
-      document.addEventListener('DOMContentLoaded', function() {
+</head>
+
+<body>
+  <!-- Nav bar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="../menu.html">Clinic Managerment System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="../menu.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Login/Login.html">Login</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="../Register/register.html">Register</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Schedule</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <p id="demo"></p>
+  <div class="container p-5 my-5 border">
+    <!-- Calendar setting -->
+      <div class="row mb-5">
+      <p class="lead my-2" >Chose the Doctor you want to book schedule with: </p>
+      <select class="selectpicker input-sm mx-3">
+        <option value="" disabled selected>Select something...</option>
+        <option value="dr1">Dr 1</option>
+        <option value="dr2">Dr 2</option>
+        <option value="dr3">Dr 3</option>
+      </select>
+    </div>
+
+    <!-- Calendar -->
+    <div class="row">
+      <div class="col-sm-4 border">
+        <div class="container center-block p-5">
+
+          <div class="row">
+            <label class="lead">When do you want to meet?</label>
+          </div>
+          <br>
+          <div class="row">
+            <label class="mx-2">Date: 
+              <br> 
+              <input class="ml-3" type="text" id="datepicker">
+            </label>
+          </div>
+          <div class="row">
+            <label class="mx-2">Time:
+              <br>
+              <input class="ml-3" type="text" id="timepicker"> 
+            </label>
+
+          </div>
+          <br>
+          <div class="row float-right">
+            <button type="button" class="btn btn-primary" id="book" onclick="test();">Book here</button>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="col-md-8">
+        <div id="calendar"></div>
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+  <script>
+
+
+    document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
 
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [ 'interaction', 'timeGrid'],
+        plugins: ['interaction', 'timeGrid'],
         header: {
           left: 'today prev,next',
           center: 'title',
-          right: 'timeGridWeek,timeGridDay'
+          right: 'addEvent'
         },
 
         // Calendar View
@@ -42,118 +131,53 @@
         aspectRatio: 1.8,
         defaultView: 'timeGridWeek',
         allDaySlot: false,
+
+        editable: true,
+
+        //Events
+        defaultTimedEventDuration: '00:30:00',
+        forceEventDuration: true,   
+
+
+
+        events: [
+          {
+
+            id: '1',
+            title: 'Event1',
+            start: '2019-12-22T09:00:00'
+          },
+          {
+            title: 'Event2',
+            start: '2019-12-22T09:30:00'
+          }
+        ],
+        eventColor: '#378006',
+
+
         
-        // Interaction
-        selectable: true,
-        dateClick: function(date, jsEvent, view) {
-       
+        // Change user event color
+        eventRender: function (event, element) {
+        var userID = '1';
+          if (event.id == userID) {
+            element.css({
+                  'background-color': '#333333',
+                  'border-color': '#333333'
+              });
 
-          $("#verifyBook").modal();
-          $('#yes').click(function () {
-            if (this.id == 'yes') {
-              var date = moment(dateStr);
+          }
+        },  
 
-              if (date.isValid()) {
-                $('#calendar').fullCalendar('renderEvent', {
-                  title: 'Dynamic event from date click',
-                  start: date,
-                  allDay: true
-                });
-              } else {
-                alert('Invalid');
-              }
-            }
-            
-          });
-        },
-
-        
       });
 
       calendar.render();
     });
-    </script>
+  </script>
 
-   
-  </head>
-  <body>
-    <!-- Nav bar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="../menu.html">Clinic Managerment System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item ">
-                    <a class="nav-link" href="../menu.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Login/Login.html">Login</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="../Register/register.html">Register</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Schedule</a>
-                </li>
-            </ul>    
-        </div>
-    </nav>
-
-  <div class="container p-5 my-5 border">
-    <!-- Calendar setting -->
-    <div class="dropdown mb-4">
-      <button type="button" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-          Chose the Doctor you want to book schedule with
-      </button>
-      <div class="dropdown-menu">
-        <div class="dropdown-header">General
-          <a class="dropdown-item" id="dr1" href="#">Dr Nguyen Van A</a>
-        </div>
-        <div class="dropdown-header">Heart Disease
-          <a class="dropdown-item" id="dr2" href="#">Dr Nguyen Van B</a>
-        </div>
-        <div class="dropdown-header">STD
-          <a class="dropdown-item" id="dr3" href="#">Dr Nguyen Van C</a>
-        </div>
-      </div>
-    </div>
-
-   
-    <!-- Calendar -->
-
-    <div id="calendar"></div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verifyBook">
-      test
-    </button>
+  <script src="./schedule.js"></script>
 
 
-    <div id="verifyBook" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="dialog">
-        <div class="modal-content">
-          <div class="modal-body">
 
-            
-            <p>
-              <p>Book a meet up with</p>
-              <p id="drName"></p>
-              <p id="date"></p>
-              <p id="time"></p>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="yes">Yes</button>
-            <button type="button" class="btn btn-secondary" id="no" data-dismiss="modal">Chose another timeslot</button>
-          </div>
-        </div>
-      </div>
-    </div>
+</body>
 
-
-     
-  </div>
-
-  </body>
 </html>
