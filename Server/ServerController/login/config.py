@@ -25,6 +25,7 @@ query = {
   'list_nurse_info': "SELECT * FROM nurse_view;",
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
   'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d",
+  'list_user_info': "SELECT id,username,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient FROM user WHERE id = %(id)s",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",

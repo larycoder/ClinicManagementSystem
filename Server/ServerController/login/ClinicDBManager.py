@@ -98,6 +98,17 @@ class ClinicDBManager:
         print(result)
         return self.tuple_to_dict(result[0], labels)
 
+    def get_user_info(self, user_id: Dict) -> Dict:
+        """
+        user_id = {"id": "3092u34"}
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['list_user_info'], user_id)
+        result = cursor.fetchall()
+        labels = ["id", "username", "type", "first_name", "last_name", "gender", "dob", "address", "phone_number", "ssn", "specialization", "emergency_contact_name", "emergency_contact_phone", "emergency_contact_relationship_to_patient"]
+        print(result)
+        return self.tuple_to_dict(result[0], labels)
+
   
 
         
@@ -137,6 +148,7 @@ if __name__ == '__main__':
         # db_manager.verify_login(user_login)
         # print(db_manager.add_new_user(user_register))
         print(db_manager.get_patient_info({"id": "1"}))
+        print(db_manager.get_user_info({"id": "2"}))
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
