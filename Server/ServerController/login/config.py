@@ -20,7 +20,7 @@ query = {
   
   #maintain patient information
   'patient_name_list': "SELECT CONCAT(first_name," ",last_name) AS patient_name FROM user WHERE type='patient';",
-  'list_patient_info': "SELECT * FROM patient_view;",
+  'list_patient_info': "SELECT * FROM patient_view WHERE id = %(id)s;",
   'list_doctor_info': "SELECT * FROM doctor_view;",
   'list_nurse_info': "SELECT * FROM nurse_view;",
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
@@ -52,6 +52,7 @@ query = {
   'delete_appointment': "DELETE FROM schedule_appointment WHERE id = %(id)d",
   'change_appointment_status': "UPDATE TABLE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
   'list_appointment_info': "SELECT * FROM appointment_info_view",
+  'list_appointment_info_by_doctor': "SELECT * FROM appointment_info_view WHERE doctor_id = %(id)s",
   
   # export report
   'list_report': "SELECT * FROM report",
@@ -61,6 +62,7 @@ query = {
   
   #book schedule
   'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
+  'display_schedule_by_doctor': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1) AND doctor_id = %(id)s",
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   

@@ -49,7 +49,7 @@ class ClinicDBManager:
     def tuple_to_dict(self, my_tuple: tuple, labels: list) -> Dict:
         return dict(zip(labels, list(my_tuple)))
 
-    def get_appointment_list(self) -> list:
+    def get_appointment3_list(self) -> list:
         labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
         cursor = self.cnx.cursor()
         cursor.execute(config.query['display_schedule'])
@@ -60,10 +60,45 @@ class ClinicDBManager:
             appointment_list.append(self.tuple_to_dict(one_tuple, labels))
         return appointment_list
 
-    def add_new_schedule(self, schedule: Dict):
+    def get_appointment3_list_by_doctor(self, doctor: Dict) -> list:
+        """
+        doctor = {"id": "i39ur34ri"}
+        """
+        labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
         cursor = self.cnx.cursor()
-        cursor.execute(())
+        cursor.execute(config.query['display_schedule_by_doctor'], doctor)
+        result = cursor.fetchall()
+        print(result)
+        appointment_list = []
+        for one_tuple in result:
+            appointment_list.append(self.tuple_to_dict(one_tuple, labels))
+        return appointment_list
 
+    def book_schedule(self, schedule: Dict) -> bool:
+        """
+        A patient books an appointment
+        """
+        try:
+            cursor = self.cnx.cursor()
+            cursor.execute(config.query['add_new_schedule'], schedule)
+            cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
+
+    def get_patient_info(self, patient_id: Dict) -> Dict:
+        """
+        patient_id = {"id": "3092u34"}
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['list_patient_info'], patient_id)
+        result = cursor.fetchall()
+        labels = ["id", "username", "type", "patient_name", "gender", "dob", "address", "phone_number", "ssn", "specialization", "emergency_contact_name", "emergency_contact_phone", "emergency_contact_relationship_to_patient"]
+        print(result)
+        return self.tuple_to_dict(result[0], labels)
+
+  
 
         
 def CreateDbConnection():
@@ -99,8 +134,10 @@ if __name__ == '__main__':
                          "emergency_contact_phone": None,
                          "emergency_contact_relationship_to_patient": None}
         cnx = db_manager.get_connection(mysql_user= config.mysql_user)
-        db_manager.verify_login(user_login)
-        print(db_manager.add_new_user(user_register))
+        # db_manager.verify_login(user_login)
+        # print(db_manager.add_new_user(user_register))
+        print(db_manager.get_patient_info({"id": "1"}))
+
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
