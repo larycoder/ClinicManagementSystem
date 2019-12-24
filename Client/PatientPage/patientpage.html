@@ -83,8 +83,8 @@
                                     <tr id="password-row">
                                         <th class="align-middle" scope="row">Password</th>
                                         <td class="align-middle" id="password">
-                                            <input class="rounded" type="password">        
-                                            <button class="input-group-btn btn-toggle-pass"><i class="fas fa-eye-slash" aria-hidden="true"></i></a></span>
+                                            <!-- <input class="rounded" type="password">         -->
+                                            <button class="btn btn-outline-primary border-0" data-target="#theModalEditPassword" data-toggle="modal" type="button"><i class="fas fa-pencil-alt" aria-hidden="true"></i>
                                             
                                         </td>
                                     <tr>
@@ -164,6 +164,51 @@
         </div>
     </div>
 
+    <!-- Modal change password -->
+    <div id="theModalEditPassword" class="modal fade text-left">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPassModalLabel">Change your password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>                    
+                        <div class="form-group">
+                            <div class="input-group" id="show_hide_current_password">
+                                <input class="form-control border-right-0 border" type="password" placeholder="Enter current passsword" name="current_password" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary border-left-0 border"><i class="fas fa-eye-slash" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group " id="show_hide_new_password">
+                                <input class="form-control border-right-0 border" type="password" placeholder="Enter new passsword" name="new_password" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary border-left-0 border"><i class="fas fa-eye-slash" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="input-group" id="show_hide_repeat_password">
+                                <input class="form-control border-right-0 border" type="password" placeholder="Repeat new passsword" name="repeat_password" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary border-left-0 border"><i class="fas fa-eye-slash" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Modal for changge all -->
     <div id="theModalAll" class="modal fade text-left">
@@ -181,11 +226,6 @@
                             <div class="form-group">
                                 <label for="username"><b>Username: </b></label><br>
                                 <input class="form-control" type="text" placeholder="Username" name="username" required>
-                            
-                            </div>
-                            <div class="form-group">
-                                <label for="password"><b>Password: </b></label><br>
-                                <input class="form-control" type="password" placeholder="Enter password" name="password" required>
                             
                             </div>
                             
@@ -221,7 +261,7 @@
                             </div>
                             
                                 <div class="form-group">
-                                    <label for="adress"><b>Address: </b></label>
+                                    <label for="address"><b>Address: </b></label>
                                     <input class="form-control" type="text" placeholder="Address" name="address">
                                     
                                 </div>
@@ -270,6 +310,37 @@
                             </div>
 
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-target="#theModalConfirmPass" data-toggle="modal">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal confirm pass after edit info -->
+        <div id="theModalConfirmPass" class="modal fade text-left">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmPassModalLabel">Confirm your passsword</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form">
+                            <div class="form-group">
+                                <label for="confirm_password">Your passsword:</label>
+                                <div class="input-group" id="show_hide_confirm_password" >
+                                    <input id ="myInput"class="form-control border-right-0 border" type="password"
+                                        placeholder="Enter your passsword" name="confirm_password" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary border-left-0 border " ><i class="fas fa-eye-slash"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>       
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
