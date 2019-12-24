@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Add Instructions</title>
+  <meta charset="urf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/265c532431.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet"/> -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+  <script>
+    $(function() {
+      $('.selectpicker').selectpicker();
+    });
+  </script>
+  <link rel="stylesheet" href="addInstruction.css">
+
+</head>
+
+<body>
+  <!-- Nav bar -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="../menu.html">Clinic Managerment System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="../menu.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Login/Login.html">Login</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Schedule</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Editable table -->
+  <div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Report</h3>
+    <div class="card-body">
+      <div class="col-lg-12">
+        <div class="input-group input-group-lg">
+          <textarea type="text" class="form-control input-lg auto-expanding" id="search-church" placeholder="Doctor's Diagnosis" style="word-wrap: break-word; min-height: 150px;"></textarea>
+        </div>
+      </div>
+      <div id="table" class="table-editable">
+        <div class="row mt-3">
+          <div class="col-12 text-center">
+              <h4>Instructions List</h4>
+              <span class="table-add float-right mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
+                aria-hidden="true"></i></a></span>
+          </div>
+        </div> 
+        
+        
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <thead>
+            <tr>
+              <th class="text-center" width="15%">Service</th>
+              <th class="text-center" width="10%">Service Quantity</th>
+              <th class="text-center" width="15%">Resource</th>
+              <th class="text-center" width="20%">Resource Quantity</th>
+              <th class="text-center" width="30%">Notes</th>
+              <th class="text-center" width="10%">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td width="15%">
+                <div class="form-group">
+                  <select class="form-control selectpicker" data-live-search="true">
+                    <option>None</option>
+                    <option data-tokens="take medicine">Take Medicine</option>
+                    <option data-tokens="inject">Inject</option>
+                    <option data-tokens="blood test">Blood Test</option>
+                    <option data-tokens="ct scan">CT Scan</option>
+                  </select>
+                </div> 
+              </td>
+              <td class="pt-3-half" width="10%" contenteditable="true">1</td>
+              <td class="pt-3-half" width="15%" contenteditable="true">
+                <div class="form-group">
+                  <select class="form-control selectpicker" data-live-search="true">
+                    <option>None</option>
+                    <option data-tokens="insulin glargine">insulin glargine</option>
+                    <option data-tokens="paracetamon">paracetamon</option>
+                    <option data-tokens="morphine">morphine</option>
+                    <option data-tokens="benzonatate">benzonatate</option>
+                  </select>
+                </div> 
+              </td>
+              <td class="pt-3-half" width="20%">
+                <div class="input-group">
+                  <input type="number" class="form-control" style="float: left;">
+                  <select class="form-control" style="float: left;">
+                    <option>None</option>
+                    <option>ml</option>
+                    <option>boxes</option>
+                  </select>
+                </div>  
+              </td>
+              <td class="pt-3-half" width="30%" contenteditable="true" style="word-wrap: break-word"></td>
+              <td width="10%">
+                <span class="table-remove"><button type="button"
+                    class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-primary" style="width: 100%;">Save</button>
+    </div>
+    <div class="col-xs-12" style="height:400px;"></div>
+  </div>
+  <!-- Editable table -->
+  <script src="addInstruction.js"></script>
+</body>
