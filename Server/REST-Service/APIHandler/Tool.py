@@ -1,6 +1,7 @@
 # function process file
 # root directory of WEB server
 import os
+import datetime
 
 root = os.path.dirname(os.path.realpath(__file__)) + "/../../../Client"
 
@@ -33,3 +34,7 @@ def readFile(String):
         Buff = ErrorFile.read()
         ErrorFile.close()
         return [-1, Buff]
+
+def datetimeObject2String(object):
+  if isinstance(object, datetime.datetime):
+        return object.__str__()

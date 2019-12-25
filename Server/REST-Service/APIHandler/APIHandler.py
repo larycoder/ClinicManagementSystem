@@ -67,6 +67,19 @@ class GETHandler():
       else:
         print(json.dumps(ID))
         return [1, json.dumps(ID)]
+  
+  def userInfo(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    else:
+      JsonFile = String2Json(data)
+      userInfo = self.DBConnection.get_user_info(JsonFile)
+      if userInfo == None:
+        return readFile(root + "/error404.html")
+      else:
+        print("Get user information successful !")
+        return [1, json.dumps(userInfo, default = datetimeObject2String)]
 
 class POSTHandler():
   """ class hanler POST method """
