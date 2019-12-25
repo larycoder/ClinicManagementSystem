@@ -32,6 +32,7 @@ function sendMessage(string) {
     if (this.readyState == 4) {
       if(xmlRequest.status == 201){
         alert('Register successful !\n' + this.responseText);
+        location.replace('/');
       }
       else if (xmlRequest.status == 400) {
         alert('Register fall\n' + this.responseText);
