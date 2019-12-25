@@ -7,6 +7,56 @@ function SignOut(){
     location.replace('/');
 }
 
+function isJson(string) {
+    try {
+        JSON.parse(string);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+function getUserID(){
+    let id = localStorage.getItem('Clinic-ID');
+    if(id !== null){
+        return id;
+    }
+    return -1;
+}
+
+function setInfoText(object){
+    object["full_name"] = object["first_name"] + " " + object["last_name"];
+    for(var key in object){
+        if(document.getElementById(key) !== null){
+            string = object[key];
+            if(key == "dob"){
+                string = string.slice(0, -8);
+            }
+            document.getElementById(key).innerHTML = string;
+        }
+    }
+}
+
+function sendGetUserInfoRequest(){
+    let xmlRequest = new XMLHttpRequest();
+    xmlRequest.onreadystatechange = function(){
+        if (this.readyState == 4 && xmlRequest.status == 200) {
+            if (isJson(this.responseText) == false) {
+                alert('Get user info fall: can not get json');
+            }
+            else {
+                let obj = JSON.parse(this.responseText);
+                setInfoText(obj);
+            }
+        }
+        else if (this.readyState == 4 && xmlRequest.status != 200) {
+            alert('Get user info fall: status 404');
+        }
+    }
+    xmlRequest.open("GET","/api/userInfo?id=" + getUserID());
+    xmlRequest.send();
+}
+
 // icon eye in password field
 $(document).ready(function () {
     $("td button").on('click', function (event) {
