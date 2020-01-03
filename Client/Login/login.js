@@ -33,6 +33,6 @@ function validate(){
             alert('Login fall: status 404');
         }
     }
-    xmlRequest.open("GET","/api/login?username=" + uname + "&password=" + pass);
-    xmlRequest.send();
+    xmlRequest.open("POST","/api/login");
+    xmlRequest.send("username=" + uname + "&password=" + pass);
 }
