@@ -23,9 +23,7 @@
   <script src='node_modules/@fullcalendar/daygrid/main.js'></script>
   <script src='node_modules/@fullcalendar/timegrid/main.js'></script>
 
-
-
-
+  <script src="./schedule.js"></script>
 </head>
 
 <body>
@@ -52,12 +50,10 @@
     <!-- Calendar setting -->
       <div class="row mb-5">
       <p class="lead my-2" >Chose the Doctor you want to book schedule with: </p>
-      <select class="selectpicker input-sm mx-3">
+      <select class="selectpicker input-sm mx-3" id="listDoctor">
         <option value="" disabled selected>Select something...</option>
-        <option value="dr1">Dr 1</option>
-        <option value="dr2">Dr 2</option>
-        <option value="dr3">Dr 3</option>
       </select>
+      <script>getListDoctor();</script>
     </div>
 
     <!-- Calendar -->
@@ -105,8 +101,6 @@
 
 
   <script>
-
-
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
 
@@ -166,12 +160,28 @@
 
       calendar.render();
     });
+
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: 0,
+        maxDate: 14,
+      });
+
+      $('#timepicker').timepicker({
+        timeFormat: 'HH:mm',
+        interval: 30,
+        minTime: '8:00am',
+        maxTime: '5:00pm',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+      });
+    });
+
+    function test(){
+      alert(getStart() );
+    }
   </script>
-
-  <script src="./schedule.js"></script>
-
-
-
 </body>
-
 </html>
