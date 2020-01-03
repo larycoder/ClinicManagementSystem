@@ -54,19 +54,6 @@ class GETHandler():
 
   def __init__(self, DBConnection):
     self.DBConnection = DBConnection
-
-  def login(self, data):
-    if self.DBConnection == None:
-      print("DB Connection is not exit")
-      return readFile(root + "/error404.html")
-    else:
-      JsonFile = String2Json(data)
-      ID = self.DBConnection.verify_login(JsonFile)
-      if ID == -1:
-        return [1, json.dumps({'ID':ID})]
-      else:
-        print(json.dumps(ID))
-        return [1, json.dumps(ID)]
   
   def userInfo(self, data):
     if self.DBConnection == None:
@@ -80,6 +67,25 @@ class GETHandler():
       else:
         print("Get user information successful !")
         return [1, json.dumps(userInfo, default = datetimeObject2String)]
+  
+  def doctorList(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    else:
+      userID = String2Json(data)
+
+      # Check exit user id
+      try:
+        userInfo = self.DBConnection.get_user_info(userID)
+      except Exception as e:
+        print(e)
+        return readFile(root + "/error404.html")
+
+      doctorList = self.DBConnection.get_doctor_list()
+      for index in doctorList:
+        del index['id']
+      return [1, json.dumps(doctorList)]
 
 class POSTHandler():
   """ class hanler POST method """
@@ -88,6 +94,19 @@ class POSTHandler():
 
   def __init__(self, DBConnection):
     self.DBConnection = DBConnection
+
+  def login(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    else:
+      JsonFile = String2Json(data)
+      ID = self.DBConnection.verify_login(JsonFile)
+      if ID == -1:
+        return [1, json.dumps({'ID':ID})]
+      else:
+        print(json.dumps(ID))
+        return [1, json.dumps(ID)]
 
   def register(self, data):
     if self.DBConnection == None:
