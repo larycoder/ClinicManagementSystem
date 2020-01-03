@@ -87,6 +87,23 @@ class ClinicDBManager:
             print(e.errno)
             return False
 
+    def create_schedule(self, new_schedule: Dict) -> bool:
+        """
+        A doctor create a schedule
+        schedule = {
+                    doctor_id: 128,
+                    from_time: datetime
+                    }
+        """
+        try:
+            cursor = self.cnx.cursor()
+            cursor.execute(config.query['add_new_schedule'], new_schedule)
+            self.cnx.commit()
+            return True
+        except mysql.connector.IntegrityError as err:
+            return False
+        
+
     def get_patient_info(self, patient_id: Dict) -> Dict:
         """
         patient_id = {"id": "3092u34"}
