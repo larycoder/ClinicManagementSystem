@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Patient Report</title>
+    <meta charset="urf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/265c532431.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <!-- <script>
+        $(function () {
+            $('.selectpicker').selectpicker();
+        });
+    </script> -->
+</head>
+
+<body>
+
+    <!-- Editable table -->
+    <button type="button" class="btn btn-outline-secondary m-3">Back</button>
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Report 12-20-2019</h3>
+        <div class="card-body">
+            <div class="col-lg-12">
+                <div class="input-group input-group-lg">
+                    <textarea disabled type="text" class="form-control auto-expanding"
+                        id="patient_diagnosis"
+                        style="word-wrap: break-word; min-height: 150px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quos dolor ipsa rem perspiciatis dolorem alias sequi qui laboriosam doloribus maiores, provident autem sed, odit laudantium porro libero? Natus, laborum?</textarea>
+                </div>
+            </div>
+            <div id="table">
+                <h4 class="m-3 text-center font-weight-bold">Instruction List</h4>
+
+
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th class="align-middle" width="15%">Service</th>
+                            <th class="align-middle" width="10%">Service Quantity</th>
+                            <th class="align-middle" width="15%">Resource</th>
+                            <th class="align-middle" width="20%">Resource Quantity</th>
+                            <th class="align-middle" width="40%">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="service_name"width="15%" >service name</td>                            
+                            <td id="service_quantity" class="pt-3-half" width="10%">service quantity</td>
+                            <td id="resource_name" class="pt-3-half" width="15%">resource name</td>
+                            <td id="resource_quantity" class="pt-3-half" width="20%">resource quantity</td>
+                            <td id="notes" class="pt-3-half" width="40%"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h4 class="text-center font-weight-bold">Attachment List</h4>
+        <div class="list-group m-3">
+            <a href="#" class="list-group-item list-group-item-action">First attachment</a>
+            <a href="#" class="list-group-item list-group-item-action">Second attachment</a>
+            <a href="#" class="list-group-item list-group-item-action">Third attachment</a>
+        </div>
+    </div>
+    
+    <!-- Editable table -->
+    <script src="ViewPatientRecord.js"></script>
+</body>
