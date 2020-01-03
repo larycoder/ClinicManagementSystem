@@ -15,7 +15,7 @@ query = {
   'check_if_account_exits': "SELECT COUNT(*) FROM user WHERE username = %(username)s;",
   
   #maintain employee information
-  'doctor_name_list': "SELECT id,CONCAT(first_name,' ',last_name) AS doctor_name FROM user WHERE type='doctor';",
+  'doctor_list': "SELECT id,CONCAT(first_name,' ',last_name) AS doctor_name, specialization FROM user WHERE type='doctor';",
   'nurse_name_list': "SELECT CONCAT(first_name," ",last_name) AS nurse_name FROM user WHERE type='nurse';",
   
   #maintain patient information
