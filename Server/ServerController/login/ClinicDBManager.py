@@ -64,7 +64,7 @@ class ClinicDBManager:
         """
         doctor = {"id": "i39ur34ri"}
         """
-        labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
+        labels = ['appointment_id', 'doctor_id', 'doctor_name', 'patient_id', 'patient_name', 'from_time', 'status']
         cursor = self.cnx.cursor()
         cursor.execute(config.query['display_schedule_by_doctor'], doctor)
         result = cursor.fetchall()
@@ -174,9 +174,10 @@ if __name__ == '__main__':
         cnx = db_manager.get_connection(mysql_user= config.mysql_user)
         # db_manager.verify_login(user_login)
         # print(db_manager.add_new_user(user_register))
-        print(db_manager.get_patient_info({"id": "1"}))
-        print(db_manager.get_user_info({"id": "2"}))
-        print(db_manager.get_doctor_list())
+        # print(db_manager.get_patient_info({"id": "1"}))
+        # print(db_manager.get_user_info({"id": "2"}))
+        # print(db_manager.get_doctor_list())
+        print(db_manager.get_appointment3_list_by_doctor({'id': '7'}))
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
