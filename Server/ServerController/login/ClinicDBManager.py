@@ -102,7 +102,7 @@ class ClinicDBManager:
             return True
         except mysql.connector.IntegrityError as err:
             return False
-        
+
 
     def get_patient_info(self, patient_id: Dict) -> Dict:
         """
