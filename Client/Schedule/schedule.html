@@ -9,8 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
@@ -18,10 +18,10 @@
   <link href='node_modules/@fullcalendar/daygrid/main.css' rel='stylesheet' />
   <link href='node_modules/@fullcalendar/timegrid/main.css' rel='stylesheet' />
 
-
   <script src='node_modules/@fullcalendar/core/main.js'></script>
   <script src='node_modules/@fullcalendar/daygrid/main.js'></script>
   <script src='node_modules/@fullcalendar/timegrid/main.js'></script>
+  <script src='node_modules/@fullcalendar/interaction/main.js'></script>
 
   <script src="./schedule.js"></script>
 </head>
@@ -48,11 +48,12 @@
   <p id="demo"></p>
   <div class="container p-5 my-5 border">
     <!-- Calendar setting -->
-      <div class="row mb-5">
+    <div class="row mb-5">
       <p class="lead my-2" >Chose the Doctor you want to book schedule with: </p>
-      <select class="selectpicker input-sm mx-3" id="listDoctor">
+      <select class="selectpicker input-sm mx-3" id="listDoctor" onchange="loadNewDoctorID()">
         <option value="" disabled selected>Select something...</option>
       </select>
+      <button onclick="loadNewDoctorID()">refresh</button>
       <script>getListDoctor();</script>
     </div>
 
@@ -60,27 +61,27 @@
     <div class="row">
       <div class="col-sm-4 border">
         <div class="container center-block p-5">
-
           <div class="row">
             <label class="lead">When do you want to meet?</label>
           </div>
           <br>
           <div class="row">
-            <label class="mx-2">Date: 
+            <label class="mx-2">Date:
               <br> 
-              <input class="ml-3" type="text" id="datepicker">
+              <input disabled style="color:black;" class="ml-3" type="text" id="datepicker">
             </label>
           </div>
           <div class="row">
             <label class="mx-2">Time:
               <br>
-              <input class="ml-3" type="text" id="timepicker"> 
+              <input disabled style="color:black;" class="ml-3" type="text" id="timepicker"> 
             </label>
-
           </div>
           <br>
           <div class="row float-right">
-            <button type="button" class="btn btn-primary" id="book" onclick="test();">Book here</button>
+            <button type="button" class="btn btn-primary" id="book" onclick="updateEvent();">Book here</button>
+            <br>
+            <button type="button" class="btn btn-primary" id="book" onclick="createBook();">Create here</button>
           </div>
         </div>
         
@@ -88,100 +89,10 @@
 
       <div class="col-md-8">
         <div id="calendar"></div>
+        <script>createCalendar()</script>
       </div>
 
-
     </div>
-
-
-
-
   </div>
-
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var calendarEl = document.getElementById('calendar');
-
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: ['interaction', 'timeGrid'],
-        header: {
-          left: 'today prev,next',
-          center: 'title',
-          right: 'addEvent'
-        },
-
-        // Calendar View
-        minTime: "08:00:00",
-        maxTime: "18:00:00",
-        slotDuration: '00:30:00',
-        aspectRatio: 1.8,
-        defaultView: 'timeGridWeek',
-        allDaySlot: false,
-
-        editable: true,
-
-        //Events
-        defaultTimedEventDuration: '00:30:00',
-        forceEventDuration: true,   
-
-
-
-        events: [
-          {
-
-            id: '1',
-            title: 'Event1',
-            start: '2019-12-22T09:00:00'
-          },
-          {
-            title: 'Event2',
-            start: '2019-12-22T09:30:00'
-          }
-        ],
-        eventColor: '#378006',
-
-
-        
-        // Change user event color
-        eventRender: function (event, element) {
-        var userID = '1';
-          if (event.id == userID) {
-            element.css({
-                  'background-color': '#333333',
-                  'border-color': '#333333'
-              });
-
-          }
-        },  
-
-      });
-
-      calendar.render();
-    });
-
-    $( function() {
-      $( "#datepicker" ).datepicker({
-        dateFormat: "yy-mm-dd",
-        minDate: 0,
-        maxDate: 14,
-      });
-
-      $('#timepicker').timepicker({
-        timeFormat: 'HH:mm',
-        interval: 30,
-        minTime: '8:00am',
-        maxTime: '5:00pm',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-      });
-    });
-
-    function test(){
-      alert(getStart() );
-    }
-  </script>
 </body>
 </html>
