@@ -1,8 +1,9 @@
 from Tool import *
+import datetime
 import json
 
 # Predefine API
-Status_pair = {-2:400, -1:404, 1:200, 2:201}
+Status_pair = {-3:401, -2:400, -1:404, 1:200, 2:201}
 
 class API:
     """ A class to get request api and response correct data"""
@@ -83,9 +84,32 @@ class GETHandler():
         return readFile(root + "/error404.html")
 
       doctorList = self.DBConnection.get_doctor_list()
-      for index in doctorList:
-        del index['id']
       return [1, json.dumps(doctorList)]
+  
+  def doctorTimes(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+
+    user = String2Json(data)
+    userID = {"id": user["id"]}
+    doctorID = {"id": user["doctorID"]}
+    # Check exit user id
+    try:
+      userInfo = self.DBConnection.get_user_info(user)
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    # Get doctor schedules
+    try:
+      doctorTimes = self.DBConnection.get_appointment3_list_by_doctor(doctorID)
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [1, json.dumps(doctorTimes, default = datetimeObject2String)]
+
+
+
 
 class POSTHandler():
   """ class hanler POST method """
@@ -117,3 +141,33 @@ class POSTHandler():
       if check == True:
         return [2, json.dumps("Your Register is succesful")]
       return [-2,"this user is already exit"]
+  
+  def doctorBook(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    
+    doctorData = String2Json(data)
+
+    userID = {"id":doctorData["id"]}
+    doctorID = {"id":doctorData["doctorID"]}
+    try:
+      doctorTrue = self.DBConnection.get_user_info(userID)
+      # check permission of user
+      if doctorTrue["type"] == "patient":
+        return [-3, json.dumps({"return":"-1"})]
+      # check permission of doctor
+      doctorTrue = self.DBConnection.get_user_info(doctorID)
+      if doctorTrue["type"] != "doctor":
+        return [-3, json.dumps({"return":"-1"})]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    
+    time = datetime.datetime.strptime(doctorData["from_time"], '%Y-%m-%d %H:%M')
+    bookSchedule = {"doctor_id":doctorData["doctorID"], "from_time":time}
+    check = self.DBConnection.create_schedule(bookSchedule)
+    if check == True:
+      return [2, json.dumps({"return":"1"})]
+    else:
+      return [-2, json.dumps({"return":"-1"})]
