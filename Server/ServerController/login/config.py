@@ -34,11 +34,11 @@ query = {
   'add_service': "INSERT INTO service(id, code, name, status, price) VALUES (NULL,%(code)s,%(name)s,%(status)d,%(price)d);",
   'delete_resource': "DELETE FROM resource WHERE id= %(id)d;",
   'delete_service': "DELETE FROM service WHERE id= %(id)d;",
-  'change_resource_status': "UPDATE TABLE resource SET status = %(status)d WHERE id= %(id)d;",
-  'change_service_status': "UPDATE TABLE service SET status = %(status)d WHERE id= %(id)d;",
-  'change_resource_price': "UPDATE TABLE resource SET price = %(price)d WHERE id = %(id)d;",
-  'change_service_price': "UPDATE TABLE service SET price = %(price)d WHERE id = %(id)d;",
-  'change_resource_unit': "UPDATE TABLE resource SET unit = %(unit)s WHERE id = %(id)d;",
+  'change_resource_status': "UPDATE resource SET status = %(status)d WHERE id= %(id)d;",
+  'change_service_status': "UPDATE service SET status = %(status)d WHERE id= %(id)d;",
+  'change_resource_price': "UPDATE resource SET price = %(price)d WHERE id = %(id)d;",
+  'change_service_price': "UPDATE service SET price = %(price)d WHERE id = %(id)d;",
+  'change_resource_unit': "UPDATE resource SET unit = %(unit)s WHERE id = %(id)d;",
   'search_service': "SELECT * FROM service WHERE name LIKE CONCAT('%',%s,'%');",  #return service whose name contains that string
   'search_resource': "SELECT * FROM resource WHERE name LIKE CONCAT('%',%s,'%');",  #return resource whose name contains that string
   'add_res_quantity': "UPDATE resource SET quantity = %d + quantity WHERE id = %(id)d;",
@@ -51,7 +51,7 @@ query = {
   # maintain schedule
   'add_new_schedule': "INSERT INTO schedule_appointment(id, doctor_id, patient_id, from_time, status) VALUES (NULL,%(doctor_id)s, NULL, %(from_time)s,0)",
   'delete_appointment': "DELETE FROM schedule_appointment WHERE id = %(id)d",
-  'change_appointment_status': "UPDATE TABLE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
+  'change_appointment_status': "UPDATE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
   'list_appointment_info': "SELECT * FROM appointment_info_view",
   'list_appointment_info_by_doctor': "SELECT * FROM appointment_info_view WHERE doctor_id = %(id)s",
   
@@ -64,8 +64,10 @@ query = {
   #book schedule
   'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
   'display_schedule_by_doctor': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1) AND doctor_id = %(id)s",
+  'display_all_schedule_by_doctor': "SELECT * FROM appointment_info_view WHERE doctor_id = %(id)s",
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
+  'book_schedule': "UPDATE schedule_appointment SET status = 1, patient_id = %(patient_id)s WHERE doctor_id = %(doctor_id)s AND from_time = %(from_time)s",
   
   #purchase
   'list_patient_today':"SELECT * FROM report_detail.view WHERE data_time = %s",

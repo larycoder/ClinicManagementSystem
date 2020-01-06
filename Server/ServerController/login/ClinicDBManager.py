@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import Union, Dict, Any
 
 import config
@@ -66,7 +66,7 @@ class ClinicDBManager:
         """
         labels = ['appointment_id', 'doctor_id', 'doctor_name', 'patient_id', 'patient_name', 'from_time', 'status']
         cursor = self.cnx.cursor()
-        cursor.execute(config.query['display_schedule_by_doctor'], doctor)
+        cursor.execute(config.query['display_all_schedule_by_doctor'], doctor)
         result = cursor.fetchall()
         print(result)
         appointment_list = []
@@ -77,10 +77,14 @@ class ClinicDBManager:
     def book_schedule(self, schedule: Dict) -> bool:
         """
         A patient books an appointment
+        schedule = {
+            doctor_id: 23423,
+            from_time: datetime.datetime(year, month, day, hour, min)
+        }
         """
         try:
             cursor = self.cnx.cursor()
-            cursor.execute(config.query['add_new_schedule'], schedule)
+            cursor.execute(config.query['book_schedule'], schedule)
             cnx.commit()
             return True
         except mysql.connector.Error as e:
@@ -172,12 +176,19 @@ if __name__ == '__main__':
                          "emergency_contact_phone": None,
                          "emergency_contact_relationship_to_patient": None}
         cnx = db_manager.get_connection(mysql_user= config.mysql_user)
-        # db_manager.verify_login(user_login)
+        # db_manager.verify_tomorrow = datetime.now().date() + timedelta(days=1)login(user_login)
         # print(db_manager.add_new_user(user_register))
         # print(db_manager.get_patient_info({"id": "1"}))
         # print(db_manager.get_user_info({"id": "2"}))
         # print(db_manager.get_doctor_list())
+        schedule = {'patient_id': '3',
+                    'doctor_id': '3',
+                    'from_time': datetime(2019, 12, 9, 9, 0)}
         print(db_manager.get_appointment3_list_by_doctor({'id': '7'}))
+        if db_manager.book_schedule(schedule):
+            print("done")
+        else:
+            print("failed")
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
