@@ -86,7 +86,7 @@ class ClinicDBManager:
         try:
             cursor = self.cnx.cursor()
             cursor.execute(config.query['book_schedule'], schedule)
-            cnx.commit()
+            self.cnx.commit()
             return True
         except mysql.connector.Error as e:
             print(e.errno)

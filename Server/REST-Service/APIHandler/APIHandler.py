@@ -106,36 +106,14 @@ class GETHandler():
     except Exception as e:
       print(e)
       return readFile(root + "/error404.html")
+      
+    if userInfo["type"] == "patient":
+      doctorTimes[:] = (value for value in doctorTimes if (str(value["patient_id"]) == userID["id"] or value["status"] == 0))
+    
+    for schedule in doctorTimes:
+        del schedule["appointment_id"]
+
     return [1, json.dumps(doctorTimes, default = datetimeObject2String)]
-
-  def scheduleBook(self, data):
-    if self.DBConnection == None:
-      print("DB Connection is not exit")
-      return readFile(root + "/error404.html")
-    
-    dataID = String2Json(data)
-    userID = dataID["id"]
-    doctorID = dataID["doctorID"]
-    patientID = dataID["patientID"]
-    fromTime = datetime.datetime.strptime(dataID["from_time"], '%Y-%m-%d %H:%M')
-
-    try:
-      userInfo = self.DBConnection.get_user_info(userID)
-      patientInfo = self.DBConnection.get_user_info(patientID)
-    except Exception as e:
-      print(e)
-      return readFile(root + "/error404.html")
-
-    if (userInfo["type"] == "patient" and userID != patientID) or patientID != "patient":
-      return [-4, json.dumps({'return':'permission dennied'})]
-
-    update = self.DBConnection.book_schedule({"patient_id":patientID, "doctor_id":doctorID, "from_time":fromTime})
-
-    if update == False:
-      return [-2, json.dumps({'return':'book fail'})]
-    
-    return [1, json.dumps({'return':'book successfully'})]
-
 
 class POSTHandler():
   """ class hanler POST method """
@@ -197,3 +175,32 @@ class POSTHandler():
       return [2, json.dumps({"return":"1"})]
     else:
       return [-2, json.dumps({"return":"-1"})]
+    
+  # book in post method because time has space
+  def scheduleBook(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    
+    dataID = String2Json(data)
+    userID = dataID["id"]
+    doctorID = dataID["doctorID"]
+    patientID = dataID["patientID"]
+    fromTime = datetime.datetime.strptime(dataID["from_time"], '%Y-%m-%d %H:%M')
+
+    try:
+      userInfo = self.DBConnection.get_user_info({"id":userID})
+      patientInfo = self.DBConnection.get_user_info({"id":patientID})
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+
+    if (userInfo["type"] == "patient" and userID != patientID) or patientInfo["type"] != "patient":
+      return [-4, json.dumps({'return':'permission dennied'})]
+
+    update = self.DBConnection.book_schedule({"patient_id":patientID, "doctor_id":doctorID, "from_time":fromTime})
+
+    if update == True:
+      return [1, json.dumps({'return':'book successfully'})]
+    
+    return [-2, json.dumps({'return':'book fail'})]
