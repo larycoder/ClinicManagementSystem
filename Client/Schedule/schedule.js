@@ -84,10 +84,12 @@ function loadNewDoctorID(){
           
           for(sc in schedules){
             if(schedules[sc].status == 0){
-              updateEvent("background", schedules[sc].from_time, "#00E600", "#009752")
+              updateEvent("background", schedules[sc].from_time, "", "#00E600", "#009752")
             }
             else{
-              updateEvent("", schedules[sc].from_time, "#00E4EE", "#C54300")
+              let info = schedules[sc];
+              let stringTitle = 'Patient: ' + info.patient_name;
+              updateEvent("", info.from_time, stringTitle, "#00E4EE", "#C54300");
             }
           }
         }
@@ -144,13 +146,17 @@ function createCalendar(){
       document.getElementById('timepicker').value = dateString.substring(11, 16);
     },
 
-    selectable: true
+    selectable: true,
+
+    eventRender: function(info) {
+      $(info.el).tooltip({title: info.event.title});
+    }
   });
 
   calendar.render();
 }
 
-function updateEvent(stringType, stringTime, background_color, border_color){
+function updateEvent(stringType, stringTime, titleString, background_color, border_color){
   let dateObject = new Date(stringTime);
 
   let startTime = dateObject.getTime();
@@ -167,7 +173,7 @@ function updateEvent(stringType, stringTime, background_color, border_color){
   let name = selectedDoc.options[selectedDoc.selectedIndex].innerHTML;
 
   calendar.addEvent({
-    title: name,
+    title: titleString,
     start: startTime,
     end: endTime,
     rendering: stringType,
@@ -175,63 +181,3 @@ function updateEvent(stringType, stringTime, background_color, border_color){
     backgroundColor: background_color
   });
 }
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   var calendarEl = document.getElementById('calendar');
-
-//   var calendar = new FullCalendar.Calendar(calendarEl, {
-    // plugins: ['interaction', 'timeGrid'],
-    // header: {
-    //   left: 'today prev,next',
-    //   center: 'title',
-    //   right: ''
-    // },
-
-    // // Calendar View
-    // minTime: "08:00:00",
-    // maxTime: "18:00:00",
-    // slotDuration: '00:30:00',
-    // aspectRatio: 1.8,
-    // defaultView: 'timeGridWeek',
-    // allDaySlot: false,
-
-    // editable: true,
-
-    // //Events
-    // defaultTimedEventDuration: '00:30:00',
-    // forceEventDuration: true,
-
-
-
-    // events: [
-    //   {
-
-    //     id: '1',
-    //     title: 'Event1',
-    //     start: '2019-12-22T09:00:00'
-    //   },
-    //   {
-    //     title: 'Event2',
-    //     start: '2019-12-22T09:30:00'
-    //   }
-    // ],
-    // eventColor: '#378006',
-
-
-    
-//     // Change user event color
-//     eventRender: function (event, element) {
-//     var userID = '1';
-//       if (event.id == userID) {
-//         element.css({
-//               'background-color': '#333333',
-//               'border-color': '#333333'
-//           });
-
-//       }
-//     },  
-
-//   });
-
-//   calendar.render();
-// });
