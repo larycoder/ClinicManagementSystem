@@ -144,6 +144,8 @@ function createCalendar(){
       let dateString = info.dateStr;
       document.getElementById('datepicker').value = dateString.substring(0, 10);
       document.getElementById('timepicker').value = dateString.substring(11, 16);
+
+      $("#confirmModal").modal("show") 
     },
 
     selectable: true,

@@ -48,45 +48,50 @@
   <div class="container p-5 my-5 border">
     <!-- Calendar setting -->
     <div class="row mb-5">
-      <p class="lead my-2" >Chose the Doctor you want to book schedule with: </p>
+      <p class="lead my-2" >which Doctor you want to book schedule with: </p>
       <select class="selectpicker input-sm mx-3" id="listDoctor" onchange="loadNewDoctorID()">
-        <option value="" disabled selected>Select something...</option>
+        <option data-toggle="collapse" data-target="#collapseGuide" aria-expanded="false" aria-controls="collapseGuide" value="" disabled selected>Select something...</option>
       </select>
       <button onclick="loadNewDoctorID()">refresh</button>
       <script>getListDoctor();</script>
+
+      <div class="collapse" id="collapseGuide">
+        <div class="card card-body">
+            <p class="text secondary">CLick on our schedule to pick appoinment time</p>
+        </div>
+      </div>
     </div>
 
     <!-- Calendar -->
     <div class="row">
-      <div class="col-sm-4 border">
-        <div class="container center-block p-5">
-          <div class="row">
-            <label class="lead">When do you want to meet?</label>
-          </div>
-          <br>
-          <div class="row">
-            <label class="mx-2">Date:
-              <br> 
-              <input disabled style="color:black;" class="ml-3" type="text" id="datepicker">
-            </label>
-          </div>
-          <div class="row">
-            <label class="mx-2">Time:
-              <br>
-              <input disabled style="color:black;" class="ml-3" type="text" id="timepicker"> 
-            </label>
-          </div>
-          <br>
-          <div class="row float-right">
-            <button type="button" class="btn btn-primary" id="book" onclick="bookSchedule();">Book here</button>
+      <div class="modal fade" id="confirmModal">
+        <div class="modal-dialog">
+          <div class="modal-content p-5 mx-4 ">
+
+            <button type="button" class="close my-2" style="text-align: right;" data-dismiss="modal">&times;</button>
+
+            <div class="row mx-5">
+              <label class="mx-3">Date:
+                <input disabled style="color:black;" class="m-1" type="text" id="datepicker">
+              </label>
+            </div>
+            <div class="row mx-5">
+              <label class="mx-3">Time:
+                <input disabled style="color:black;" class="m-1" type="text" id="timepicker"> 
+              </label>
+            </div>
             <br>
-            <button type="button" class="btn btn-primary" id="book" onclick="createBook();">Create here</button>
+            <div class="modal-footer float-right">
+              <button type="button" class="btn btn-primary" id="book" onclick="bookSchedule();" data-dismiss="modal">Book here</button>
+              <br>
+              <button type="button" class="btn btn-primary" id="book" onclick="createBook();" data-dismiss="modal">Create here</button>
+            </div>
           </div>
+
         </div>
-        
       </div>
 
-      <div class="col-md-8">
+      <div class="col-12">
         <div id="calendar"></div>
         <script>createCalendar()</script>
       </div>
