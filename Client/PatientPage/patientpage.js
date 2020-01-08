@@ -24,8 +24,17 @@ function getUserID(){
     return -1;
 }
 
+function sessionStoreType(stringType){
+    sessionStorage.setItem('Clinic-userType', stringType);
+}
+
+function getUserType(){
+    return sessionStorage.getItem('Clinic-userType');
+}
+
 function setInfoText(object){
     object["full_name"] = object["first_name"] + " " + object["last_name"];
+    sessionStoreType(object.type);
     for(var key in object){
         if(document.getElementById(key) !== null){
             string = object[key];
