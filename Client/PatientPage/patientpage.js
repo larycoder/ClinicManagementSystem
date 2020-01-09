@@ -1,5 +1,6 @@
 function addID(){
     document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
+    resizeInput();
 }
 
 function SignOut(){
@@ -51,7 +52,7 @@ function sendGetUserInfoRequest(){
     xmlRequest.onreadystatechange = function(){
         if (this.readyState == 4 && xmlRequest.status == 200) {
             if (isJson(this.responseText) == false) {
-                alert('Get user info fall: can not get json');
+                alert('Get user info fail: can not get json');
             }
             else {
                 let obj = JSON.parse(this.responseText);
@@ -133,3 +134,8 @@ $(document).ready(function () {
     })
     
 });
+
+function resizeInput() {
+    document.getElementById("hide").textContent = document.getElementById("ID").value;
+    document.getElementById("ID").style.width = document.getElementById("hide").offsetWidth + "px";
+}
