@@ -1,5 +1,6 @@
 function addID(){
     document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
+    resizeInput();
 }
 
 function SignOut(){
@@ -24,8 +25,17 @@ function getUserID(){
     return -1;
 }
 
+function sessionStoreType(stringType){
+    sessionStorage.setItem('Clinic-userType', stringType);
+}
+
+function getUserType(){
+    return sessionStorage.getItem('Clinic-userType');
+}
+
 function setInfoText(object){
     object["full_name"] = object["first_name"] + " " + object["last_name"];
+    sessionStoreType(object.type);
     for(var key in object){
         if(document.getElementById(key) !== null){
             string = object[key];
@@ -42,7 +52,7 @@ function sendGetUserInfoRequest(){
     xmlRequest.onreadystatechange = function(){
         if (this.readyState == 4 && xmlRequest.status == 200) {
             if (isJson(this.responseText) == false) {
-                alert('Get user info fall: can not get json');
+                alert('Get user info fail: can not get json');
             }
             else {
                 let obj = JSON.parse(this.responseText);
@@ -124,3 +134,8 @@ $(document).ready(function () {
     })
     
 });
+
+function resizeInput() {
+    document.getElementById("hide").textContent = document.getElementById("ID").value;
+    document.getElementById("ID").style.width = document.getElementById("hide").offsetWidth + "px";
+}

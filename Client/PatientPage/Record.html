@@ -24,7 +24,7 @@
 <body>
 
     <!-- Editable table -->
-    <button type="button" class="btn btn-outline-secondary m-3">Back</button>
+    <button type="button" class="btn btn-outline-secondary m-3" onclick="history.back();">Back</button>
     <div class="card">
         <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Report 12-20-2019</h3>
         <div class="card-body">
@@ -32,14 +32,14 @@
                 <div class="input-group input-group-lg">
                     <textarea disabled type="text" class="form-control auto-expanding"
                         id="patient_diagnosis"
-                        style="word-wrap: break-word; min-height: 150px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quos dolor ipsa rem perspiciatis dolorem alias sequi qui laboriosam doloribus maiores, provident autem sed, odit laudantium porro libero? Natus, laborum?</textarea>
+                        style="word-wrap: break-word; min-height: 150px;"></textarea>
                 </div>
             </div>
             <div id="table">
                 <h4 class="m-3 text-center font-weight-bold">Instruction List</h4>
 
 
-                <table class="table table-bordered table-responsive-md table-striped text-center">
+                <table class="table table-bordered table-responsive-md text-center">
                     <thead>
                         <tr>
                             <th class="align-middle" width="15%">Service</th>
@@ -51,11 +51,18 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="service_name"width="15%" >service name</td>                            
-                            <td id="service_quantity" class="pt-3-half" width="10%">service quantity</td>
-                            <td id="resource_name" class="pt-3-half" width="15%">resource name</td>
-                            <td id="resource_quantity" class="pt-3-half" width="20%">resource quantity</td>
-                            <td id="notes" class="pt-3-half" width="40%"></td>
+                            <td id="service_name"width="15%" >Inject</td>                            
+                            <td id="service_quantity" class="align-middle" width="10%">1</td>
+                            <td id="resource_name" class="align-middle" width="15%">morphine</td>
+                            <td id="resource_quantity" class="align-middle" width="20%">1 ml</td>
+                            <td id="notes" class="align-middle" width="40%"></td>
+                        </tr>
+                        <tr>
+                            <td id="service_name" width="15%">CT Scan</td>
+                            <td id="service_quantity" class="align-middle" width="10%">1</td>
+                            <td id="resource_name" class="align-middle" width="15%">None</td>
+                            <td id="resource_quantity" class="align-middle" width="20%">None</td>
+                            <td id="notes" class="align-middle" width="40%"></td>
                         </tr>
                     </tbody>
                 </table>
