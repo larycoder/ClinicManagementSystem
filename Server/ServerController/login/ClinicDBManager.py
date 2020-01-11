@@ -140,6 +140,16 @@ class ClinicDBManager:
             doctor_list.append(self.tuple_to_dict(one_tuple, labels))
         return doctor_list
 
+    def get_report_list_by_patient(self, patient):
+        """
+        patient = {
+                    id: int
+                    }
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['report_spec_patient'])
+        
+
   
 
         
