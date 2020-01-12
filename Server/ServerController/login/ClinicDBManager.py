@@ -49,7 +49,7 @@ class ClinicDBManager:
     def tuple_to_dict(self, my_tuple: tuple, labels: list) -> Dict:
         return dict(zip(labels, list(my_tuple)))
 
-    def get_appointment3_list(self) -> list:
+    def get_appointment_list(self) -> list:
         labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
         cursor = self.cnx.cursor()
         cursor.execute(config.query['display_schedule'])
@@ -60,7 +60,7 @@ class ClinicDBManager:
             appointment_list.append(self.tuple_to_dict(one_tuple, labels))
         return appointment_list
 
-    def get_appointment3_list_by_doctor(self, doctor: Dict) -> list:
+    def get_appointment_list_by_doctor(self, doctor: Dict) -> list:
         """
         doctor = {"id": "i39ur34ri"}
         """
@@ -141,15 +141,20 @@ class ClinicDBManager:
             doctor_list.append(self.tuple_to_dict(one_tuple, labels))
         return doctor_list
 
-    def get_report_list_by_patient(self, patient):
+    def get_report_list_by_patient(self, patient: Dict) -> list:
         """
         patient = {
-                    id: int
+                    patient_id: str
                     }
         """
         cursor = self.cnx.cursor()
-        cursor.execute(config.query['report_spec_patient'])
-        
+        cursor.execute(config.query['report_list_by_id'], patient)
+        result = cursor.fetchall()
+        labels = ["report_id", "patient_id", "patient_name", "doctor_id", "doctor_name", "date_time", "appointment_id", "report_data"]
+        report_list = []
+        for one_tuple in result:
+            report_list.append(self.tuple_to_dict(one_tuple, labels))
+        return report_list
 
   
 
@@ -195,7 +200,9 @@ if __name__ == '__main__':
         schedule = {'patient_id': '3',
                     'doctor_id': '3',
                     'from_time': datetime(2019, 12, 9, 9, 0)}
-        print(db_manager.get_appointment3_list_by_doctor({'id': '7'}))
+
+        print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
+        print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
         if db_manager.book_schedule(schedule):
             print("done")
         else:

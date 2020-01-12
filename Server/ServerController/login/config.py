@@ -59,7 +59,8 @@ query = {
   'list_report': "SELECT * FROM report",
   'list_report_with_attachments': "SELECT * FROM report_with_attachment_view",
   'list_report_full_info': "SELECT * FROM report_view",
-  'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%(patient_id)d AND patient_name=%(patient_name)s",
+  'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%(patient_id)s",
+  'report_list_by_id': "SELECT * FROM report_detail_view WHERE patient_id = %(patient_id)s",
   
   #book schedule
   'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
