@@ -148,7 +148,7 @@ class ClinicDBManager:
                     }
         """
         cursor = self.cnx.cursor()
-        cursor.execute(config.query['report_list_by_id'], patient)
+        cursor.execute(config.query['report_list_by_patient'], patient)
         result = cursor.fetchall()
         labels = ["report_id", "patient_id", "patient_name", "doctor_id", "doctor_name", "date_time", "appointment_id", "report_data"]
         report_list = []
@@ -156,7 +156,39 @@ class ClinicDBManager:
             report_list.append(self.tuple_to_dict(one_tuple, labels))
         return report_list
 
-  
+    def get_instruction_list_by_report(self, report: Dict) -> list:
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['list_instruction_by_report'], report)
+        result = cursor.fetchall()
+        labels = ['instruction_id', 'report_id', 'resource_id', 'resource_name', 'resource_quantity', 'resource_unit', 'service_id', 'service_name', 'service_quantity', 'description']
+        instruction_list = []
+        for one_tuple in result:
+            instruction_list.append(self.tuple_to_dict(one_tuple, labels))
+        return instruction_list
+
+    def add_instruction_list(self, instruction_list: list):
+        """
+        report = {id: "id"}
+        instruction_list: a list of instructions, each instruction is a dict
+        instruction = {
+                        report_id: "id",
+                        service_id: "service_id",
+                        resource_id: "resource_id",
+                        service_quantity: "quantity",
+                        resource_quantity: "quantity",
+                        description: "description"
+                        }
+        """
+        cursor = self.cnx.cursor()
+        for instruction in instruction_list:
+            cursor = self.cnx.cursor()
+            try:
+                cursor.execute(config.query['add_instruction'], instruction)
+                self.cnx.commit()
+            except mysql.connector.IntegrityError as err:
+                return False
+        return True
+
 
         
 def CreateDbConnection():
@@ -201,8 +233,9 @@ if __name__ == '__main__':
                     'doctor_id': '3',
                     'from_time': datetime(2019, 12, 9, 9, 0)}
 
-        print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
-        print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
+        # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
+        # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
+        print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
         if db_manager.book_schedule(schedule):
             print("done")
         else:

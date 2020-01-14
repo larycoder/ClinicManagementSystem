@@ -26,6 +26,8 @@ query = {
   'list_patient_record': "SELECT * FROM report_detail_view WHERE patient_name = %s OR id = %d ",
   'list_patient_attachment': "SELECT * FROM report_attachment_view WHERE patient_name = %s OR patient_id = %d",
   'list_user_info': "SELECT id,username,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient FROM user WHERE id = %(id)s",
+  'list_instruction_by_report': "SELECT * from instruction_view WHERE report_id = %(report_id)s",
+  'add_instruction': "INSERT INTO instruction(report_id, service_id, resource_id, service_quantity, resource_quantity, description) VALUE(%(report_id)s, %(service_id)s, %(resource_id)s, %(service_quantity)s, %(resource_quantity)s, %(description)s)",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
@@ -60,7 +62,8 @@ query = {
   'list_report_with_attachments': "SELECT * FROM report_with_attachment_view",
   'list_report_full_info': "SELECT * FROM report_view",
   'report_spec_patient': "SELECT * FROM report_view WHERE patient_id=%(patient_id)s",
-  'report_list_by_id': "SELECT * FROM report_detail_view WHERE patient_id = %(patient_id)s",
+  'report_list_by_patient': "SELECT * FROM report_detail_view WHERE patient_id = %(patient_id)s",
+  'get_report_by_id': "SELECT * FROM report WHERE id = %(id)s",
   
   #book schedule
   'display_schedule': "SELECT * FROM appointment_info_view WHERE YEARWEEK(from_time, 1) >= YEARWEEK(NOW(), 1)",
