@@ -28,7 +28,7 @@ query = {
   'list_user_info': "SELECT id,username,type,first_name,last_name,gender,dob,address,phone_number,Ssn,specialization,emergency_contact_name,emergency_contact_phone,emergency_contact_relationship_to_patient FROM user WHERE id = %(id)s",
   'list_instruction_by_report': "SELECT * from instruction_view WHERE report_id = %(report_id)s",
   'add_instruction': "INSERT INTO instruction(report_id, service_id, resource_id, service_quantity, resource_quantity, description) VALUE(%(report_id)s, %(service_id)s, %(resource_id)s, %(service_quantity)s, %(resource_quantity)s, %(description)s)",
-
+  'get_report_owner': "SELECT patient_id from report WHERE id = %(report_id)s",
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
   'service_list':"SELECT * FROM service;",
