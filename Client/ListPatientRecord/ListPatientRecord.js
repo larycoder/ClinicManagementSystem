@@ -17,7 +17,7 @@ function getUserID(){
 
 function getListReports(){
   let id = document.getElementById("inputPatientID").value;
-  if(id < 1){
+  if(id == ""){
     alert("Input Patient Id");
   }
   else{
