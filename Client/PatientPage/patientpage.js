@@ -146,10 +146,53 @@ function resizeInput() {
 }
 
 function clickRecordButton(){
-    if(getUserType == "patient"){
+    if(getUserType() == "patient"){
         $("#recordList").tab("show");
+        requestRecordListOfUser();
     }
     else if(getUserType() == "nurse" || getUserType() == "doctor"){
         window.location.href = '/ListPatientRecord/ListPatientRecord.html';
+    }
+}
+
+function requestRecordListOfUser(){
+    let xmlRequest = new XMLHttpRequest();
+    xmlRequest.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(isJson(this.responseText) == false){
+                    alert("Can not get json file !");
+                }
+                else{
+                    // doing something with json object
+                    updateUserRecords(JSON.parse(this.responseText));
+                }
+            }
+            else{
+                alert("Error when trying to access service !")
+            }
+        }
+    }
+    xmlRequest.open("GET", "/api/listReport?id="+getUserID()+"&patientID="+getUserID());
+    xmlRequest.send();
+}
+
+function updateUserRecords(records){
+    for(i in records){
+        // create tag hold record
+        let record = document.createElement("a");
+        record.href = "Record.html";
+        record.classList.add("list-group-item", "list-group-item-action", "list-group-item-secondary", "flex-column", "align-items-start");
+
+        record.innerHTML = '<div class="d-flex w-100 justify-content-between"> \
+                                <h5 class="mb-1">Report '+ records[i].date_time.substring(0, 10) +'</h5> \
+                                    <span> \
+                                    <small class="text-muted">Doctor:</small> \
+                                    <small id="doctor_name" class="text-muted">'+ records[i].doctor_name +'</small> \
+                                </span> \
+                            </div> \
+                            <p class="mb-1 text-truncate">'+ records[i].report_data +'</p>';
+
+        document.getElementById("list-reports").appendChild(record);
     }
 }
