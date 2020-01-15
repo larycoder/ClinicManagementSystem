@@ -37,6 +37,7 @@ function setInfoText(object){
     object["full_name"] = object["first_name"] + " " + object["last_name"];
     // setup parameter depending on type of user
     sessionStoreType(object.type);
+    document.getElementById("Stock").style.display = "block";
     if(getUserType() != "patient"){
         $("#recordList").html('<i class="fas fa-file-medical"></i>Search Records')
     }
