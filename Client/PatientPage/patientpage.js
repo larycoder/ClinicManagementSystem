@@ -181,7 +181,7 @@ function updateUserRecords(records){
     for(i in records){
         // create tag hold record
         let record = document.createElement("a");
-        record.href = "Record.html";
+        record.setAttribute("onclick","openRecordDetail(" + records[i].report_id + ");");
         record.classList.add("list-group-item", "list-group-item-action", "list-group-item-secondary", "flex-column", "align-items-start");
 
         record.innerHTML = '<div class="d-flex w-100 justify-content-between"> \
@@ -195,4 +195,9 @@ function updateUserRecords(records){
 
         document.getElementById("list-reports").appendChild(record);
     }
+}
+
+function openRecordDetail(record_id){
+    sessionStorage.setItem('Clinic-recordID', record_id);
+    window.location.href = "/PatientPage/Record.html"
 }
