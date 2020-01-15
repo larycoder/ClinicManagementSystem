@@ -35,7 +35,12 @@ function getUserType(){
 
 function setInfoText(object){
     object["full_name"] = object["first_name"] + " " + object["last_name"];
+    // setup parameter depending on type of user
     sessionStoreType(object.type);
+    if(getUserType() != "patient"){
+        $("#recordList").html('<i class="fas fa-file-medical"></i>Search Patients Record')
+    }
+
     for(var key in object){
         if(document.getElementById(key) !== null){
             string = object[key];
@@ -138,4 +143,73 @@ $(document).ready(function () {
 function resizeInput() {
     document.getElementById("hide").textContent = document.getElementById("ID").value;
     document.getElementById("ID").style.width = document.getElementById("hide").offsetWidth + "px";
+}
+
+function clickRecordButton(){
+    if(getUserType() == "patient"){
+        $("#recordList").tab("show");
+        requestRecordListOfUser();
+    }
+    else if(getUserType() == "nurse" || getUserType() == "doctor"){
+        window.location.href = '/ListPatientRecord/ListPatientRecord.html';
+    }
+}
+
+function requestRecordListOfUser(){
+    let xmlRequest = new XMLHttpRequest();
+    xmlRequest.onreadystatechange = function(){
+        if(this.readyState == 4){
+            if(this.status == 200){
+                if(isJson(this.responseText) == false){
+                    alert("Can not get json file !");
+                }
+                else{
+                    // doing something with json object
+                    updateUserRecords(JSON.parse(this.responseText));
+                }
+            }
+            else{
+                alert("Error when trying to access service !")
+            }
+        }
+    }
+    xmlRequest.open("GET", "/api/listReport?id="+getUserID()+"&patientID="+getUserID());
+    xmlRequest.send();
+}
+
+function updateUserRecords(records){
+    for(i in records){
+        // create tag hold record
+        let record = document.createElement("a");
+        record.setAttribute("onclick","openRecordDetail(" + records[i].report_id + "," + "'" + records[i].date_time.substring(0, 10) + "'" + "," + "'" + records[i].report_data + "'" + ");");
+        record.classList.add("list-group-item", "list-group-item-action", "list-group-item-secondary", "flex-column", "align-items-start");
+
+        record.innerHTML = '<div class="d-flex w-100 justify-content-between"> \
+                                <h5 class="mb-1">Report '+ records[i].date_time.substring(0, 10) +'</h5> \
+                                    <span> \
+                                    <small class="text-muted">Doctor:</small> \
+                                    <small id="doctor_name" class="text-muted">'+ records[i].doctor_name +'</small> \
+                                </span> \
+                            </div> \
+                            <p class="mb-1 text-truncate">'+ records[i].report_data +'</p>';
+
+        document.getElementById("list-reports").appendChild(record);
+    }
+}
+
+function openRecordDetail(report_id, report_time, report_note){
+    if(sessionStorage.getItem('Clinic-reportID') != null){
+        sessionStorage.removeItem('Clinic-reportID');
+    }
+    if(sessionStorage.getItem('Clinic-reportTime') != null){
+        sessionStorage.removeItem('Clinic-reportTime');
+    }
+    if(sessionStorage.getItem('Clinic-reportNote') != null){
+        sessionStorage.removeItem('Clinic-reportNote');
+    }
+    sessionStorage.setItem('Clinic-reportID', report_id);
+    sessionStorage.setItem('Clinic-reportTime', report_time);
+    sessionStorage.setItem('Clinic-reportNote', report_note);
+    
+    window.location.href = "/PatientPage/Record.html";
 }

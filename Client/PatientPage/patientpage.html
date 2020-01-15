@@ -51,11 +51,11 @@
                 <script>addID()</script>
                 <ul id="verticaltabs" class="nav nav-pills flex-column text-left">
                     <li class="nav-item"><a href="#profile" class="nav-link active " data-toggle="tab"><i
-                                class="fas fa-user" aria-hidden="true"></i>Your profile</a></li>
-                    <li class="nav-item"><a href="#record" class="nav-link" data-toggle="tab"><i class="fas fa-file-medical"
-                                aria-hidden="true"></i>Your record history</a></li>
-                    <li class="nav-item"><a onclick="SignOut()" href="#" class="nav-link"><i class="fas fa-sign-out-alt"
-                                aria-hidden="true"></i>Sign out</a>
+                                class="fas fa-user"></i>Your profile</a></li>
+                    <li class="nav-item"><a href="#record" class="nav-link" onclick="clickRecordButton();" id="recordList"><i 
+                                class="fas fa-file-medical"></i>Your record history</a></li>
+                    <li class="nav-item"><a onclick="SignOut()" href="#" class="nav-link"><i 
+                        class="fas fa-sign-out-alt"></i>Sign out</a>
                     </li>
 
                 </ul>
@@ -137,35 +137,21 @@
                             </div>
                         </div>
                         <div class="record-area mt-4" >
-                            <div class="list-group">
+                            <div class="list-group" id="list-reports">
+                                <!-- begin 1 report -->
                                 <a href="Record.html" class="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start">
                                     <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Report 12-20-2019</h5>
+                                        <h5 class="mb-1">Report 2019-12-20</h5>
                                         <span>
                                             <small class="text-muted">Doctor:</small>
-                                            <small id="doctor_name" class="text-muted">Lan Tran</small>       
+                                            <small id="doctor_name" class="text-muted">Lan Tran</small>
                                         </span>
-
                                     </div>
-                                    <!-- <p class="mb-1 text-truncate">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic
+                                    <p class="mb-1 text-truncate">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic
                                         odit dolor impedit, odio tenetur veniam necessitatibus corporis quis provident facere
-                                        quaerat accusantium earum obcaecati laborum et. Consequatur officiis possimus dicta.</p> -->
+                                        quaerat accusantium earum obcaecati laborum et. Consequatur officiis possimus dicta.</p>
                                 </a>
-                                <a href="Record.html"
-                                    class="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Report 10-17-2019</h5>
-                                        <span>
-                                            <small class="text-muted">Doctor:</small>
-                                            <small id="doctor_name" class="text-muted">Tung Tran</small>
-                                        </span>
-                                
-                                    </div>
-                                    <p class="mb-1 text-truncate"></p>
-                                </a>
-                            
-                            
-                        
+                                <!-- end 1 report -->
                             </div>
                             
                         </div>

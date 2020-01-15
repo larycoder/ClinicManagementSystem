@@ -83,13 +83,23 @@ class ClinicDBManager:
             from_time: datetime.datetime(year, month, day, hour, min)
         }
         """
-        try:
-            cursor = self.cnx.cursor()
-            cursor.execute(config.query['book_schedule'], schedule)
-            self.cnx.commit()
+        cursor = self.cnx.cursor()
+        if self.is_schedule_exist(schedule):
+            try:
+                cursor.execute(config.query['book_schedule'], schedule)
+                self.cnx.commit()
+                return True
+            except mysql.connector.Error as e:
+                print(e.errno)
+                return False
+        else:
+            return False
+    def is_schedule_exist(self, schedule: Dict):
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['is_schedule_exist'], schedule)
+        if(cursor.fetchall().__len__()):
             return True
-        except mysql.connector.Error as e:
-            print(e.errno)
+        else:
             return False
 
     def create_schedule(self, new_schedule: Dict) -> bool:
@@ -157,6 +167,11 @@ class ClinicDBManager:
         return report_list
 
     def get_instruction_list_by_report(self, report: Dict) -> list:
+        """
+        report = {
+                    report_id: str
+                    }
+        """
         cursor = self.cnx.cursor()
         cursor.execute(config.query['list_instruction_by_report'], report)
         result = cursor.fetchall()
@@ -205,6 +220,57 @@ class ClinicDBManager:
         else:
             return False
 
+    def add_report(self,report: Dict, instruction_list: list):
+        """
+        report: {doctor_id, patient_id, date_time, appointment_id, report_data}
+
+        """
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['add_report'], report)
+            self.cnx.commit()
+        except mysql.connector.IntegrityError as err:
+            return False
+        for instruction in instruction_list:
+            instruction['report_id'] = str(cursor.lastrowid)
+        self.add_instruction_list(instruction_list)
+        return True
+
+    def list_resource(self):
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['resource_list'])
+        result = cursor.fetchall()
+        labels = ['id', 'code', 'name', 'unit', 'quantity', 'status', 'price']
+        resource_list = []
+        for one_tuple in result:
+            resource_list.append(self.tuple_to_dict(one_tuple, labels))
+        return resource_list
+
+    def add_resource_quantity(self, resource: Dict):
+        """
+        resource: {
+                    'id': 'id',
+                    'quantity': 'num'
+                    }
+        """
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['add_res_quantity'], resource)
+            self.cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
+
+    def remove_resource_quantity(self, resource: Dict):
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['sub_res_quantity'], resource)
+            self.cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
 
 
         
@@ -248,11 +314,21 @@ if __name__ == '__main__':
         # print(db_manager.get_doctor_list())
         schedule = {'patient_id': '3',
                     'doctor_id': '3',
-                    'from_time': datetime(2019, 12, 9, 9, 0)}
+                    'from_time': datetime(2029, 12, 9, 9, 0)}
+        report = {
+            'doctor_id': '1',
+            'patient_id': '2',
+            'date_time': datetime(2019, 12, 21, 5, 30),
+            'appointment_id': '1',
+            'report_data': 'H5N1, go to the hospital'
+        }
+
+        db_manager.add_report(report, instruction_list=[])
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
         # print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
+
 
         check = {
             'user_id': 1,
@@ -267,6 +343,11 @@ if __name__ == '__main__':
             print("done")
         else:
             print("failed")
+
+        if db_manager.is_schedule_exist(schedule):
+            print("exist")
+        else:
+            print("not exist")
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:

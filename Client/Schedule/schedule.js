@@ -84,12 +84,12 @@ function loadNewDoctorID(){
           
           for(sc in schedules){
             if(schedules[sc].status == 0){
-              updateEvent("background", schedules[sc].from_time, "", "#00E600", "#009752")
+              updateEvent("background", schedules[sc].from_time, "", "#33691e", "#3e2723")
             }
             else{
               let info = schedules[sc];
               let stringTitle = 'Patient: ' + info.patient_name;
-              updateEvent("", info.from_time, stringTitle, "#00E4EE", "#C54300");
+              updateEvent("", info.from_time, stringTitle, "#e57373", "#e57373");
             }
           }
         }

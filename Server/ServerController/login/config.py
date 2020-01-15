@@ -29,6 +29,8 @@ query = {
   'list_instruction_by_report': "SELECT * from instruction_view WHERE report_id = %(report_id)s",
   'add_instruction': "INSERT INTO instruction(report_id, service_id, resource_id, service_quantity, resource_quantity, description) VALUE(%(report_id)s, %(service_id)s, %(resource_id)s, %(service_quantity)s, %(resource_quantity)s, %(description)s)",
   'get_report_owner': "SELECT patient_id from report WHERE id = %(report_id)s",
+  'add_report': "INSERT INTO report(doctor_id, patient_id, date_time, appointment_id, report_data) VALUE (%(doctor_id)s, %(patient_id)s, %(date_time)s, %(appointment_id)s, %(report_data)s)",
+
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
   'service_list':"SELECT * FROM service;",
@@ -43,7 +45,8 @@ query = {
   'change_resource_unit': "UPDATE resource SET unit = %(unit)s WHERE id = %(id)d;",
   'search_service': "SELECT * FROM service WHERE name LIKE CONCAT('%',%s,'%');",  #return service whose name contains that string
   'search_resource': "SELECT * FROM resource WHERE name LIKE CONCAT('%',%s,'%');",  #return resource whose name contains that string
-  'add_res_quantity': "UPDATE resource SET quantity = %d + quantity WHERE id = %(id)d;",
+  'add_res_quantity': "UPDATE resource SET quantity = %(quantity)s + quantity WHERE id = %(id)s",
+  'sub_res_quantity': "UPDATE resource SET quantity = %(quantity)s - quantity WHERE id = %(id)s",
   'update_res_quantity': "UPDATE resource SET quantity = quantity - (SELECT SUM(I.resource_quantity) FROM instruction I WHERE I.resource_id = %(resource_id)d) WHERE id = %(resource_id)d;",
   'list_using_res': "SELECT * FROM resource WHERE status = 1",
   'list_unused_res': "SELECT * FROM resource WHERE status = 0",
@@ -72,6 +75,7 @@ query = {
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   'book_schedule': "UPDATE schedule_appointment SET status = 1, patient_id = %(patient_id)s WHERE doctor_id = %(doctor_id)s AND from_time = %(from_time)s",
+  'is_schedule_exist': "SELECT * FROM schedule_appointment WHERE doctor_id = %(doctor_id)s AND patient_id = %(patient_id)s AND from_time = %(from_time)s",
   
   #purchase
   'list_patient_today':"SELECT * FROM report_detail.view WHERE data_time = %s",

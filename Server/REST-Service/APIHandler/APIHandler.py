@@ -115,6 +115,58 @@ class GETHandler():
 
     return [1, json.dumps(doctorTimes, default = datetimeObject2String)]
 
+  def listReport(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      patientID = {"patient_id":parameters["patientID"]}
+
+      userInfo = self.DBConnection.get_user_info(user)
+      userType = userInfo["type"]
+
+      if userType == "patient":
+        if user["id"] != patientID["patient_id"]:
+          return [-3, json.dumps({"response":"permission denny"})]
+      listReports = self.DBConnection.get_report_list_by_patient(patientID)
+      return [1, json.dumps(listReports, default = datetimeObject2String)]
+
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    
+  def listInstruction(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      reportID = {"report_id":parameters["reportID"]}
+
+      userInfo = self.DBConnection.get_user_info(user)
+      userType = userInfo["type"]
+
+      if userInfo["type"] == "patient":
+        param4Check = {
+                  "user_id":int(parameters["id"]),
+                  "report_id":parameters["reportID"]
+                }
+        if not self.DBConnection.check_user_has_report(param4Check):
+          return [-3, json.dumps({"response":"permission denny"})]
+      
+      listInstruction = self.DBConnection.get_instruction_list_by_report(reportID)
+      return [1, json.dumps(listInstruction, default = datetimeObject2String)]
+
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+
+
 class POSTHandler():
   """ class hanler POST method """
 
@@ -204,3 +256,6 @@ class POSTHandler():
       return [1, json.dumps({'return':'book successfully'})]
     
     return [-2, json.dumps({'return':'book fail'})]
+
+  # def newReport(self, data):
+
