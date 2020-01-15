@@ -153,7 +153,7 @@ class GETHandler():
 
       if userInfo["type"] == "patient":
         param4Check = {
-                  "user_id":parameters["id"],
+                  "user_id":int(parameters["id"]),
                   "report_id":parameters["reportID"]
                 }
         if not self.DBConnection.check_user_has_report(param4Check):
