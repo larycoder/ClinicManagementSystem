@@ -236,9 +236,41 @@ class ClinicDBManager:
         self.add_instruction_list(instruction_list)
         return True
 
+    def list_resource(self):
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['resource_list'])
+        result = cursor.fetchall()
+        labels = ['id', 'code', 'name', 'unit', 'quantity', 'status', 'price']
+        resource_list = []
+        for one_tuple in result:
+            resource_list.append(self.tuple_to_dict(one_tuple, labels))
+        return resource_list
 
+    def add_resource_quantity(self, resource: Dict):
+        """
+        resource: {
+                    'id': 'id',
+                    'quantity': 'num'
+                    }
+        """
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['add_res_quantity'], resource)
+            self.cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
 
-
+    def remove_resource_quantity(self, resource: Dict):
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['sub_res_quantity'], resource)
+            self.cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
 
 
         
