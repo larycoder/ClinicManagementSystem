@@ -14,11 +14,8 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-    <!-- <script>
-        $(function () {
-            $('.selectpicker').selectpicker();
-        });
-    </script> -->
+
+    <script src="record.js"></script>
 </head>
 
 <body>
@@ -26,7 +23,7 @@
     <!-- Editable table -->
     <button type="button" class="btn btn-outline-secondary m-3" onclick="history.back();">Back</button>
     <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Report 12-20-2019</h3>
+        <h3 id="report-time" class="card-header text-center font-weight-bold text-uppercase py-4">Report 12-20-2019</h3>
         <div class="card-body">
             <div class="col-lg-12">
                 <div class="input-group input-group-lg">
@@ -49,19 +46,12 @@
                             <th class="align-middle" width="40%">Notes</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="instructionList">
                         <tr>
-                            <td id="service_name"width="15%" >Inject</td>                            
+                            <td id="service_name"width="15%" >Inject</td>
                             <td id="service_quantity" class="align-middle" width="10%">1</td>
                             <td id="resource_name" class="align-middle" width="15%">morphine</td>
                             <td id="resource_quantity" class="align-middle" width="20%">1 ml</td>
-                            <td id="notes" class="align-middle" width="40%"></td>
-                        </tr>
-                        <tr>
-                            <td id="service_name" width="15%">CT Scan</td>
-                            <td id="service_quantity" class="align-middle" width="10%">1</td>
-                            <td id="resource_name" class="align-middle" width="15%">None</td>
-                            <td id="resource_quantity" class="align-middle" width="20%">None</td>
                             <td id="notes" class="align-middle" width="40%"></td>
                         </tr>
                     </tbody>
@@ -75,7 +65,8 @@
             <a href="#" class="list-group-item list-group-item-action">Third attachment</a>
         </div>
     </div>
-    
-    <!-- Editable table -->
-    
+    <script>
+        updateReportDetail();
+        requestInstructionList();
+    </script>
 </body>

@@ -181,7 +181,7 @@ function updateUserRecords(records){
     for(i in records){
         // create tag hold record
         let record = document.createElement("a");
-        record.setAttribute("onclick","openRecordDetail(" + records[i].report_id + ");");
+        record.setAttribute("onclick","openRecordDetail(" + records[i].report_id + "," + "'" + records[i].date_time.substring(0, 10) + "'" + "," + "'" + records[i].report_data + "'" + ");");
         record.classList.add("list-group-item", "list-group-item-action", "list-group-item-secondary", "flex-column", "align-items-start");
 
         record.innerHTML = '<div class="d-flex w-100 justify-content-between"> \
@@ -197,7 +197,19 @@ function updateUserRecords(records){
     }
 }
 
-function openRecordDetail(record_id){
-    sessionStorage.setItem('Clinic-recordID', record_id);
-    window.location.href = "/PatientPage/Record.html"
+function openRecordDetail(report_id, report_time, report_note){
+    if(sessionStorage.getItem('Clinic-reportID') != null){
+        sessionStorage.removeItem('Clinic-reportID');
+    }
+    if(sessionStorage.getItem('Clinic-reportTime') != null){
+        sessionStorage.removeItem('Clinic-reportTime');
+    }
+    if(sessionStorage.getItem('Clinic-reportNote') != null){
+        sessionStorage.removeItem('Clinic-reportNote');
+    }
+    sessionStorage.setItem('Clinic-reportID', report_id);
+    sessionStorage.setItem('Clinic-reportTime', report_time);
+    sessionStorage.setItem('Clinic-reportNote', report_note);
+    
+    window.location.href = "/PatientPage/Record.html";
 }
