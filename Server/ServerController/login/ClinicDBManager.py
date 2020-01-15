@@ -167,6 +167,11 @@ class ClinicDBManager:
         return report_list
 
     def get_instruction_list_by_report(self, report: Dict) -> list:
+        """
+        report = {
+                    report_id: str
+                    }
+        """
         cursor = self.cnx.cursor()
         cursor.execute(config.query['list_instruction_by_report'], report)
         result = cursor.fetchall()
