@@ -18,8 +18,9 @@
 
 }
 .tab-content {
-    height:85vh;
-    overflow:auto;
+    min-height:85vh;
+    overflow:none;
+    margin-bottom: 150px;
 }
 th {
     width:30%;
