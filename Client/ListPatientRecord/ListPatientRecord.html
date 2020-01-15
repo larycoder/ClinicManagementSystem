@@ -42,13 +42,10 @@
           <a class="nav-link" href="../menu.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../Login/Login.html">Login</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="../PatientPage/patientpage.html">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Schedule</a>
+          <a class="nav-link" href="../Schedule/schedule.html">Schedule</a>
         </li>
       </ul>
     </div>
@@ -59,10 +56,11 @@
     <div class="card-body">
       <div class="row">
         <div class="col-8">
-          <div class="list-group">
+          <div class="list-group" id="reportSpace">
+            <!-- Patient record -->
             <a href="#" class="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Report 12-20-2019</h5>
+                <h5 class="mb-1">Report 2019-12-20</h5>
                 <span>
                   <small class="text-muted">Doctor Name:</small>
                   <small id="doctor_name" class="text-muted">Lan Tran</small>
@@ -77,48 +75,19 @@
                 <small class="text-muted pl-3">Patient ID:</small>
                 <small id="patient_id" class="text-muted">8</small>
               </span>
-              
             </a>
+            <!-- end patient record -->
 
-            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Report 10-17-2019</h5>
-                <span>
-                  <small class="text-muted">Doctor Name:</small>
-                  <small id="doctor_name" class="text-muted">Tung Tran</small>
-                </span>
-              </div>
-              <p class="mb-1 text-overflow"></p>
-              <span>
-                <small class="text-muted">Patient Name:</small>
-                <small id="patient_name" class="text-muted">Huong Doan</small>
-              </span>
-              <span>
-                <small class="text-muted pl-3">Patient ID:</small>
-                <small id="patient_id" class="text-muted">8</small>
-              </span>
-            </a>
-
-            <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-secondary flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Report 12-20-2019</h5>
-                <small class="text-muted">Doctor Name</small>
-              </div>
-              <p class="mb-1 text-overflow">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic odit dolor impedit, odio tenetur veniam necessitatibus corporis quis provident facere quaerat accusantium earum obcaecati laborum et. Consequatur officiis possimus dicta.</p>
-              <small class="text-muted">Patient Name</small>
-              <small class="text-muted">Patient ID</small>
-            </a> -->
           </div>
           <button type="button" class="btn btn-primary mt-1" style="width: 100%;">Add New Report</button>
         </div>
         <div class="col-4">
             <div class="search-area">
                 <div class="input-group mb-3 mt-1">
-                    <input class="form-control border-right-0 border" type="search" placeholder="Enter Patient ID">
+                    <input id="inputPatientID" class="form-control border-right-0 border" type="search" placeholder="Enter Patient ID" value="-1">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary border-left-0 border" type="button"><i class="fas fa-search"></i></button>
+                        <button class="btn btn-outline-secondary border-left-0 border" onclick="getListReports();" type="button"><i class="fas fa-search"></i></button>
                     </div>
-                
                 </div>
             </div>
         </div>

@@ -38,7 +38,7 @@ function setInfoText(object){
     // setup parameter depending on type of user
     sessionStoreType(object.type);
     if(getUserType() != "patient"){
-        $("#recordList").html('<i class="fas fa-file-medical"></i>Search Patients Record')
+        $("#recordList").html('<i class="fas fa-file-medical"></i>Search Records')
     }
 
     for(var key in object){
