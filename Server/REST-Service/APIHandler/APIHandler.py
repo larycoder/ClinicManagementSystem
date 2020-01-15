@@ -102,7 +102,7 @@ class GETHandler():
       return readFile(root + "/error404.html")
     # Get doctor schedules
     try:
-      doctorTimes = self.DBConnection.get_appointment3_list_by_doctor(doctorID)
+      doctorTimes = self.DBConnection.get_appointment_list_by_doctor(doctorID)
     except Exception as e:
       print(e)
       return readFile(root + "/error404.html")
@@ -254,7 +254,6 @@ class POSTHandler():
 
     if update == True:
       return [1, json.dumps({'return':'book successfully'})]
-    
     return [-2, json.dumps({'return':'book fail'})]
 
   # def newReport(self, data):
