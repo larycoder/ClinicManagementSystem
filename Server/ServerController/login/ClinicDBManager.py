@@ -94,11 +94,16 @@ class ClinicDBManager:
                 return False
         else:
             return False
+
     def is_schedule_exist(self, schedule: Dict):
         cursor = self.cnx.cursor()
         cursor.execute(config.query['is_schedule_exist'], schedule)
-        if(cursor.fetchall().__len__()):
-            return True
+        result = cursor.fetchall()
+        if(result.__len__()):
+            if result[0][0] == 0:
+                return True
+            else:
+                return False
         else:
             return False
 
@@ -312,9 +317,9 @@ if __name__ == '__main__':
         # print(db_manager.get_patient_info({"id": "1"}))
         # print(db_manager.get_user_info({"id": "2"}))
         # print(db_manager.get_doctor_list())
-        schedule = {'patient_id': '3',
+        schedule = {'patient_id': '1',
                     'doctor_id': '3',
-                    'from_time': datetime(2029, 12, 9, 9, 0)}
+                    'from_time': datetime(2020, 1, 19, 8, 30)}
         report = {
             'doctor_id': '1',
             'patient_id': '2',
