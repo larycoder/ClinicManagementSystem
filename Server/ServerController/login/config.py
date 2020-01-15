@@ -45,7 +45,8 @@ query = {
   'change_resource_unit': "UPDATE resource SET unit = %(unit)s WHERE id = %(id)d;",
   'search_service': "SELECT * FROM service WHERE name LIKE CONCAT('%',%s,'%');",  #return service whose name contains that string
   'search_resource': "SELECT * FROM resource WHERE name LIKE CONCAT('%',%s,'%');",  #return resource whose name contains that string
-  'add_res_quantity': "UPDATE resource SET quantity = %d + quantity WHERE id = %(id)d;",
+  'add_res_quantity': "UPDATE resource SET quantity = %(quantity)s + quantity WHERE id = %(id)s",
+  'sub_res_quantity': "UPDATE resource SET quantity = %(quantity)s - quantity WHERE id = %(id)s",
   'update_res_quantity': "UPDATE resource SET quantity = quantity - (SELECT SUM(I.resource_quantity) FROM instruction I WHERE I.resource_id = %(resource_id)d) WHERE id = %(resource_id)d;",
   'list_using_res': "SELECT * FROM resource WHERE status = 1",
   'list_unused_res': "SELECT * FROM resource WHERE status = 0",
