@@ -75,7 +75,7 @@ query = {
   'check_if_appointment_available': "SELECT status FROM scheduled_appointment WHERE from_time = %s AND doctor_id = %d",
   'create_appointment': "INSERT INTO scheduled_appointment(id, doctor_id, patient_id, from_time, status) VALUES( NULL, %d, %d, %s, '1' )",
   'book_schedule': "UPDATE schedule_appointment SET status = 1, patient_id = %(patient_id)s WHERE doctor_id = %(doctor_id)s AND from_time = %(from_time)s",
-  'is_schedule_exist': "SELECT * FROM schedule_appointment WHERE doctor_id = %(doctor_id)s AND patient_id = %(patient_id)s AND from_time = %(from_time)s",
+  'is_schedule_exist': "SELECT status FROM schedule_appointment WHERE doctor_id = %(doctor_id)s AND from_time = %(from_time)s",
   
   #purchase
   'list_patient_today':"SELECT * FROM report_detail.view WHERE data_time = %s",
