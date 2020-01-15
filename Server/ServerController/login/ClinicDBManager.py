@@ -123,6 +123,19 @@ class ClinicDBManager:
         except mysql.connector.IntegrityError as err:
             return False
 
+    def list_schedule_today(self, doctor: Dict):
+        """
+        doctor = {'doctor_id':'id'}
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['list_schedule_today'], doctor)
+        result = cursor.fetchall()
+        labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
+        schedule_list = []
+        for one_tuple in result:
+            schedule_list.append(self.tuple_to_dict(one_tuple, labels))
+        return schedule_list
+
 
     def get_patient_info(self, patient_id: Dict) -> Dict:
         """
@@ -328,31 +341,32 @@ if __name__ == '__main__':
             'report_data': 'H5N1, go to the hospital'
         }
 
-        db_manager.add_report(report, instruction_list=[])
+        # db_manager.add_report(report, instruction_list=[])
+        print(db_manager.list_schedule_today({'doctor_id': '1'}))
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
         # print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
 
 
-        check = {
-            'user_id': 1,
-            'report_id': '1'
-        }
-        if(db_manager.check_user_has_report(check)):
-            print("Yes")
-        else:
-            print("No")
-
-        if db_manager.book_schedule(schedule):
-            print("done")
-        else:
-            print("failed")
-
-        if db_manager.is_schedule_exist(schedule):
-            print("exist")
-        else:
-            print("not exist")
+        # check = {
+        #     'user_id': 1,
+        #     'report_id': '1'
+        # }
+        # if(db_manager.check_user_has_report(check)):
+        #     print("Yes")
+        # else:
+        #     print("No")
+        #
+        # if db_manager.book_schedule(schedule):
+        #     print("done")
+        # else:
+        #     print("failed")
+        #
+        # if db_manager.is_schedule_exist(schedule):
+        #     print("exist")
+        # else:
+        #     print("not exist")
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
