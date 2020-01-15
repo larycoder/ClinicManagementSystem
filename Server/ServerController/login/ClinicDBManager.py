@@ -194,6 +194,23 @@ class ClinicDBManager:
                 return False
         return True
 
+    def check_user_has_report(self, check: Dict) -> bool:
+        """
+        check = {
+                'user_id': int id,
+                'report_id': 'id'
+                }
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['get_report_owner'], check)
+        result = cursor.fetchall()
+        print(result[0][0])
+        if(result[0][0] == check['user_id']):
+            return True
+        else:
+            return False
+
+
 
         
 def CreateDbConnection():
@@ -240,7 +257,17 @@ if __name__ == '__main__':
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
-        print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
+        # print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
+
+        check = {
+            'user_id': 1,
+            'report_id': '1'
+        }
+        if(db_manager.check_user_has_report(check)):
+            print("Yes")
+        else:
+            print("No")
+
         if db_manager.book_schedule(schedule):
             print("done")
         else:
