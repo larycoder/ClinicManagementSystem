@@ -35,7 +35,12 @@ function getUserType(){
 
 function setInfoText(object){
     object["full_name"] = object["first_name"] + " " + object["last_name"];
+    // setup parameter depending on type of user
     sessionStoreType(object.type);
+    if(getUserType() != "patient"){
+        $("#recordList").html('<i class="fas fa-file-medical"></i>Search Patients Record')
+    }
+
     for(var key in object){
         if(document.getElementById(key) !== null){
             string = object[key];
@@ -138,4 +143,13 @@ $(document).ready(function () {
 function resizeInput() {
     document.getElementById("hide").textContent = document.getElementById("ID").value;
     document.getElementById("ID").style.width = document.getElementById("hide").offsetWidth + "px";
+}
+
+function clickRecordButton(){
+    if(getUserType == "patient"){
+        $("#recordList").tab("show");
+    }
+    else if(getUserType() == "nurse" || getUserType() == "doctor"){
+        window.location.href = '/ListPatientRecord/ListPatientRecord.html';
+    }
 }
