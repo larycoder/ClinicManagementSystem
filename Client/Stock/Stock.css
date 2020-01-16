@@ -8,12 +8,15 @@ form{
 #ExportResource{
 	font-family: Garamond;
 	padding: 20px;
-	margin: 20px 600px 0px 600px;
+	margin: 0% 40% 2% 40%;
+	/*margin: 20px 600px 0px 600px;*/
 }
 #ImportResource{
 	font-family: Garamond;
 	padding: 20px;
-	margin: 40px 600px 20px 600px;
+	margin: 5% 40% 2% 40%;
+	/*margin: 10%;*/
+	/*margin: 40px 600px 20px 600px;*/
 }
 tr{
 	text-align: center;
@@ -32,11 +35,12 @@ td,th{
 }
 th{
 	font-size: 18px;
-	padding: 10px;
+	padding-right: 70px;
+	padding-left: 70px;
 	background-color: #bdbdbd;
 }
 table{
-	margin: 0px 30px 40px 30px;
+	margin-left: 7%;
 }
 option{
 	font-family: Garamond;
@@ -47,7 +51,7 @@ option{
 	font-family: Garamond;
 	padding: 12px 25px 12px 40px;
 	border: 1px solid #ddd;
-	margin: 0px 50px 30px 80px;
+	margin: 20px 50px 30px 80px;
 	float: left;
 }
 #NameSearch{
@@ -56,6 +60,6 @@ option{
 	font-family: Garamond;
 	padding: 12px 25px 12px 40px;
 	border: 1px solid #ddd;
-	margin: 0px 50px 30px 90px;
+	margin: 20px 50px 30px 90px;
 	float: left;
 }
