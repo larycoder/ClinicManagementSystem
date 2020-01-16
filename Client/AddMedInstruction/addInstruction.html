@@ -41,14 +41,8 @@
         <li class="nav-item ">
           <a class="nav-link" href="../menu.html">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../Login/Login.html">Login</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Schedule</a>
+        <li class="nav-item ">
+          <a class="nav-link" href="../PatientPage/patientpage.html">Profile</a>
         </li>
       </ul>
     </div>
@@ -57,16 +51,11 @@
   <div class="card">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Report</h3>
     <div class="card-body">
-      <select class="custom-select col-12">
-        <option selected>Choose appointment</option>
-        <option>8:00</option>
-        <option>8:30</option>
-        <option>9:00</option>
-      </select>
+      <select id="appointmentSpace" class="custom-select col-12"></select>
       <div class="col-xs-12" style="height:50px;"></div>
       <div class="col-lg-12">
         <div class="input-group input-group-lg">
-          <textarea type="text" class="form-control input-lg auto-expanding" id="search-church" placeholder="Doctor's Diagnosis" style="word-wrap: break-word; min-height: 150px; margin: 0px;"></textarea>
+          <textarea id="DoctorNotes" type="text" class="form-control input-lg auto-expanding" id="search-church" placeholder="Doctor's Diagnosis" style="word-wrap: break-word; min-height: 150px; margin: 0px;"></textarea>
         </div>
       </div>
       <div id="table" class="table-editable">
@@ -90,11 +79,12 @@
               <th class="align-middle" width="10%">Remove</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="instructionList">
+            <!-- begin row -->
             <tr>
               <td class="align-middle" width="15%">
                 <div class="input-group">
-                  <select class="form-control selectpicker" data-live-search="true">
+                  <select class="Service form-control selectpicker" data-live-search="true">
                     <option>None</option>
                     <option data-tokens="take medicine">Take Medicine</option>
                     <option data-tokens="inject">Inject</option>
@@ -103,10 +93,10 @@
                   </select>
                 </div> 
               </td>
-              <td class="align-middle" width="10%" contenteditable="true">1</td>
+              <td class="ServiceQuantity align-middle" width="10%"1><input type="text" value="1"></td>
               <td class="align-middle" width="15%" contenteditable="true">
                 <div class="input-group ">
-                  <select class="form-control selectpicker " data-live-search="true">
+                  <select class="Resource form-control selectpicker " data-live-search="true">
                     <option>None</option>
                     <option data-tokens="insulin glargine">insulin glargine</option>
                     <option data-tokens="paracetamon">paracetamol</option>
@@ -117,24 +107,26 @@
               </td>
               <td class="align-middle" width="20%">
                 <div class="input-group">
-                  <input type="number" class="form-control" style="float: left;">
-                  <select class="form-control" style="float: left;">
+                  <input type="number" class="ResourceQuantity form-control" style="float: left;">
+                  <select class="ResourceUnit form-control" style="float: left;">
                     <option>None</option>
                     <option>ml</option>
                     <option>boxes</option>
                   </select>
                 </div>  
               </td>
-              <td class="align-middle" width="30%" contenteditable="true" style="word-wrap: break-word"></td>
+              <td class="Notes align-middle" width="30%" contenteditable="true" style="word-wrap: break-word"></td>
               <td class="align-middle" width="10%">
                 <span class="table-remove"><button type="button"
                     class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
               </td>
             </tr>
+
+            <!-- end row -->
           </tbody>
         </table>
       </div>
-      <button type="button" class="btn btn-primary" style="width: 100%;">Save</button>
+      <button onclick="uploadData();" type="button" class="btn btn-primary" style="width: 100%;">Save</button>
     </div>
     <div class="col-xs-12" style="height:400px;"></div>
   </div>

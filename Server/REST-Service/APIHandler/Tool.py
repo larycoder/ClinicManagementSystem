@@ -2,6 +2,7 @@
 # root directory of WEB server
 import os
 import datetime
+import json
 
 root = os.path.dirname(os.path.realpath(__file__)) + "/../../../Client"
 
@@ -13,6 +14,9 @@ def String2Json(data):
     value = value.split("=")
     JsonFile[value[0]] = value[1]
   return JsonFile
+
+def Json2Dict(data):
+  return json.loads(data)
 
 def readFile(String):
       # reference f for reading file

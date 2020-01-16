@@ -102,16 +102,16 @@ class GETHandler():
       return readFile(root + "/error404.html")
     # Get doctor schedules
     try:
-      doctorTimes = self.DBConnection.get_appointment_list_by_doctor(doctorID)
+      if "today" in user:
+        doctorTimes = self.DBConnection.list_schedule_today({"doctor_id":str(user["doctorID"])})
+      else:
+        doctorTimes = self.DBConnection.get_appointment_list_by_doctor(doctorID)
     except Exception as e:
       print(e)
       return readFile(root + "/error404.html")
       
     if userInfo["type"] == "patient":
       doctorTimes[:] = (value for value in doctorTimes if (str(value["patient_id"]) == userID["id"] or value["status"] == 0))
-    
-    for schedule in doctorTimes:
-        del schedule["appointment_id"]
 
     return [1, json.dumps(doctorTimes, default = datetimeObject2String)]
 
@@ -130,7 +130,7 @@ class GETHandler():
 
       if userType == "patient":
         if user["id"] != patientID["patient_id"]:
-          return [-3, json.dumps({"response":"permission denny"})]
+          return [-2, json.dumps({"response":"permission denny"})]
       listReports = self.DBConnection.get_report_list_by_patient(patientID)
       return [1, json.dumps(listReports, default = datetimeObject2String)]
 
@@ -157,7 +157,7 @@ class GETHandler():
                   "report_id":parameters["reportID"]
                 }
         if not self.DBConnection.check_user_has_report(param4Check):
-          return [-3, json.dumps({"response":"permission denny"})]
+          return [-2, json.dumps({"response":"permission denny"})]
       
       listInstruction = self.DBConnection.get_instruction_list_by_report(reportID)
       return [1, json.dumps(listInstruction, default = datetimeObject2String)]
@@ -256,5 +256,30 @@ class POSTHandler():
       return [1, json.dumps({'return':'book successfully'})]
     return [-2, json.dumps({'return':'book fail'})]
 
-  # def newReport(self, data):
+  def newReport(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+
+    parameters = Json2Dict(data)
+    try:
+      userCheck = {
+                    'doctor_id':str(parameters["id"]),
+                    'appointment_id':str(parameters["appointmentID"])
+                  }
+      report = {
+                'appointment_id':parameters["appointmentID"],
+                'report_data':parameters["reportData"]
+              }
+      instructionList = parameters["instructionList"]
+
+      if not self.DBConnection.is_doctor_has_appointment(userCheck):
+        return [-2, json.dumps({"response":"permission denny"})]
+
+      boolCheck = self.DBConnection.add_report(report, instructionList)
+      return [1, json.dumps({"response":"report added"})]
+
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
 
