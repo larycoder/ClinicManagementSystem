@@ -82,14 +82,7 @@ td > button {
 
 #ID {
     padding: 5px;
-    border: none;
+    /* border: none; */
     min-width: 20px;
     margin-bottom: 10px;
-}
-
-#hide {
-    position: absolute;
-    height: 0;
-    overflow: hidden;
-    white-space: pre;
 }

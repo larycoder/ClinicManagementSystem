@@ -29,7 +29,7 @@ query = {
   'list_instruction_by_report': "SELECT * from instruction_view WHERE report_id = %(report_id)s",
   'add_instruction': "INSERT INTO instruction(report_id, service_id, resource_id, service_quantity, resource_quantity, description) VALUE(%(report_id)s, %(service_id)s, %(resource_id)s, %(service_quantity)s, %(resource_quantity)s, %(description)s)",
   'get_report_owner': "SELECT patient_id from report WHERE id = %(report_id)s",
-  'add_report': "INSERT INTO report(doctor_id, patient_id, date_time, appointment_id, report_data) VALUE (%(doctor_id)s, %(patient_id)s, %(date_time)s, %(appointment_id)s, %(report_data)s)",
+  'add_report': "INSERT INTO report(doctor_id, patient_id, date_time, appointment_id, report_data) SELECT doctor_id, patient_id, from_time, %(appointment_id)s, %(report_data)s FROM schedule_appointment WHERE id = %(appointment_id)s",
 
   #maintain stock
   'resource_list': "SELECT * FROM resource;",

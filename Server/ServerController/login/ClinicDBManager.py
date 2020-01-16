@@ -240,7 +240,7 @@ class ClinicDBManager:
 
     def add_report(self,report: Dict, instruction_list: list):
         """
-        report: {doctor_id, patient_id, date_time, appointment_id, report_data}
+        report: {appointment_id, report_data}
 
         """
         cursor = self.cnx.cursor()
@@ -334,14 +334,11 @@ if __name__ == '__main__':
                     'doctor_id': '3',
                     'from_time': datetime(2020, 1, 19, 8, 30)}
         report = {
-            'doctor_id': '1',
-            'patient_id': '2',
-            'date_time': datetime(2019, 12, 21, 5, 30),
             'appointment_id': '1',
-            'report_data': 'H5N1, go to the hospital'
+            'report_data': 'H1N1, go to the hospital'
         }
 
-        # db_manager.add_report(report, instruction_list=[])
+        db_manager.add_report(report, instruction_list=[])
         print(db_manager.list_schedule_today({'doctor_id': '1'}))
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
