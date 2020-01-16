@@ -130,7 +130,7 @@ class ClinicDBManager:
         cursor = self.cnx.cursor()
         cursor.execute(config.query['list_schedule_today'], doctor)
         result = cursor.fetchall()
-        labels = ['id', 'doctor_id', 'patient_id', 'from_time', 'status']
+        labels = ['appointment_id', 'doctor_id', 'doctor_name', 'patient_id', 'patient_name', 'from_time', 'status']
         schedule_list = []
         for one_tuple in result:
             schedule_list.append(self.tuple_to_dict(one_tuple, labels))
@@ -339,7 +339,7 @@ if __name__ == '__main__':
         }
 
         db_manager.add_report(report, instruction_list=[])
-        print(db_manager.list_schedule_today({'doctor_id': '1'}))
+        print(db_manager.list_schedule_today({'doctor_id': '5'}))
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
