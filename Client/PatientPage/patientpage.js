@@ -1,6 +1,5 @@
 function addID(){
-    document.getElementById("ID").value = localStorage.getItem('Clinic-ID');
-    resizeInput();
+    document.getElementById("ID").innerHTML = localStorage.getItem('Clinic-ID');
 }
 
 function SignOut(){
@@ -141,10 +140,6 @@ $(document).ready(function () {
     
 });
 
-function resizeInput() {
-    document.getElementById("hide").textContent = document.getElementById("ID").value;
-    document.getElementById("ID").style.width = document.getElementById("hide").offsetWidth + "px";
-}
 
 function clickRecordButton(){
     if(getUserType() == "patient"){
