@@ -46,20 +46,23 @@ option{
 	font-family: Garamond;
 }
 #CodeSearch{
-  	width: 40%;
+  	/*width: 40%;*/
 	font-size: 16px;
 	font-family: Garamond;
-	padding: 12px 25px 12px 40px;
+	padding: 12px 20px 12px 20px;
 	border: 1px solid #ddd;
-	margin: 20px 50px 30px 80px;
-	float: left;
+	margin-right: 1%;
+	margin-left: 7%;
+	/*margin: 1% 1% 1% 10%;*/
+	/*float: left;*/
 }
 #NameSearch{
-	width: 40%;
+	/*width: 40%;*/
 	font-size: 16px;
 	font-family: Garamond;
-	padding: 12px 25px 12px 40px;
+	padding: 12px 20px 12px 20px;
 	border: 1px solid #ddd;
-	margin: 20px 50px 30px 90px;
+
+	/*margin: 1% 1% 1% 10%;*/
 	float: left;
 }

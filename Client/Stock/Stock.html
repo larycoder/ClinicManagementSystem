@@ -63,33 +63,34 @@
 
 
     				<form>
-    				Name:<br>
-					<input list="Name" name="Name" size="60%">
-					<datalist id="Name">
-						<option value="Amoxil ">
-						<option value="Levoxyl ">
-						<option value="Glucophage  ">
-						<option value="Lipitor  ">
-						<option value="Sterapred  ">
-						<option value="Thyroxines ">
-						<option value="Delasone ">
-						<option value="Prinivil">
-					</datalist><br>
-					Code:<br>
-					<input type="text" name="Code" size="60%"><br>
-					Quantity:<br>
-					<input type="text" name="Quantity" size="60%"><br>
-					Unit:<br>
-					<input list="Unit" name="Unit" size="60%">
-					<datalist id="Unit">
-						<option value="box">
-						<option value="pack">
-					</datalist><br>
-					Price:<br>
-					<input type="text" name="Price" size="60%" placeholder="VND">
-					<br><br>
-					<input type="submit">
-					</form>   			
+    					<div class="form-group">
+                                <label for="Name"><b>Name: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource name" name="Name" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Code"><b>Code: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource code" name="Code" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Quantity"><b>Quantity: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource quantity" name="Quantity" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Price"><b>Price: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource price" name="Price" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Unit"><b>Unit: </b></label><br>
+                                <select class="selectpicker" data-live-search="true" name="Name" required>
+                                <option data-tokens="Box">Box</option>
+                                <option data-tokens="Pack">Pack</option>
+								</select>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-target="#theModalConfirmPass" data-toggle="modal">Save changes</button>
+                   		</div>  
+                   	</form> 		
 				</div>
     		</div>
 		</div>
@@ -108,31 +109,39 @@
     			</div>
     			<div class="modal-body">  	
     				<form>
-					Name:<br>
-					<input list="Name" name="Name" size="60%">
-					<datalist id="Name">
-						<option value="Amoxil ">
-						<option value="Levoxyl ">
-						<option value="Glucophage  ">
-						<option value="Lipitor  ">
-						<option value="Sterapred  ">
-						<option value="Thyroxines ">
-						<option value="Delasone ">
-						<option value="Prinivil">
-					</datalist><br>
-					Code:<br>
-					<input type="text" name="Code" size="60%"><br>
-					Quantity:<br>
-					<input type="text" name="Quantity" size="60%"><br>
-					Unit:<br>
-					<input list="Unit" name="Unit" size="60%">
-					<datalist id="Unit">
-						<option value="box">
-						<option value="pack">
-					</datalist>
-					<br><br>
-					<input type="submit">
-					</form>   			
+    					<div class="form-group">
+                                <label for="Name"><b>Name: </b></label><br>
+                                <select class="selectpicker" data-live-search="true" name="Name" required>
+								<option data-tokens="Amoxil">Amoxil</option>
+								<option data-tokens="Levoxyl">Levoxyl</option>
+								<option data-tokens="Glucophage">Glucophage</option>
+								<option data-tokens="Lipitor">Lipitor</option>
+								<option data-tokens="Sterapred">Sterapred</option>
+								<option data-tokens="Thyroxines">Thyroxines</option>
+								<option data-tokens="Delasone">Delasone</option>
+								<option data-tokens="Prinivil">Prinivil</option>
+								</select>
+                        </div>
+                        <div class="form-group">
+                                <label for="Code"><b>Code: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource code" name="Code" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Quantity"><b>Quantity: </b></label><br>
+                                <input class="form-control" type="text" placeholder="Resource quantity" name="Quantity" required>
+                        </div>
+                        <div class="form-group">
+                                <label for="Unit"><b>Unit: </b></label><br>
+                                <select class="selectpicker" data-live-search="true" name="Name" required>
+                                <option data-tokens="Box">Box</option>
+                                <option data-tokens="Pack">Pack</option>
+								</select>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" data-target="#theModalConfirmPass" data-toggle="modal">Save changes</button>
+                   		</div>  
+                   	</form> 			
 				</div>
     		</div>
 		</div>
@@ -140,9 +149,10 @@
 
 	<br><br>
 	<!-- Search bar -->
-	<div>
-		<input type="text" id="CodeSearch" onkeyup="SearchResourceByCode()" placeholder="Search for Resource by CODE.." class="CodeColapse">
-		<input type="text" id="NameSearch" onkeyup="SearchResourceByName()" placeholder="Search for Resource by NAME.." class="NameColapse">
+	<div class="row p-3">
+		<input class="d-inline col-5" type="text" id="CodeSearch" onkeyup="SearchResourceByCode()" placeholder="Search for Resource by CODE.." class="CodeColapse">
+		<br>
+		<input class="d-inline col-5" type="text" id="NameSearch" onkeyup="SearchResourceByName()" placeholder="Search for Resource by NAME.." class="NameColapse">
 	</div>
   	<!-- Table -->
   	<table id="ResourceTable">
