@@ -290,7 +290,19 @@ class ClinicDBManager:
             print(e.errno)
             return False
 
-
+    def is_doctor_has_appointment(self, check):
+        """
+        check = {
+            'doctor_id': 'doctor_id',
+            'appointment_id': 'appointment_id'
+            }
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['is_doctor_has_appointment'], check)
+        if (cursor.fetchall().__len__()):
+            return True
+        else:
+            return False
         
 def CreateDbConnection():
     try:
@@ -364,7 +376,10 @@ if __name__ == '__main__':
         #     print("exist")
         # else:
         #     print("not exist")
-
+        if(db_manager.is_doctor_has_appointment({'doctor_id': '5', 'appointment_id': '2'})):
+            print('yes')
+        else:
+            print('no')
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")

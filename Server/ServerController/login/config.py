@@ -59,6 +59,7 @@ query = {
   'change_appointment_status': "UPDATE schedule_appointment SET status = %(status)d WHERE id = %(id)d",
   'list_appointment_info': "SELECT * FROM appointment_info_view",
   'list_appointment_info_by_doctor': "SELECT * FROM appointment_info_view WHERE doctor_id = %(id)s",
+  'is_doctor_has_appointment': "SELECT * FROM schedule_appointment WHERE doctor_id = %(doctor_id)s AND id = %(appointment_id)s",
   
   # export report
   'list_report': "SELECT * FROM report",
