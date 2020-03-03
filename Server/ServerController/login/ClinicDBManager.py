@@ -303,6 +303,30 @@ class ClinicDBManager:
             return True
         else:
             return False
+
+    def list_service(self):
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['service_list'])
+        result = cursor.fetchall()
+        labels = ['id', 'code', 'name']
+        service_list = []
+        for one_tuple in result:
+            service_list.append(self.tuple_to_dict(one_tuple, labels))
+        return service_list
+
+    def show_report(self, report) -> list:
+        """
+        :param report: {report_id}
+        :return: [report, instruction_list]
+        """
+        cursor = self.cnx.cursor()
+        cursor.execute(config.query['get_report_by_id'], report)
+        result = cursor.fetchone()
+        labels = ['id', 'doctor_id', 'patient_id', 'date_time', 'appointment_id', 'report_data']
+        rp = self.tuple_to_dict(result[0], labels)
+        instruction_list = self.get_instruction_list_by_report(report)
+        return [rp, instruction_list]
+
         
 def CreateDbConnection():
     try:
@@ -350,8 +374,10 @@ if __name__ == '__main__':
             'report_data': 'H1N1, go to the hospital'
         }
 
-        db_manager.add_report(report, instruction_list=[])
-        print(db_manager.list_schedule_today({'doctor_id': '5'}))
+        # db_manager.add_report(report, instruction_list=[])
+        # print(db_manager.list_schedule_today({'doctor_id': '5'}))
+        db_manager.get_instruction_list_by_report({'report_id': '1'})
+        db_manager.show_report({'report_id': '1'})
 
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
@@ -376,10 +402,10 @@ if __name__ == '__main__':
         #     print("exist")
         # else:
         #     print("not exist")
-        if(db_manager.is_doctor_has_appointment({'doctor_id': '5', 'appointment_id': '2'})):
-            print('yes')
-        else:
-            print('no')
+        # if(db_manager.is_doctor_has_appointment({'doctor_id': '5', 'appointment_id': '2'})):
+        #     print('yes')
+        # else:
+        #     print('no')
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
