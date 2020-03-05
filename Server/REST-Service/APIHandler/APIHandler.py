@@ -165,6 +165,26 @@ class GETHandler():
     except Exception as e:
       print(e)
       return readFile(root + "/error404.html")
+  
+  def listInfo(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      userInfo = self.DBConnection.get_user_info(user)
+      if not (userInfo["type"] == "patient"):
+        listInfo = {}
+        listInfo["resource"] = self.DBConnection.list_resource()
+        listInfo["service"] = self.DBConnection.list_service()
+        print("it work here")
+        return [1, json.dumps(listInfo)]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [-4, json.dumps({"return":"Permision denny"})]
 
 
 class POSTHandler():
@@ -282,4 +302,31 @@ class POSTHandler():
     except Exception as e:
       print(e)
       return readFile(root + "/error404.html")
+
+  def reportShow(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    
+    parameters = String2Json(data)
+    try:
+      user = self.DBConnection.get_user_info({"id":parameters["id"]})
+      report = self.DBConnection.show_report({"report_id":parameters["report_id"]})
+      if user["type"] != "patient" or report["id"] == parameters["id"]:
+        return [1, json.dumps(report, default = datetimeObject2String)]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [-1, json.dumps({"return": "Permision denny"})]
+
+  # def attachment(self, data):
+  #   if self.DBConnection == None:
+  #     print("DB Connection is not exit")
+  #     return readFile(root + "/error404.html")
+    
+  #   parameters = String2Json(data)
+  #   try:
+  #     userinfo = self.DBConnection.get_user_info({"id":parameters["id"]})
+  #     if not (userinfo["type"] == "patient"):
+
 
