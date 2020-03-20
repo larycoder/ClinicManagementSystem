@@ -56,6 +56,7 @@ function sendGetUserInfoRequest(){
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
         if (this.readyState == 4 && xmlRequest.status == 200) {
+            $(".container").css("visibility","hidden")
             if (isJson(this.responseText) == false) {
                 alert('Get user info fail: can not get json');
             }
@@ -65,8 +66,13 @@ function sendGetUserInfoRequest(){
             }
         }
         else if (this.readyState == 4 && xmlRequest.status != 200) {
+            $(".container").css("visibility","hidden")
             alert('Get user info fall: status 404');
         }
+        else{
+            $(".container").css("visibility","visible")
+          }
+    
     }
     xmlRequest.open("GET","/api/userInfo?id=" + getUserID());
     xmlRequest.send();
@@ -155,6 +161,7 @@ function requestRecordListOfUser(){
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
         if(this.readyState == 4){
+            $(".container").css("visibility","hidden")
             if(this.status == 200){
                 if(isJson(this.responseText) == false){
                     alert("Can not get json file !");
@@ -168,6 +175,9 @@ function requestRecordListOfUser(){
                 alert("Error when trying to access service !")
             }
         }
+        else{
+            $(".container").css("visibility","visible")
+          }
     }
     xmlRequest.open("GET", "/api/listReport?id="+getUserID()+"&patientID="+getUserID());
     xmlRequest.send();

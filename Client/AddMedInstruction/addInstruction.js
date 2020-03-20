@@ -132,18 +132,22 @@ function getAppointmentID4Doctor(){
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
       if(this.readyState == 4){
-          if(this.status == 200){
-              if(isJson(this.responseText) == false){
-                  alert("Can not get json file !");
-              }
-              else{
-                  // doing something with json object
-                  updateAppointment(JSON.parse(this.responseText));
-              }
-          }
-          else{
-              alert("Error when trying to access service !")
-          }
+        $(".container").css("visibility","hidden")
+        if(this.status == 200){
+            if(isJson(this.responseText) == false){
+                alert("Can not get json file !");
+            }
+            else{
+                // doing something with json object
+                updateAppointment(JSON.parse(this.responseText));
+            }
+        }
+        else{
+            alert("Error when trying to access service !")
+        }
+      }
+      else{
+        $(".container").css("visibility","visible")
       }
   }
   xmlRequest.open("GET", "/api/doctorTimes?today=x&id=" + getUserID() + "&doctorID=" + getUserID());
@@ -198,6 +202,7 @@ function getReportData(){
 function uploadData(){
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
+    $(".container").css("visibility","hidden")
       if(this.readyState == 4){
           if(this.status == 200){
               if(isJson(this.responseText) == false){
@@ -211,6 +216,9 @@ function uploadData(){
           else{
               alert("Error when trying to access service !")
           }
+      }
+      else{
+        $(".container").css("visibility","visible")
       }
   }
   xmlRequest.open("POST", "/api/newReport");

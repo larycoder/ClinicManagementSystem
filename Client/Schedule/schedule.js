@@ -27,6 +27,7 @@ function getListDoctor() {
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
     if (this.readyState == 4) {
+      $(".container").css("visibility","hidden")
       if(xmlRequest.status == 200){
         if(isJson(this.responseText)){
           var list = JSON.parse(this.responseText);
@@ -41,6 +42,9 @@ function getListDoctor() {
         }
       }
     }
+    else{
+      $(".container").css("visibility","visible")
+    }
   }
   xmlRequest.open("GET", "/api/doctorList?id=" + getUserID());
   xmlRequest.send();
@@ -50,6 +54,7 @@ function createBook(){
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
     if(this.readyState == 4){
+      $(".container").css("visibility","hidden")
       if(this.status == 201){
         alert("Create Book: OK");
         loadNewDoctorID();
@@ -57,6 +62,9 @@ function createBook(){
       else {
         alert("Create Book: false");
       }
+    }
+    else{
+      $(".container").css("visibility","visible")
     }
   }
   xmlRequest.open("POST", "/api/doctorBook");
@@ -72,6 +80,7 @@ function loadNewDoctorID(){
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
     if(this.readyState == 4){
+      $(".container").css("visibility","hidden")
       if(this.status == 200){
         if(isJson(this.responseText)){
           schedules = JSON.parse(this.responseText);
@@ -95,6 +104,9 @@ function loadNewDoctorID(){
         }
       }
     }
+    else{
+      $(".container").css("visibility","visible")
+    }
   }
   xmlRequest.open("GET", "/api/doctorTimes?id=" + getUserID() + "&doctorID=" + getCurrentDoctorID());
   xmlRequest.send();
@@ -104,6 +116,7 @@ function bookSchedule(){
   let xmlRequest = new XMLHttpRequest();
   xmlRequest.onreadystatechange = function(){
     if(this.readyState == 4){
+      $(".container").css("visibility","hidden")
       console.log(this.responseText);
       if(this.status == 200){
         if(isJson(this.responseText)){
@@ -112,6 +125,9 @@ function bookSchedule(){
           loadNewDoctorID();
         }
       }
+    }
+    else{
+      $(".container").css("visibility","visible")
     }
   };
   xmlRequest.open("POST", "/api/scheduleBook", false);

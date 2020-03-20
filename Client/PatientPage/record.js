@@ -23,6 +23,7 @@ function requestInstructionList(){
   let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
         if(this.readyState == 4){
+          $(".container").css("visibility","hidden")
             if(this.status == 200){
                 if(isJson(this.responseText) == false){
                     alert("Can not get json file !");
@@ -36,6 +37,9 @@ function requestInstructionList(){
                 alert("Error when trying to access service !");
                 console.log(this.responseText);
             }
+        }
+        else{
+          $(".container").css("visibility","visible")
         }
     }
     xmlRequest.open("GET", "/api/listInstruction?id="+getUserID()+"&reportID="+getReportID());
