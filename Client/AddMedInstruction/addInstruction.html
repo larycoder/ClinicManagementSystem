@@ -65,13 +65,13 @@
         <div class="row mt-3">
           <div class="col-12 text-center">
               <h4>Instructions List</h4>
-              <span class="table-add float-right mr-2"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
+              <span class="table-add float-right mr-2" onclick="createIns();"><a href="#!" class="text-success"><i class="fa fa-plus fa-2x"
                 aria-hidden="true"></i></a></span>
           </div>
         </div> 
         
         
-        <table class="table table-bordered table-responsive-md table-striped text-center">
+        <table id="inst_table" class="table table-bordered table-responsive-md table-striped text-center">
           <thead>
             <tr>
               <th class="align-middle" width="15%">Service</th>
@@ -82,53 +82,13 @@
               <th class="align-middle" width="10%">Remove</th>
             </tr>
           </thead>
-          <tbody id="instructionList">
+          <tbody>
             <!-- begin row -->
-            <tr>
-              <td class="align-middle" width="15%">
-                <div class="input-group">
-                  <select class="Service form-control selectpicker" data-live-search="true">
-                    <option>None</option>
-                    <option data-tokens="take medicine">Take Medicine</option>
-                    <option data-tokens="inject">Inject</option>
-                    <option data-tokens="blood test">Blood Test</option>
-                    <option data-tokens="ct scan">CT Scan</option>
-                  </select>
-                </div> 
-              </td>
-              <td class="ServiceQuantity align-middle" width="10%"1><input type="text" value="1"></td>
-              <td class="align-middle" width="15%" contenteditable="true">
-                <div class="input-group ">
-                  <select class="Resource form-control selectpicker " data-live-search="true">
-                    <option>None</option>
-                    <option data-tokens="insulin glargine">insulin glargine</option>
-                    <option data-tokens="paracetamon">paracetamol</option>
-                    <option data-tokens="morphine">morphine</option>
-                    <option data-tokens="benzonatate">benzonatate</option>
-                  </select>
-                </div> 
-              </td>
-              <td class="align-middle" width="20%">
-                <div class="input-group">
-                  <input type="number" class="ResourceQuantity form-control" style="float: left;">
-                  <select class="ResourceUnit form-control" style="float: left;">
-                    <option>None</option>
-                    <option>ml</option>
-                    <option>boxes</option>
-                  </select>
-                </div>  
-              </td>
-              <td class="Notes align-middle" width="30%" contenteditable="true" style="word-wrap: break-word"></td>
-              <td class="align-middle" width="10%">
-                <span class="table-remove"><button type="button"
-                    class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-              </td>
-            </tr>
             <!-- end row -->
           </tbody>
         </table>
       </div>
-      <button onclick="uploadData();" type="button" class="btn btn-primary" style="width: 100%;">Save</button>
+      <button id="getInfor" onclick="getInfor()" value="Save Table" type="button" class="btn btn-primary" style="width: 100%;">Save</button>
     </div>
     <div class="col-xs-12" style="height:400px;"></div>
   </div>

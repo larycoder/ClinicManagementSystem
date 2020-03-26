@@ -1,115 +1,58 @@
-const $tableID = $('#table');
-const $BTN = $('#export-btn');
-const $EXPORT = $('#export');
+// Back rewrite function
+var rowIDcounter = 0;
+var saveStatus = "unsave"
+function createIns() {
+    var cols;
+    cols += '<tr id="row' + rowIDcounter + '">'
 
-const newTr = `
-<tr>
-    <td class="align-middle" width="15%">
-      <div class="input-group">
-        <select id="Service" class="form-control selectpicker" data-live-search="true">
-          <option>None</option>
-          <option data-tokens="take medicine">Take Medicine</option>
-          <option data-tokens="inject">Inject</option>
-          <option data-tokens="blood test">Blood Test</option>
-          <option data-tokens="ct scan">CT Scan</option>
-        </select>
-      </div> 
-    </td>
-    <td id="ServiceQuantity" class="align-middle" width="10%"><input type="text" value="1"></td>
-    <td class="align-middle" width="15%" contenteditable="true">
-      <div class="input-group ">
-        <select id="Resource" class="form-control selectpicker " data-live-search="true">
-          <option>None</option>
-          <option data-tokens="insulin glargine">insulin glargine</option>
-          <option data-tokens="paracetamon">paracetamol</option>
-          <option data-tokens="morphine">morphine</option>
-          <option data-tokens="benzonatate">benzonatate</option>
-        </select>
-      </div> 
-    </td>
-    <td class="align-middle" width="20%">
-      <div class="input-group">
-        <input id="ResourceQuantity" type="number" class="form-control" style="float: left;">
-        <select id="ResourceUnit" class="form-control" style="float: left;">
-          <option>None</option>
-          <option>ml</option>
-          <option>boxes</option>
-        </select>
-      </div>  
-    </td>
-    <td id="Notes" class="align-middle" width="30%" contenteditable="true" style="word-wrap: break-word"></td>
-    <td class="align-middle" width="10%">
-      <span class="table-remove"><button type="button"
-          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-    </td>
-</tr>`;
+    cols += '<th><select id="ser' + rowIDcounter + '" class="form-control" name="Service"><option value="take medicine">Take medicine</option><option value="inject">Inject</option><option value="blood test">Blood Test</option><option value="ct scan">CT Scan</option></select></th>';
+    cols += '<th><input type="number" class="form-control" id="serQ' + rowIDcounter + '" name="ServiceQuantity"/></th>';
+    cols += '<th><select id="res' + rowIDcounter + '" class="form-control" name="Resource""><option value="insulin glargine">Insulin glargine</option><option value="paracetamon">Paracetamon</option><option value="morphine">morphine</option><option value="benzonatate">benzonatate</option></select></th>';
+    cols += '<th><input type="number" class="form-control" id="resQ' + rowIDcounter + '" name="ResourceQuantity"/></th>';
+    cols += '<th><input type="text" class="form-control" id="note' + rowIDcounter + '" name="Notes"/></th>';
 
-$('.table-add').on('click', 'i', () => {
-  const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+    //delete button 
+    cols += '<th><input type="button" class="ibtnDel btn btn-md btn-danger"  value="Delete"></th>';
+    cols += '</tr>';
+    $("#inst_table").append(cols);
+    rowIDcounter++;
+}
+    
+$("#inst_table").on("click", ".ibtnDel", function (event) {
+    $(this).closest("tr").remove();
+});
+// End Back
 
-  if ($tableID.find('tbody tr').length === 0) {
+// Ngoc func
+function getInfor() {
+  if (saveStatus == "unsave") {
+      var table = []
+      for (var i = 0; i < rowIDcounter; i++) {
+          var service = "ser" + String(i)
+          console.log(service)
+          var serviceQ = "serQ" + String(i)
+          var resource = "res" + String(i)
+          var resourceQ = "resQ" + String(i)
+          var note = "note" + String(i)
 
-    $('tbody').append(newTr);
+          var yourServiceSelect = document.getElementById(service);
+          var yourSelect = document.getElementById(resource);
+          table.push({ Service: yourServiceSelect.options[yourServiceSelect.selectedIndex].text, ServiceQuantity: document.getElementById(serviceQ).value, Resource: yourSelect.options[yourSelect.selectedIndex].text, ResourceQuantity: document.getElementById(resourceQ).value, Note: document.getElementById(note).value })
+      }
+
+      var myTable = JSON.stringify(table)
+
+      console.log(table)// đây là array Object nhé
+      console.log(myTable) // đây là JSON
+
+      saveStatus = "Saved"
+      document.getElementById("getInfor").value = "Saved"
   }
-
-  $tableID.find('table').append($clone);
-});
-
-$tableID.on('click', '.table-remove', function () {
-
-  $(this).parents('tr').detach();
-});
-
-$tableID.on('click', '.table-up', function () {
-
-  const $row = $(this).parents('tr');
-
-  if ($row.index() === 1) {
-    return;
+  else {
+      alert("Already saved")
   }
-
-  $row.prev().before($row.get(0));
-});
-
-$tableID.on('click', '.table-down', function () {
-
-  const $row = $(this).parents('tr');
-  $row.next().after($row.get(0));
-});
-
-// A few jQuery helpers for exporting only
-jQuery.fn.pop = [].pop;
-jQuery.fn.shift = [].shift;
-
-$BTN.on('click', () => {
-
-  const $rows = $tableID.find('tr:not(:hidden)');
-  const headers = [];
-  const data = [];
-
-  // Get the headers (add special header logic here)
-  $($rows.shift()).find('th:not(:empty)').each(function () {
-
-    headers.push($(this).text().toLowerCase());
-  });
-
-  // Turn all existing rows into a loopable array
-  $rows.each(function () {
-    const $td = $(this).find('td');
-    const h = {};
-
-    // Use the headers from earlier to name our hash keys
-    headers.forEach((header, i) => {
-
-      h[header] = $td.eq(i).text();
-    });
-
-    data.push(h);
-  });
-
-  // Output the result
-  $EXPORT.text(JSON.stringify(data));
-});
+}
+// End Ngoc
 
 function isJson(string) {
   try {
@@ -171,24 +114,7 @@ function getReportData(){
   let obj = {};
   obj["instructionList"] = [];
   let list = document.getElementById("instructionList");
-  for(i=0; i<list.rows.length; i++){
-    let instruction = list.getElementsByTagName("tr")[i];
-
-    let service = instruction.getElementsByClassName("Service")[1];
-    obj["instructionList"].push({'service_id':String(service.selectedIndex)});
-
-    let serviceQuantity = instruction.getElementsByClassName("ServiceQuantity")[0];
-    obj["instructionList"].push({'service_quantity':String(serviceQuantity.getElementsByTagName("input")[0].value)});
-
-    let resource = instruction.getElementsByClassName("Resource")[1];
-    obj["instructionList"].push({'resource_id':String(resource.selectedIndex)});
-
-    let resourceQuantity = instruction.getElementsByClassName("ResourceQuantity")[0];
-    obj["instructionList"].push({'resource_quantity':String(resourceQuantity.value)});
-
-    let data = instruction.getElementsByClassName("Notes")[0];
-    obj["instructionList"].push({'description':String(data.innerHTML)});
-  }
+  for(i=0; i<list.rows.length; i++){}
 
   obj["id"] = getUserID();
   appointmentID = document.getElementById("appointmentSpace");
