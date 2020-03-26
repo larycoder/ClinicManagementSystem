@@ -291,7 +291,7 @@ class POSTHandler():
                 'appointment_id':parameters["appointmentID"],
                 'report_data':parameters["reportData"]
               }
-      instructionList = parameters["instructionList"]
+      instructionList = eval(parameters["instructionList"])
 
       if not self.DBConnection.is_doctor_has_appointment(userCheck):
         return [-2, json.dumps({"response":"permission denny"})]
