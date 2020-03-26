@@ -1,13 +1,42 @@
 // Back rewrite function
+var service = "";
+var resource = "";
+
 var rowIDcounter = 0;
-var saveStatus = "unsave"
+var saveStatus = "unsave";
+
+function updateMed(){
+  let xmlRequest = new XMLHttpRequest();
+  xmlRequest.onreadystatechange = function(){
+    if(this.readyState == 4){
+      if(this.status == 200){
+        if(isJson(this.responseText) == false){
+          alert("Can not get json file !");
+        }
+        else{
+          // doing something with json object
+          let obj_info = JSON.parse(this.responseText);
+          for(i in obj_info.service){
+            service += '<option value="' + obj_info.service[i].id + '">' + obj_info.service[i].name + '</option>';
+          }
+          for(i in obj_info.resource){
+            resource += '<option value="' + obj_info.resource[i].id + '">' + obj_info.resource[i].name + '</option>';
+          }
+        }
+      }
+    }
+  }
+  xmlRequest.open("GET", "/api/listInfo?id=" + getUserID());
+  xmlRequest.send();
+}
+
 function createIns() {
     var cols;
     cols += '<tr id="row' + rowIDcounter + '">'
 
-    cols += '<th><select id="ser' + rowIDcounter + '" class="form-control" name="Service"><option value="take medicine">Take medicine</option><option value="inject">Inject</option><option value="blood test">Blood Test</option><option value="ct scan">CT Scan</option></select></th>';
+    cols += '<th><select id="ser' + rowIDcounter + '" class="form-control" name="Service">' + service + '</select></th>';
     cols += '<th><input type="number" class="form-control" id="serQ' + rowIDcounter + '" name="ServiceQuantity"/></th>';
-    cols += '<th><select id="res' + rowIDcounter + '" class="form-control" name="Resource""><option value="insulin glargine">Insulin glargine</option><option value="paracetamon">Paracetamon</option><option value="morphine">morphine</option><option value="benzonatate">benzonatate</option></select></th>';
+    cols += '<th><select id="res' + rowIDcounter + '" class="form-control" name="Resource">' + resource + '</select></th>';
     cols += '<th><input type="number" class="form-control" id="resQ' + rowIDcounter + '" name="ResourceQuantity"/></th>';
     cols += '<th><input type="text" class="form-control" id="note' + rowIDcounter + '" name="Notes"/></th>';
 
@@ -17,6 +46,8 @@ function createIns() {
     $("#inst_table").append(cols);
     rowIDcounter++;
 }
+
+
     
 $("#inst_table").on("click", ".ibtnDel", function (event) {
     $(this).closest("tr").remove();
@@ -114,7 +145,7 @@ function getReportData(){
   let obj = {};
   obj["instructionList"] = [];
   let list = document.getElementById("instructionList");
-  for(i=0; i<list.rows.length; i++){}
+  for(i=0; i<list.rows.length; i++){} // get list of instruction
 
   obj["id"] = getUserID();
   appointmentID = document.getElementById("appointmentSpace");
@@ -155,5 +186,6 @@ function uploadData(){
 
 $(document).ready(function(){
   getAppointmentID4Doctor();
+  updateMed();
 });
 
