@@ -19,6 +19,7 @@ form{
 	/*margin: 40px 600px 20px 600px;*/
 }
 tr{
+	font-size: 14px;
 	text-align: center;
 }
 tr:nth-child(even){
@@ -34,13 +35,15 @@ td,th{
 	border-left: 1px solid #ddd; 
 }
 th{
-	font-size: 18px;
+	font-size: 16px;
 	padding-right: 70px;
 	padding-left: 70px;
 	background-color: #bdbdbd;
 }
-table{
-	margin-left: 7%;
+
+.table-wrap{
+	overflow-x: scroll;
+	white-space: nowrap;
 }
 option{
 	font-family: Garamond;
