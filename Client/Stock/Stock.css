@@ -1,3 +1,6 @@
+.btn{
+	font-size: 20px;
+}
 th{
 	text-align: center;
 }
@@ -19,7 +22,7 @@ form{
 	/*margin: 40px 600px 20px 600px;*/
 }
 tr{
-	font-size: 14px;
+	font-size: 18px;
 	text-align: center;
 }
 tr:nth-child(even){
@@ -35,13 +38,15 @@ td,th{
 	border-left: 1px solid #ddd; 
 }
 th{
-	font-size: 16px;
+	font-size: 20px;
 	padding-right: 70px;
 	padding-left: 70px;
 	background-color: #bdbdbd;
 }
 
 .table-wrap{
+	align-self: center;
+	width: 70%;
 	overflow-x: scroll;
 	white-space: nowrap;
 }
@@ -50,7 +55,7 @@ option{
 }
 #CodeSearch{
   	/*width: 40%;*/
-	font-size: 16px;
+	font-size: 18px;
 	font-family: Garamond;
 	padding: 12px 20px 12px 20px;
 	border: 1px solid #ddd;

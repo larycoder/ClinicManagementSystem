@@ -50,10 +50,10 @@
 	
 	<div class="row mx-5">
 		<!-- Import button -->
-		<button id="ImportResource" type="button" class="btn btn-primary d-block col-sm m-3 mx-5" data-toggle="modal" data-target="#Import">Import Resource</button>
+		<button id="ImportResource" type="button" class="btn btn-sm btn-primary d-block col-sm m-2 mx-5 p-1" data-toggle="modal" data-target="#Import">Import Resource</button>
 		
 		<!-- Export button -->
-		<button id="ExportResource" type="button" class="btn btn-primary d-block  col-sm m-3 mx-5" data-toggle="modal" data-target="#Export">Export Resource</button>
+		<button id="ExportResource" type="button" class="btn btn-sm btn-primary d-block col-sm m-2 mx-5 p-1" data-toggle="modal" data-target="#Export">Export Resource</button>
 	</div>
 	<!-- Import Modal -->
 	<div id="Import" class="modal fade" role="dialog">
@@ -150,12 +150,12 @@
 	<br><br>
 	<!-- Search bar -->
 	<div class="row mx-1 p-3">
-		<input class="d-inline mx-5 my-2 col-sm" type="text" id="CodeSearch" onkeyup="SearchResourceByCode()" placeholder="Search for Resource by CODE.." class="CodeColapse">
+		<input class="d-inline mx-5 my-1 py-2 col-sm" type="text" id="CodeSearch" onkeyup="SearchResourceByCode()" placeholder="Search for Resource by CODE.." class="CodeColapse">
 		<br>
-		<input class="d-inline mx-5  col-sm" type="text" id="NameSearch" onkeyup="SearchResourceByName()" placeholder="Search for Resource by NAME.." class="NameColapse">
+		<input class="d-inline mx-5 my-1 py-2 col-sm" type="text" id="NameSearch" onkeyup="SearchResourceByName()" placeholder="Search for Resource by NAME.." class="NameColapse">
 	</div>
 	<!-- Table -->
-	<div class="mx-1 container row col-sm table-wrap">
+	<div class="mx-4 container-flex row table-wrap">
 		<table class="table mx-1" id="ResourceTable">
 			<thead>
 				<tr>
