@@ -3,7 +3,6 @@ var service = "";
 var resource = "";
 
 var rowIDcounter = 0;
-var saveStatus = "unsave";
 
 function updateMed(){
   let xmlRequest = new XMLHttpRequest();
@@ -56,32 +55,20 @@ $("#inst_table").on("click", ".ibtnDel", function (event) {
 
 // Ngoc func
 function getInfor() {
-  if (saveStatus == "unsave") {
-      var table = []
-      for (var i = 0; i < rowIDcounter; i++) {
-          var service = "ser" + String(i)
-          console.log(service)
-          var serviceQ = "serQ" + String(i)
-          var resource = "res" + String(i)
-          var resourceQ = "resQ" + String(i)
-          var note = "note" + String(i)
+  var table = []
+  for (var i = 0; i < rowIDcounter; i++) {
+      var service = "ser" + String(i)
+      console.log(service)
+      var serviceQ = "serQ" + String(i)
+      var resource = "res" + String(i)
+      var resourceQ = "resQ" + String(i)
+      var note = "note" + String(i)
 
-          var yourServiceSelect = document.getElementById(service);
-          var yourSelect = document.getElementById(resource);
-          table.push({ Service: yourServiceSelect.options[yourServiceSelect.selectedIndex].text, ServiceQuantity: document.getElementById(serviceQ).value, Resource: yourSelect.options[yourSelect.selectedIndex].text, ResourceQuantity: document.getElementById(resourceQ).value, Note: document.getElementById(note).value })
-      }
-
-      var myTable = JSON.stringify(table)
-
-      console.log(table)// đây là array Object nhé
-      console.log(myTable) // đây là JSON
-
-      saveStatus = "Saved"
-      document.getElementById("getInfor").value = "Saved"
+      var yourServiceSelect = document.getElementById(service);
+      var yourSelect = document.getElementById(resource);
+      table.push({ service_id: yourServiceSelect.options[yourServiceSelect.selectedIndex].value, service_quantity: document.getElementById(serviceQ).value, resource_id: yourSelect.options[yourSelect.selectedIndex].value, resource_quantity: document.getElementById(resourceQ).value, description: document.getElementById(note).value });
   }
-  else {
-      alert("Already saved")
-  }
+  return JSON.stringify(table);
 }
 // End Ngoc
 
@@ -143,10 +130,7 @@ function updateAppointment(list){
 
 function getReportData(){
   let obj = {};
-  obj["instructionList"] = [];
-  let list = document.getElementById("instructionList");
-  for(i=0; i<list.rows.length; i++){} // get list of instruction
-
+  obj["instructionList"] = getInfor();
   obj["id"] = getUserID();
   appointmentID = document.getElementById("appointmentSpace");
   obj["appointmentID"] = appointmentID.options[appointmentID.selectedIndex].value;
@@ -167,12 +151,14 @@ function uploadData(){
               }
               else{
                   // doing something with json object
-                  alert(JSON.parse(this.responseText));
+                  let obj = JSON.parse(this.responseText);
+                  alert(obj.response);
               }
           }
           else{
               alert("Error when trying to access service !")
           }
+          location.reload();
       }
       else{
         $(".container").css("visibility","visible")
