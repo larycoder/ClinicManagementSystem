@@ -5,9 +5,9 @@ function SearchResourceByCode() {
     input = document.getElementById("CodeSearch");
     filter = input.value.toUpperCase();
     table = document.getElementById("ResourceTable");
-    tr = table.getElementsByTagName("tr");
+    tr = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[0];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -26,9 +26,9 @@ function SearchResourceByName() {
     input = document.getElementById("NameSearch");
     filter = input.value.toUpperCase();
     table = document.getElementById("ResourceTable");
-    tr = table.getElementsByTagName("tr");
+    tr = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2];
+        td = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
