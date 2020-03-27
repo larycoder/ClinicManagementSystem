@@ -39,3 +39,64 @@ function SearchResourceByName() {
         }
     }
 }
+
+function isJson(string) {
+    try {
+        JSON.parse(string);
+    } catch (e) {
+        return false;
+    }
+    return true;
+  }
+  
+function getUserID(){
+let id = localStorage.getItem('Clinic-ID');
+if(id !== null){
+    return id;
+}
+return -1;
+}
+
+function getUserID(){
+let id = localStorage.getItem('Clinic-ID');
+if(id !== null){
+    return id;
+}
+return -1;
+}
+
+function updateStock(){
+    let xmlRequest = new XMLHttpRequest();
+    xmlRequest.onreadystatechange = function(){
+      if(this.readyState == 4){
+        if(this.status == 200){
+          if(isJson(this.responseText) == false){
+            alert("Can not get json file !");
+          }
+          else{
+            // doing something with json object
+            let obj_info = JSON.parse(this.responseText);
+            let table = document.getElementById("ResourceTable").getElementsByTagName("tbody")[0];
+            for(i in obj_info){
+                let string = '<tr>';
+                string += '<th scope="row">' + obj_info[i].id + '</th>';
+                string += '<td>' + obj_info[i].code + '</td>';
+                string += '<td>' + obj_info[i].name + '</td>';
+                string += '<td>' + obj_info[i].unit + '</td>';
+                string += '<td>' + obj_info[i].quantity + '</td>';
+                string += '<td>' + obj_info[i].status + '</td>';
+                string += '<td>' + obj_info[i].price + '</td>';
+                string += '</tr>';
+                table.innerHTML += string;
+            }
+          }
+        }
+      }
+    }
+    xmlRequest.open("GET", "/api/listResource?id=" + getUserID());
+    xmlRequest.send();  
+}
+
+$(document).ready(function(){
+    updateStock();
+  });
