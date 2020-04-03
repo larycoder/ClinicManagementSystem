@@ -1,6 +1,11 @@
 // variable to keep resource information
 var resource_obj = null;
 
+// hide the loader
+function hideLoader(){
+    $(".loader-container").css("visibility","hidden")
+}
+
 // SearchResourceByCode
 function SearchResourceByCode() {
     var input, filter, table, tr, td, i, txtValue;
@@ -148,15 +153,11 @@ function createResource(){
 
     // send information to database
     let request = new XMLHttpRequest();
-    request.open("POST", "/api/createResource", 1);
-    if(this.readyState == 4){
-        $(".loader-container").css("visibility","hidden")
-    å}
-    else{
-        $(".loader-container").css("visibility","visible")
-    }
+    $(".loader-container").css("visibility","visible")
+    request.open("POST", "/api/createResource");
     request.send("id=" + getUserID() + "&" + new_resource);
     request.onload = function(){
+        hideLoader()
         if(request.status == 200){
             // do something
             if(isJson(request.responseText) == false){
@@ -182,15 +183,11 @@ function updateResource(){
 
     // send information
     let rq = new XMLHttpRequest();
-    rq.open("POST", "/api/updateResource", 1);
-    if(this.readyState == 4){
-        $(".loader-container").css("visibility","hidden")
-    å}
-    else{
-        $(".loader-container").css("visibility","visible")
-    }
+    $(".loader-container").css("visibility","visible")
+    rq.open("POST", "/api/updateResource");
     rq.send("id=" + getUserID() + "&" + resource);
     rq.onload = function(){
+        hideLoader()
         if(rq.status == 200){
             // do something
             if(isJson(rq.responseText) == false){
@@ -216,3 +213,4 @@ $(document).ready(function(){
         updateUpdateTable(getResoureById(r_id));
     });
   });
+
