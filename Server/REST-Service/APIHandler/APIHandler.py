@@ -361,7 +361,7 @@ class POSTHandler():
           if self.DBConnection.add_resource_quantity(resource):
             return [1, json.dumps({"return":"Successfully update"})]
         # Export option
-        if str(parameters["type"]) == "E":
+        elif str(parameters["type"]) == "E":
           if self.DBConnection.remove_resource_quantity(resource):
             return [1, json.dumps({"return":"Successfully update"})]
     except Exception as e:
