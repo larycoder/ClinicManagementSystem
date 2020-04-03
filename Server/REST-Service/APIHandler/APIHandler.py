@@ -186,6 +186,21 @@ class GETHandler():
       return readFile(root + "/error404.html")
     return [-4, json.dumps({"return":"Permision denny"})]
 
+  def listResource(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      userInfo = self.DBConnection.get_user_info(user)
+      if not (userInfo["type"] == "patient"):
+        listInfo = self.DBConnection.list_resource()
+        return [1, json.dumps(listInfo)]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [-4, json.dumps({"return":"Permision denny"})]
 
 class POSTHandler():
   """ class hanler POST method """
@@ -329,4 +344,50 @@ class POSTHandler():
   #     userinfo = self.DBConnection.get_user_info({"id":parameters["id"]})
   #     if not (userinfo["type"] == "patient"):
 
+  def updateResource(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      userInfo = self.DBConnection.get_user_info(user)
+      if not (userInfo["type"] == "patient"):
+        resource = {}
+        resource["id"] = str(parameters["resourceID"])
+        resource["quantity"] = str(parameters["quantity"])
+        # Import option
+        if str(parameters["type"]) == "I":
+          if self.DBConnection.add_resource_quantity(resource):
+            return [1, json.dumps({"return":"Successfully update"})]
+        # Export option
+        if str(parameters["type"]) == "E":
+          if self.DBConnection.remove_resource_quantity(resource):
+            return [1, json.dumps({"return":"Successfully update"})]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [-4, json.dumps({"return":"Permision denny"})]
+
+  def createResource(self, data):
+    if self.DBConnection == None:
+      print("DB Connection is not exit")
+      return readFile(root + "/error404.html")
+    parameters = String2Json(data)
+    try:
+      user = {"id":parameters["id"]}
+      userInfo = self.DBConnection.get_user_info(user)
+      if not (userInfo["type"] == "patient"):
+        resource = {}
+        resource["code"] = str(parameters["code"])
+        resource["name"] = str(parameters["name"])
+        resource["unit"] = str(parameters["unit"])
+        resource["quantity"] = str(parameters["quantity"])
+        resource["price"] = str(parameters["price"])
+        if self.DBConnection.create_resource(resource):
+            return [1, json.dumps({"return":"Successfully create"})]
+    except Exception as e:
+      print(e)
+      return readFile(root + "/error404.html")
+    return [-4, json.dumps({"return":"Permision denny"})]
 
