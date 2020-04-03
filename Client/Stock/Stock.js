@@ -72,6 +72,7 @@ function updateStock(){
     let xmlRequest = new XMLHttpRequest();
     xmlRequest.onreadystatechange = function(){
       if(this.readyState == 4){
+        $(".loader-container").css("visibility","hidden")
         if(this.status == 200){
           if(isJson(this.responseText) == false){
             alert("Can not get json file !");
@@ -109,6 +110,9 @@ function updateStock(){
           }
         }
       }
+      else{
+        $(".loader-container").css("visibility","visible")
+      }
     }
     xmlRequest.open("GET", "/api/listResource?id=" + getUserID());
     xmlRequest.send();  
@@ -145,6 +149,12 @@ function createResource(){
     // send information to database
     let request = new XMLHttpRequest();
     request.open("POST", "/api/createResource", 1);
+    if(this.readyState == 4){
+        $(".loader-container").css("visibility","hidden")
+    å}
+    else{
+        $(".loader-container").css("visibility","visible")
+    }
     request.send("id=" + getUserID() + "&" + new_resource);
     request.onload = function(){
         if(request.status == 200){
@@ -173,6 +183,12 @@ function updateResource(){
     // send information
     let rq = new XMLHttpRequest();
     rq.open("POST", "/api/updateResource", 1);
+    if(this.readyState == 4){
+        $(".loader-container").css("visibility","hidden")
+    å}
+    else{
+        $(".loader-container").css("visibility","visible")
+    }
     rq.send("id=" + getUserID() + "&" + resource);
     rq.onload = function(){
         if(rq.status == 200){
