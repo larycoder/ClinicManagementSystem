@@ -328,7 +328,27 @@ class ClinicDBManager:
         instruction_list = self.get_instruction_list_by_report(report)
         return [rp, instruction_list]
 
-        
+    def create_resource(self, new_resource: Dict) -> bool:
+        """
+        :param new_resource: {
+            code: str,
+            name: str,
+            unit: str,
+            quantity: str,
+            price: str
+        }
+
+        :return:
+        """
+        cursor = self.cnx.cursor()
+        try:
+            cursor.execute(config.query['add_resource'], new_resource)
+            self.cnx.commit()
+            return True
+        except mysql.connector.Error as e:
+            print(e.errno)
+            return False
+
 def CreateDbConnection():
     try:
         db_manager = ClinicDBManager()
@@ -375,14 +395,28 @@ if __name__ == '__main__':
             'report_data': 'H1N1, go to the hospital'
         }
 
+        new_resource = {
+            'code': 'A123',
+            'name': 'paracetamol',
+            'unit': 'pack',
+            'quantity': '20',
+            'price': '10000'
+        }
+
+        if(db_manager.create_resource(new_resource)):
+            print("Ok")
+        else:
+            print("Fail")
+
         # db_manager.add_report(report, instruction_list=[])
         # print(db_manager.list_schedule_today({'doctor_id': '5'}))
-        db_manager.get_instruction_list_by_report({'report_id': '1'})
-        print(db_manager.show_report({'report_id': '1'}))
-
+        # db_manager.get_instruction_list_by_report({'report_id': '1'})
+        # print(db_manager.show_report({'report_id': '1'}))
+        # print(db_manager.list_service())
         # print(db_manager.get_appointment_list_by_doctor({'id': '7'}))
         # print(db_manager.get_report_list_by_patient({'patient_id': '4'}))
         # print(db_manager.get_instruction_list_by_report({'report_id': '2'}))
+
 
 
         # check = {
