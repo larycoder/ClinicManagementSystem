@@ -34,7 +34,7 @@ query = {
   #maintain stock
   'resource_list': "SELECT * FROM resource;",
   'service_list':"SELECT id, code, name FROM service;",
-  'add_resource': "INSERT INTO resource(id, code, name, unit, quantity, status, price) VALUES(NULL,%(code)s,%(name)s,%(unit)s,%(quantity)d,%(status)d,%(price)d);",
+  'add_resource': "INSERT INTO resource(id, code, name, unit, quantity, status, price) VALUES(NULL,%(code)s,%(name)s,%(unit)s,%(quantity)s,1,%(price)s);",
   'add_service': "INSERT INTO service(id, code, name, status, price) VALUES (NULL,%(code)s,%(name)s,%(status)d,%(price)d);",
   'delete_resource': "DELETE FROM resource WHERE id= %(id)d;",
   'delete_service': "DELETE FROM service WHERE id= %(id)d;",
