@@ -127,6 +127,7 @@ function getResoureById(id){
 function updateUpdateTable(obj){
     document.getElementById("code_of_update_table").placeholder = obj.code;
     document.getElementById("unit_of_update_table").placeholder = obj.unit;
+    document.getElementById("quantity_of_update_table").placeholder = obj.quantity;
 }
 
 // create new resource to database
@@ -153,12 +154,40 @@ function createResource(){
             }
             else{
                 alert("Server Response: " + JSON.parse(request.responseText).return);
+                window.location.reload();
             }
         }
         else{
             alert("Error: " + request.status + "\nCan not upload new resource");
         }
-        window.location.reload();
+    };
+}
+
+function updateResource(){
+    // collect information
+    let resource = "";
+    resource += "resourceID=" + $('#resource_quantity_update').children("option:selected").val() + "&";
+    resource += "quantity=" + document.getElementById("QI_of_update_table").value + "&";
+    resource += "type=" + $('#type_of_update_table').children("option:selected").val();
+
+    // send information
+    let rq = new XMLHttpRequest();
+    rq.open("POST", "/api/updateResource", 1);
+    rq.send("id=" + getUserID() + "&" + resource);
+    rq.onload = function(){
+        if(rq.status == 200){
+            // do something
+            if(isJson(rq.responseText) == false){
+                alert("Can not get Json file");
+            }
+            else{
+                alert("Server Response: " + JSON.parse(rq.responseText).return);
+                window.location.reload();
+            }
+        }
+        else{
+            alert("Error: " + rq.status + "\nCan not upload new resource");
+        }
     };
 }
 
