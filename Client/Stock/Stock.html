@@ -86,7 +86,7 @@
 						</select>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-secondary" onclick="hideLoader()" data-dismiss="modal">Cancel</button>
 						<button type="button" class="btn btn-primary" data-target="#theModalConfirmPass" data-toggle="modal" onclick="createResource();">Save changes</button>
 					</div>  
 					<div class = "loader-container">
@@ -136,7 +136,7 @@
 													<input id="unit_of_update_table" class="form-control" type="text" placeholder="Resource unit" name="Quantity" readonly>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" onclick="hideLoader()" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary" data-target="#theModalConfirmPass" data-toggle="modal" onclick="updateResource();">Save changes</button>
 						</div>  
 						<div class = "loader-container">
